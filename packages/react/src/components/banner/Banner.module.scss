@@ -1,0 +1,92 @@
+@use '@design-system-rte/core/design-tokens/main-internal.scss' as *;
+
+.banner {
+  @include elevation-neutral-shadow-2;
+  display: flex;
+  padding: $positive-spacing_200;
+  gap: $positive-spacing_200;
+  align-self: stretch;
+  border-radius: 0 0 $radius-s $radius-s;
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 320px;
+  justify-content: center;
+  align-items: center;
+  color: var(--content-info-default);
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 200ms ease, transform 200ms ease;
+  z-index: $level-1;
+  border-bottom: $width-l solid var(--border-info);
+  background-color: var(--background-default);
+
+  &[data-type='error'] {
+    color: var(--content-danger-default);
+    border-bottom-color: var(--border-danger);
+  }
+
+  &[data-type='success'] {
+    color: var(--content-success-default);
+    border-bottom-color: var(--border-success);
+  }
+
+  &[data-type='warning'] {
+    color: var(--content-primary);
+    border-bottom-color: var(--border-warning);
+  }
+
+  &[data-position='overlay'] {
+    position: fixed;
+  }
+
+  &[data-open='true'] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .banner-icon {
+    display: flex;
+    padding: $positive-spacing_0 $positive-spacing_0 $positive-spacing_0 $positive-spacing_200;
+    justify-content: center;
+    align-items: center;
+    gap: var(--positive-spacing_0, 0);
+    align-self: stretch;
+  }
+
+  .banner-close-icon {
+    color: var(--content-secondary);
+  }
+
+  .banner-content {
+    display: flex;
+    padding: $positive-spacing_0 $positive-spacing_200;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $positive-spacing_100;
+    flex: 1 0 0;
+    border-radius: $radius-none;
+    opacity: $opacity-100;
+
+    .banner-title {
+      @include typography-heading-s;
+    }
+
+    .banner-action-button {
+      width: max-content;
+    }
+
+    .banner-message {
+      @include typography-text-m;
+      color: var(--content-secondary);
+      display: flex;
+      align-items: center;
+      gap: $positive-spacing_300;
+      padding: $positive-spacing_100 0;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+}

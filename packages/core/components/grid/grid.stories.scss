@@ -1,0 +1,23 @@
+@use '@design-system-rte/core/design-tokens/primitives/_colors.scss' as *;
+@use '../../design-tokens/tokens/public/spacing' as *;
+@use '../../design-tokens/abstract/mixins/typography' as *;
+
+.sb-css-grid-container {
+  background-color: $jaune-indications-200;
+  outline: 1px dashed $jaune-indications-400;
+
+  .grid {
+    .col {
+      @include typography-text-l;
+      background-color: #FFFFFF;
+      box-shadow: 0 0 0 1px $jaune-indications-400;
+      min-block-size: 100px;
+      display: flex;
+      gap: $positive-spacing_200;
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+}

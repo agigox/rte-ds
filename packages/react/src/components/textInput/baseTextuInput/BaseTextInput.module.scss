@@ -1,0 +1,222 @@
+@use '@design-system-rte/core/design-tokens/main.scss' as *;
+
+.container {
+    display: flex;
+    width: 300px;
+    padding: var(--positive-spacing_0);
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: var(--positive-spacing_0);
+
+    &[data-compact-spacing="true"] {
+        .inputContainer {
+            height: 24px;
+            min-height: 24px;
+            .input {
+                .inputBar {
+                    .inputField {
+                        height: 24px;
+                    }
+                }
+            }
+        }   
+    }
+
+    &[data-label-position="side"] {
+        align-items: center;
+        flex-direction: row;
+
+        .text {
+            width: auto;
+            align-items: center;
+        }
+
+        .inputCounter {
+            padding: 0 $positive-spacing-100;
+        }
+    }
+
+    &[data-error="true"] {
+        .inputContainer {
+            .input {
+                .inputBar {
+                    .leftIcon {
+                        color: var(--content-danger-default);
+                    }
+                }
+            }
+        }
+    }
+
+    .text {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+        padding: $positive-spacing-025 $positive-spacing-100;
+        box-sizing: border-box;
+
+        .labelContainer {
+            display: flex;
+            align-items: flex-start;
+
+            .inputLabel {
+                color: var(--content-secondary);
+                @include typography-text-m-regular;
+            }
+        }
+    }
+
+    .inputContainer {
+        display: flex;
+        flex-direction: column;
+        height: 32px;
+        width: 100%;
+        min-width: 48px;
+        min-height: 32px;
+        max-height: 32px;
+        align-self: stretch;
+
+        .input {
+
+            display: flex;
+
+            .inputBar {
+                position: relative;
+                display: flex;
+                align-items: center;
+                width: 100%;
+
+                &.withLeftIcon {
+                    .inputField {
+                        padding-left: $positive-spacing-400;
+                    }
+                }
+
+                &.withRightIcon {
+                    .inputField {
+                        padding-right: $positive-spacing-400;
+                    }
+                }
+
+                .leftIcon {
+                    position: absolute;
+                    left: $positive-spacing-100;
+                    color: var(--content-secondary);
+                }
+
+                .rightIcon {
+                    position: absolute;
+                    right: $positive-spacing-100;
+                    color: var(--content-secondary);
+                    
+                    &:focus {
+                        outline: none;
+                    }
+
+                    &:focus-visible {
+                        outline: $width-xs solid var(--border-brand-focused);
+                        border-radius: $radius-m;
+
+                        &::after {
+                            display: none;
+                        }
+                    }
+                }
+
+                .inputField {
+                    box-sizing: border-box;
+                    appearance: none;
+                    width: 100%;
+                    height: 32px;
+                    min-width: 48px;
+                    max-height: 32px;
+                    border-radius: $radius-s;
+                    border: $width-xs solid var(--border-secondary);
+                    padding: $positive-spacing-050 $positive-spacing-200;
+                    background: linear-gradient(0deg, var(--elevation-surface-inner-shadow) 0%, var(--elevation-surface-inner-shadow) 100%), var(--background-default);
+                    transition: border 200ms, outline 200ms;
+                    color: var(--content-primary);
+                    @include neutral-inner-shadow;
+
+                    &:hover {
+                        border: $width-xs solid var(--border-primary);
+                    }
+
+                    &:focus, &[data-highlighted="true"] {
+                        outline: 1px solid var(--border-brand-default);
+                        border: $width-xs solid var(--border-brand-default);
+                    }
+
+                    &:active {
+                        outline: 1px solid var(--border-brand-default);
+                        border: $width-xs solid var(--border-brand-default)
+                    }
+
+                    &:disabled,
+                    &[readonly] {
+                        border: $width-xs solid var(--border-disabled);
+                        background: linear-gradient(0deg, var(--elevation-surface-inner-shadow) 0%, var(--elevation-surface-inner-shadow) 100%), var(--background-disabled);
+                        cursor: not-allowed;
+                        box-shadow: none;
+                    }
+
+                    &[data-error='true'] {
+                        outline: 1px solid var(--border-danger);
+                        border: $width-xs solid var(--border-danger)
+                    }
+
+                    &::placeholder {
+                        color: var(--content-tertiary);
+                    }
+                }
+            }
+        }
+
+        .assistiveText {
+            display: flex;
+            align-items: center;
+            gap: $positive-spacing-050;
+            padding: $positive-spacing-050 $positive-spacing-100;
+
+            .assistiveIconError {
+                color: var(--content-danger-default);
+            }
+
+            .assistiveIconSuccess {
+                color: var(--content-success-default);
+            }
+
+            .assistiveLabel {
+
+                transition: color 200ms;
+
+                &[data-appearance="error"] {
+                    color: var(--content-danger-default);
+                    @include typography-text-input-s-bold;
+                    margin: $positive-spacing-0;
+                }
+
+                &[data-appearance="success"] {
+                    color: var(--content-success-default);
+                    @include typography-text-input-s-bold;
+                    margin: $positive-spacing-0;
+                }
+
+                &[data-appearance="description"] {
+                    color: var(--content-tertiary);
+                    @include typography-text-input-tertiary-regular;
+                    margin: $positive-spacing-0;
+                }
+            }
+        }
+    }
+}
+
+.inputCounter {
+    color: var(--content-tertiary);
+    @include typography-text-s-regular;
+    margin-block: $positive-spacing-0;
+}

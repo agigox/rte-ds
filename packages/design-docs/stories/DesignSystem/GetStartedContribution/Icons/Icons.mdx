@@ -1,0 +1,59 @@
+import { Meta } from "@storybook/blocks"
+
+import DocsSection from "../../../../src/components/DocsSection/DocsSection";
+import HeaderComponent from "../../../../src/components/Header/Header";
+import LastUpdate from "../../../../src/components/LastUpdate/LastUpdate";
+import Accordion from "../../../../src/components/Accordion/Accordion";
+
+import "../../../../src/styles/GeneralDocs.scss";
+import Paragraph from "../../../../src/components/Paragraph/Paragraph";
+import Body from "../../../../src/components/Body/Body";
+
+<Meta title='Design system/Get Started - Contribuer/Icônes'/>
+
+<div className="docs">
+    <HeaderComponent title="Icônes"/>
+    
+    <Body>
+        <Accordion title="Contribuer à la librairie d’icônes">
+            <DocsSection title="Les questions à se poser avant de contribuer" headingLevel={3}>
+                <ol>
+                    <li>Est-ce que l’icône que je veux ajouter n’existe pas déjà dans la <a href="https://www.figma.com/design/tKntdNwiF1x3jSpJ9Q0O0q/01.3-Iconography?node-id=0-1&fuid=1478782722248225119" target="_blank" class="docs-link">librairie</a> ?</li><br/>
+                    <li>Est-ce qu’une icône existante dans la librairie ne remplit pas déjà la même fonction ?</li><br/>
+                    <li>Est-ce que l’icône que je veux ajouter n’a pas déjà été proposée ?</li><br/>
+                    <li>Est-ce que l’icône que je veux ajouter n’est pas déjà en cours d’analyse ou d’implémentation ?</li><br/>
+                    <li>Est-ce que je peux trouver l’icône que je veux ajouter sur Material Symbols ?</li>
+                </ol>
+            </DocsSection>
+
+            <DocsSection title="Comment contribuer ?" headingLevel={3}>
+                <ol>
+                    <li><strong> Se rendre sur la page Figma : <a href="https://www.figma.com/design/tKntdNwiF1x3jSpJ9Q0O0q/01.3-Iconography?node-id=1-2&fuid=1478782722248225119" target="_blank" class="docs-link">🚧 Propositions/Validations en cours.</a></strong></li>
+                    <br/>
+                    <li>
+                        <strong>Vérifier que l’icône qui vous manque n’a pas déjà été proposée. Si c’est le cas, ajouter un ❤️ à côté de cette icône.</strong><br/>
+                        <em>Cela nous permet d’évaluer l’universalité du besoin.</em><br/>
+                        <br/>
+                        <strong>Sinon, continuer à l’étape suivante.</strong>
+                    </li>
+                    <br/>
+                    <li>
+                        <strong>Suivre les guidelines pour paramétrer l’icône que vous souhaitez ajouter.</strong><br/>
+                        <em>Nous accordons une importance forte à la cohérence de la librairie. Votre proposition doit donc s’y intégrer harmonieusement.</em>
+                    </li>
+                    <br/>
+                    <li>
+                        <strong>Remplir le journal de contribution.</strong><br/>
+                        <em>Toute icône ajoutée sans remplir ce journal sera supprimée.</em>
+                    </li>
+                    <br/>
+                    <li>
+                        <strong>L’équipe Design System analyse la proposition</strong> (<em>“Analyse en cours”</em>).
+                        <strong>Si la proposition est validée, l’icône sera intégrée à la librairie</strong> (<em>“Implémentation en cours”</em>).
+                    </li>
+                </ol>
+            </DocsSection>
+        </Accordion>
+    </Body>
+</div>
+

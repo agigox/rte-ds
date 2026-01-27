@@ -1,0 +1,31 @@
+{
+  "name": "@design-system-rte/core",
+  "version": "1.2.1",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "vitest run",
+    "build": "npm run build:css-themes && npm run build:css-fonts",
+    "build:css-themes": "ts-node css-theme-generator.ts",
+    "build:css-fonts": "ts-node css-font-generator.ts",
+    "generate:tokens": "ts-node ./scripts/design-tokens/generator.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "Apache-2.0",
+  "description": "Design Tokens, interfaces and utilities for the Design System RTE",
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "sass": "^1.85.1"
+  },
+  "devDependencies": {
+    "sass": "^1.89.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  }
+}

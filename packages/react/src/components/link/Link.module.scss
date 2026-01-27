@@ -1,0 +1,153 @@
+@use '@design-system-rte/core/design-tokens/main.scss' as *;
+
+.link {
+
+    @include typography-link-m;
+    align-items: center;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+
+    &[data-subtle='false'] {
+
+        &:visited {
+
+            color: var(--content-link-visited-default);
+            text-decoration: underline;
+
+            &:hover {
+                color: var(--content-link-visited-hover);
+                text-decoration: none;
+            }
+
+            &:active {
+                color: var(--content-link-visited-pressed);
+            }
+
+            &:focus-visible {
+                color: var(--content-link-visited-default);
+                outline: 1px solid var(--border-brand-focused);
+                outline-offset: $radius-s;
+                border-radius: $radius-s;
+            }
+        }
+
+        &:not(:visited) {
+
+            color: var(--content-link-default);
+            text-decoration: underline;
+
+            &:hover {
+                color: var(--content-link-hover);
+            }
+
+            &:active {
+                color: var(--content-link-pressed);
+            }
+
+            &:focus-visible {
+                color: var(--content-link-default);
+                outline: 1px solid var(--border-brand-focused);
+                outline-offset: $radius-s;
+                border-radius: $radius-s;
+            }
+        }
+
+        &[data-reverse='true'] {
+            color: var(--content-primary-inverse);
+            text-decoration: underline;
+
+            &:hover {
+                color: var(--content-primary-inverse);
+                text-decoration: none;
+            }
+
+            &:focus-visible {
+                color: var(--content-primary-inverse);
+                outline: 1px solid var(--border-inverse);
+                outline-offset: $radius-s;
+                border-radius: $radius-s;
+            }
+        }
+    }
+
+    &[data-subtle='true'] {
+
+        &:visited {
+
+            color: var(--content-primary);
+            text-decoration: none;
+
+            &:hover {
+                color: var(--content-link-secondary);
+                text-decoration: underline;
+            }
+
+            &:active {
+                color: var(--content-link-primary);
+                text-decoration: none;
+            }
+
+            &:focus-visible {
+                color: var(--content-link-primary);
+                text-decoration: none;
+                outline: 1px solid var(--border-brand-focused);
+                outline-offset: $radius-s;
+                border-radius: $radius-s;
+            }
+        }
+
+        &:not(:visited) {
+
+            color: var(--content-primary);
+            text-decoration: none;
+
+            &:hover {
+                color: var(--content-secondary);
+                text-decoration: underline;
+            }
+
+            &:active {
+                color: var(--content-primary);
+                text-decoration: none;
+            }
+
+            &:focus-visible {
+                color: var(--content-primary);
+                text-decoration: none;
+                outline: 1px solid var(--border-brand-focused);
+                outline-offset: $radius-s;
+                border-radius: $radius-s;
+            }
+        }
+
+        &[data-reverse='true'] {
+            color: var(--content-primary-inverse);
+            text-decoration: none;
+
+            &:hover {
+                color: var(--content-primary-inverse);
+                text-decoration: underline;
+            }
+
+            &:focus-visible {
+                color: var(--content-primary-inverse);
+                text-decoration: underline;
+                outline: 1px solid var(--border-inverse);
+                outline-offset: $radius-s;
+                border-radius: $radius-s;
+            }
+        }
+    }
+
+    .external-link-icon {
+        align-self: start;
+        margin-left: $positive-spacing_025;
+    }
+
+    .label {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
