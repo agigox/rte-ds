@@ -1,4 +1,4 @@
-import { getToastPriority } from "@design-system-rte/core/components/toast/toast.utils";
+import { getToastPriority } from "@rte-ds/core/components/toast/toast.utils";
 import { useCallback, useState } from "react";
 
 import { InputToast, ToastQueueContext, ToastQueueItem } from "./ToastQueueContext";

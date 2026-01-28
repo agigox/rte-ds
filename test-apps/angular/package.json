@@ -18,8 +18,8 @@
     "@angular/platform-browser": "^18.2.14",
     "@angular/platform-browser-dynamic": "^18.2.14",
     "@angular/router": "^18.2.14",
-    "@design-system-rte/angular": "file:../../dist/packages/angular",
-    "@design-system-rte/core": "file:../../dist/packages/core",
+    "@rte-ds/angular": "file:../../dist/packages/angular",
+    "@rte-ds/core": "file:../../dist/packages/core",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

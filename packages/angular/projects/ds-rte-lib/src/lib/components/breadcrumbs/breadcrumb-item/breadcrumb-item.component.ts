@@ -9,8 +9,8 @@ import {
   signal,
   AfterViewInit,
 } from "@angular/core";
-import { shouldDisplayBadge as coreShouldDisplayBadge } from "@design-system-rte/core/components/badge/badge.utils";
-import { BreadcrumbItemProps } from "@design-system-rte/core/components/breadcrumbs/breadcrumbs.interface";
+import { shouldDisplayBadge as coreShouldDisplayBadge } from "@rte-ds/core/components/badge/badge.utils";
+import { BreadcrumbItemProps } from "@rte-ds/core/components/breadcrumbs/breadcrumbs.interface";
 
 import { BadgeComponent } from "../../badge/badge.component";
 import { LinkComponent } from "../../link/link.component";

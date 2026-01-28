@@ -1,19 +1,19 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, computed, input, signal, OnInit, OnDestroy } from "@angular/core";
-import { BadgeContent, BadgeSize, BadgeType } from "@design-system-rte/core/components/badge/badge.interface";
-import { shouldDisplayBadge } from "@design-system-rte/core/components/badge/badge.utils";
-import { Alignment, Position } from "@design-system-rte/core/components/common/common-types";
+import { BadgeContent, BadgeSize, BadgeType } from "@rte-ds/core/components/badge/badge.interface";
+import { shouldDisplayBadge } from "@rte-ds/core/components/badge/badge.utils";
+import { Alignment, Position } from "@rte-ds/core/components/common/common-types";
 import {
   splitButtonLeftIconSize,
   splitButtonRightIconSize,
-} from "@design-system-rte/core/components/split-button/split-button.constants";
+} from "@rte-ds/core/components/split-button/split-button.constants";
 import {
   SplitButtonAppearance,
   SplitButtonItemProps,
   SplitButtonPosition,
   SplitButtonSize,
-} from "@design-system-rte/core/components/split-button/split-button.interface";
-import { ARROW_DOWN_KEY, SPACE_KEY } from "@design-system-rte/core/constants/keyboard/keyboard.constants";
+} from "@rte-ds/core/components/split-button/split-button.interface";
+import { ARROW_DOWN_KEY, SPACE_KEY } from "@rte-ds/core/constants/keyboard/keyboard.constants";
 
 import { BadgeDirective } from "../badge/badge.directive";
 import { DropdownModule } from "../dropdown";

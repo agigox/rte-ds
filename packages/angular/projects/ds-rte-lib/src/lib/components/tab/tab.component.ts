@@ -14,15 +14,15 @@ import {
   viewChild,
   OnDestroy,
 } from "@angular/core";
-import { Direction } from "@design-system-rte/core/components/common/common-types";
-import { TabAlignment, TabItemProps, TabProps } from "@design-system-rte/core/components/tab/tab.interface";
-import { scrollToSelectedTab } from "@design-system-rte/core/components/tab/tab.utils";
+import { Direction } from "@rte-ds/core/components/common/common-types";
+import { TabAlignment, TabItemProps, TabProps } from "@rte-ds/core/components/tab/tab.interface";
+import { scrollToSelectedTab } from "@rte-ds/core/components/tab/tab.utils";
 import {
   ARROW_DOWN_KEY,
   ARROW_LEFT_KEY,
   ARROW_RIGHT_KEY,
   ARROW_UP_KEY,
-} from "@design-system-rte/core/constants/keyboard/keyboard.constants";
+} from "@rte-ds/core/constants/keyboard/keyboard.constants";
 
 import { BadgeComponent } from "../badge/badge.component";
 import { DropdownModule } from "../dropdown";

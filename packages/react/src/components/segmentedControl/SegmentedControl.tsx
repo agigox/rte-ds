@@ -1,8 +1,8 @@
 import {
   getSegmentPosition,
   isValidSegmentedControlOptions,
-} from "@design-system-rte/core/components/segmented-control/segmented-control-utils";
-import { SegmentedControlProps as CoreSegmentedControlProps } from "@design-system-rte/core/components/segmented-control/segmented-control.interface";
+} from "@rte-ds/core/components/segmented-control/segmented-control-utils";
+import { SegmentedControlProps as CoreSegmentedControlProps } from "@rte-ds/core/components/segmented-control/segmented-control.interface";
 import { forwardRef, MutableRefObject, useRef } from "react";
 
 import useSelectedIndicatorPosition from "../../hooks/useSelectedIndicatorPosition";

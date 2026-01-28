@@ -1,5 +1,5 @@
 {
-  "name": "@design-system-rte/design-docs",
+  "name": "@rte-ds/design-docs",
   "version": "1.2.0",
   "main": "index.js",
   "private": true,
@@ -35,7 +35,7 @@
     "vitest": "^3.0.9"
   },
   "dependencies": {
-    "@design-system-rte/react": "^1.2.0",
+    "@rte-ds/react": "^1.2.0",
     "@storybook/addon-themes": "^8.6.11"
   }
 }

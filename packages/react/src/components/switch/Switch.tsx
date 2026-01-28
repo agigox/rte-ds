@@ -1,5 +1,5 @@
-import { switchHeight, switchWidth } from "@design-system-rte/core/components/switch/switch.constants";
-import { SwitchProps as CoreSwitchProps } from "@design-system-rte/core/components/switch/switch.interface";
+import { switchHeight, switchWidth } from "@rte-ds/core/components/switch/switch.constants";
+import { SwitchProps as CoreSwitchProps } from "@rte-ds/core/components/switch/switch.interface";
 import { InputHTMLAttributes, useState } from "react";
 
 import Icon from "../icon/Icon";

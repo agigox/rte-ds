@@ -1,9 +1,9 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, computed, input, output } from "@angular/core";
-import { BadgeContent, BadgeType } from "@design-system-rte/core/components/badge/badge.interface";
-import { ButtonType } from "@design-system-rte/core/components/button/button.interface";
-import { ButtonSize, ButtonVariant } from "@design-system-rte/core/components/button/common/common-button";
-import { ButtonIconSize } from "@design-system-rte/core/components/button/common/common-button.constants";
+import { BadgeContent, BadgeType } from "@rte-ds/core/components/badge/badge.interface";
+import { ButtonType } from "@rte-ds/core/components/button/button.interface";
+import { ButtonSize, ButtonVariant } from "@rte-ds/core/components/button/common/common-button";
+import { ButtonIconSize } from "@rte-ds/core/components/button/common/common-button.constants";
 
 import { BadgeDirective } from "../badge/badge.directive";
 import { isValidIconName } from "../icon/icon-map";

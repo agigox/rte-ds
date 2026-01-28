@@ -1,10 +1,7 @@
-import {
-  GridProps as CoreGridProps,
-  ColProps as CoreColProps,
-} from "@design-system-rte/core/components/grid/grid.interface";
+import { GridProps as CoreGridProps, ColProps as CoreColProps } from "@rte-ds/core/components/grid/grid.interface";
 
 import { concatClassNames } from "../utils";
-import "@design-system-rte/core/components/grid/grid.scss";
+import "@rte-ds/core/components/grid/grid.scss";
 
 interface GridProps extends CoreGridProps, Omit<React.HTMLAttributes<HTMLDivElement>, "children"> {
   children: React.ReactNode[];

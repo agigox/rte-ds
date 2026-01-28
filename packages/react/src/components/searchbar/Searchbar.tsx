@@ -4,12 +4,12 @@ import {
   SEARCHBAR_BUTTON_HEIGHT_COMPACT,
   SEARCHBAR_BUTTON_WIDTH,
   SEARCHBAR_PADDING_LEFT,
-} from "@design-system-rte/core/components/searchbar/searchbar.constants";
+} from "@rte-ds/core/components/searchbar/searchbar.constants";
 import {
   SearchBarProps as CoreSearchBarProps,
   SearchBarAppearance,
-} from "@design-system-rte/core/components/searchbar/searchbar.interface";
-import { ENTER_KEY } from "@design-system-rte/core/constants/keyboard/keyboard.constants";
+} from "@rte-ds/core/components/searchbar/searchbar.interface";
+import { ENTER_KEY } from "@rte-ds/core/constants/keyboard/keyboard.constants";
 import {
   CSSProperties,
   InputHTMLAttributes,

@@ -18,7 +18,7 @@ import {
   ARROW_UP_KEY,
   ESCAPE_KEY,
   TAB_KEY,
-} from "@design-system-rte/core/constants/keyboard/keyboard.constants";
+} from "@rte-ds/core/constants/keyboard/keyboard.constants";
 
 import { DropdownService } from "../../../services/dropdown.service";
 import { DividerComponent } from "../../divider/divider.component";

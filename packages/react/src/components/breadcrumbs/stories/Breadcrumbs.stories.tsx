@@ -2,7 +2,7 @@ import {
   TESTING_DOWN_KEY,
   TESTING_ENTER_KEY,
   TESTING_UP_KEY,
-} from "@design-system-rte/core/constants/keyboard/keyboard-test.constants";
+} from "@rte-ds/core/constants/keyboard/keyboard-test.constants";
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, userEvent, waitFor, within } from "@storybook/test";
 

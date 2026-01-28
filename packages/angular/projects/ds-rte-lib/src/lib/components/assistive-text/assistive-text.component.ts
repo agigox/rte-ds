@@ -1,8 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, input, computed, ChangeDetectionStrategy } from "@angular/core";
-import { ASSISTIVE_TEXT_ICON_SIZE } from "@design-system-rte/core/components/assistive-text/assistive-text.constants";
-import { AssistiveTextProps } from "@design-system-rte/core/components/assistive-text/assistive-text.interface";
-import { getIconNameFromAppearance } from "@design-system-rte/core/components/assistive-text/assistive-text.utils";
+import { ASSISTIVE_TEXT_ICON_SIZE } from "@rte-ds/core/components/assistive-text/assistive-text.constants";
+import { AssistiveTextProps } from "@rte-ds/core/components/assistive-text/assistive-text.interface";
+import { getIconNameFromAppearance } from "@rte-ds/core/components/assistive-text/assistive-text.utils";
 
 import { IconComponent } from "../icon/icon.component";
 import { LinkComponent } from "../link/link.component";

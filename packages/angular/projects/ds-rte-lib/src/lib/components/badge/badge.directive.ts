@@ -10,7 +10,7 @@ import {
   Renderer2,
   OnInit,
 } from "@angular/core";
-import { BadgeType, BadgeSize, BadgeContent } from "@design-system-rte/core/components/badge/badge.interface";
+import { BadgeType, BadgeSize, BadgeContent } from "@rte-ds/core/components/badge/badge.interface";
 
 import { RegularIconIdKey, TogglableIconIdKey } from "../icon/icon.service";
 

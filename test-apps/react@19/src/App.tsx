@@ -1,4 +1,4 @@
-import { Button } from "@design-system-rte/react";
+import { Button } from "@rte-ds/react";
 import "./App.css";
 
 function App() {

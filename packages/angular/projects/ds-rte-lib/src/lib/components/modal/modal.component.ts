@@ -11,8 +11,8 @@ import {
   inject,
   signal,
 } from "@angular/core";
-import { Size } from "@design-system-rte/core/components/common/common-types";
-import { IconSize } from "@design-system-rte/core/components/icon/icon.constants";
+import { Size } from "@rte-ds/core/components/common/common-types";
+import { IconSize } from "@rte-ds/core/components/icon/icon.constants";
 
 import { FocusTrapService } from "../../services/focus-trap.service";
 import { ButtonComponent } from "../button/button.component";

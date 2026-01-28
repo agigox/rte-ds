@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, ElementRef, inject, input, output, AfterViewInit, OnDestroy } from "@angular/core";
-import { PopoverAlignment, PopoverPosition } from "@design-system-rte/core/components/popover/popover.interface";
+import { PopoverAlignment, PopoverPosition } from "@rte-ds/core/components/popover/popover.interface";
 
 import { FocusTrapService } from "../../services/focus-trap.service";
 import { ButtonComponent } from "../button/button.component";

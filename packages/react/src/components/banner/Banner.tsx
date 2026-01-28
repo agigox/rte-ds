@@ -1,4 +1,4 @@
-import { BannerProps as CoreBannerProps } from "@design-system-rte/core/components/banner/banner.interface";
+import { BannerProps as CoreBannerProps } from "@rte-ds/core/components/banner/banner.interface";
 import { forwardRef, useEffect, useState } from "react";
 
 import useAnimatedMount from "../../hooks/useAnimatedMount";

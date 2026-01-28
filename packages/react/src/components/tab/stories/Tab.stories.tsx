@@ -1,8 +1,8 @@
-import { BadgeContent, BadgeType } from "@design-system-rte/core/components/badge/badge.interface";
+import { BadgeContent, BadgeType } from "@rte-ds/core/components/badge/badge.interface";
 import {
   TESTING_ARROW_LEFT_KEY,
   TESTING_ARROW_RIGHT_KEY,
-} from "@design-system-rte/core/constants/keyboard/keyboard-test.constants";
+} from "@rte-ds/core/constants/keyboard/keyboard-test.constants";
 import type { Meta, StoryObj } from "@storybook/react";
 import { within, expect, userEvent } from "@storybook/test";
 import { useState } from "react";

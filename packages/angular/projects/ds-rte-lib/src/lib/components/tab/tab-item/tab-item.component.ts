@@ -11,7 +11,7 @@ import {
   OnDestroy,
   computed,
 } from "@angular/core";
-import { TabItemProps } from "@design-system-rte/core/components/tab/tab.interface";
+import { TabItemProps } from "@rte-ds/core/components/tab/tab.interface";
 
 import { BadgeComponent } from "../../badge/badge.component";
 import { IconComponent } from "../../icon/icon.component";

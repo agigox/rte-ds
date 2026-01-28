@@ -1,6 +1,6 @@
-import { shouldDisplayBadge } from "@design-system-rte/core/components/badge/badge.utils";
-import { DropdownItemProps as CoreDropdownItemProps } from "@design-system-rte/core/components/dropdown/dropdown.interface";
-import { DropdownManager } from "@design-system-rte/core/components/dropdown/DropdownManager";
+import { shouldDisplayBadge } from "@rte-ds/core/components/badge/badge.utils";
+import { DropdownItemProps as CoreDropdownItemProps } from "@rte-ds/core/components/dropdown/dropdown.interface";
+import { DropdownManager } from "@rte-ds/core/components/dropdown/DropdownManager";
 import {
   ARROW_DOWN_KEY,
   ARROW_UP_KEY,
@@ -8,7 +8,7 @@ import {
   ESCAPE_KEY,
   SPACE_KEY,
   TAB_KEY,
-} from "@design-system-rte/core/constants/keyboard/keyboard.constants";
+} from "@rte-ds/core/constants/keyboard/keyboard.constants";
 import { useContext } from "react";
 
 import { useActiveKeyboard } from "../../../hooks/useActiveKeyboard";

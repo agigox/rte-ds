@@ -1,4 +1,4 @@
-import { NavItemProps } from "@design-system-rte/core/components/side-nav/nav-item/nav-item.interface";
+import { NavItemProps } from "@rte-ds/core/components/side-nav/nav-item/nav-item.interface";
 import { Decorator } from "@storybook/react";
 import { useState } from "react";
 

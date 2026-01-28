@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { GridType } from "@design-system-rte/core/components/grid/grid.interface";
+import { GridType } from "@rte-ds/core/components/grid/grid.interface";
 import { componentWrapperDecorator, moduleMetadata, type Meta, type StoryObj } from "@storybook/angular";
 
 import { ColDirective } from "./col/col.directive";

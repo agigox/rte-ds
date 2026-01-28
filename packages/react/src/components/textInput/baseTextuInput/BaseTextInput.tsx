@@ -2,7 +2,7 @@ import {
   BaseTextInputProps as CoreTextInputProps,
   RightIconAction,
   RightIconName,
-} from "@design-system-rte/core/components/text-input/text-input.interface";
+} from "@rte-ds/core/components/text-input/text-input.interface";
 import {
   ChangeEvent,
   CSSProperties,

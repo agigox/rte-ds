@@ -1,8 +1,5 @@
-import { NavItemProps } from "@design-system-rte/core/components/side-nav/nav-item/nav-item.interface";
-import {
-  TESTING_ENTER_KEY,
-  TESTING_SPACE_KEY,
-} from "@design-system-rte/core/constants/keyboard/keyboard-test.constants";
+import { NavItemProps } from "@rte-ds/core/components/side-nav/nav-item/nav-item.interface";
+import { TESTING_ENTER_KEY, TESTING_SPACE_KEY } from "@rte-ds/core/constants/keyboard/keyboard-test.constants";
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, userEvent, within } from "@storybook/test";
 

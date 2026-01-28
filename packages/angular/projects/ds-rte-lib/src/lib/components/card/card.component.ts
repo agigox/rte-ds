@@ -1,9 +1,9 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, computed, input, output } from "@angular/core";
-import { cardSize } from "@design-system-rte/core/components/card/card.constats";
-import { CardType } from "@design-system-rte/core/components/card/card.interface";
-import { Size } from "@design-system-rte/core/components/common/common-types";
-import { ENTER_KEY, SPACE_KEY } from "@design-system-rte/core/constants/keyboard/keyboard.constants";
+import { cardSize } from "@rte-ds/core/components/card/card.constats";
+import { CardType } from "@rte-ds/core/components/card/card.interface";
+import { Size } from "@rte-ds/core/components/common/common-types";
+import { ENTER_KEY, SPACE_KEY } from "@rte-ds/core/constants/keyboard/keyboard.constants";
 
 @Component({
   selector: "rte-card",

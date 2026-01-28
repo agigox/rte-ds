@@ -1,7 +1,7 @@
-import { TOOLTIP_ANIMATION_DURATION, TOOLTIP_GAP } from "@design-system-rte/core/components/tooltip/tooltip.constants";
-import { TooltipProps as CoreTooltipProps } from "@design-system-rte/core/components/tooltip/tooltip.interface";
-import { getTooltipGap } from "@design-system-rte/core/components/tooltip/tooltip.utils";
-import { getAutoPlacement, getCoordinates } from "@design-system-rte/core/components/utils/auto-placement";
+import { TOOLTIP_ANIMATION_DURATION, TOOLTIP_GAP } from "@rte-ds/core/components/tooltip/tooltip.constants";
+import { TooltipProps as CoreTooltipProps } from "@rte-ds/core/components/tooltip/tooltip.interface";
+import { getTooltipGap } from "@rte-ds/core/components/tooltip/tooltip.utils";
+import { getAutoPlacement, getCoordinates } from "@rte-ds/core/components/utils/auto-placement";
 import { forwardRef, useCallback, useEffect, useRef, useState } from "react";
 
 import useAnimatedMount from "../../hooks/useAnimatedMount";

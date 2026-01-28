@@ -19,7 +19,7 @@ function listTags(): string[] {
 }
 
 function parseDateTag(tag: string): Candidate | null {
-  const NPM_PACKAGE_IDENTIFIER = "@design-system-rte/";
+  const NPM_PACKAGE_IDENTIFIER = "@rte-ds/";
 
   if (tag.startsWith(NPM_PACKAGE_IDENTIFIER)) return null;
 

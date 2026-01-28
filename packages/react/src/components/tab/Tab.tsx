@@ -1,5 +1,5 @@
-import { TabProps as CoreTabProps } from "@design-system-rte/core/components/tab/tab.interface";
-import { scrollToSelectedTab } from "@design-system-rte/core/components/tab/tab.utils";
+import { TabProps as CoreTabProps } from "@rte-ds/core/components/tab/tab.interface";
+import { scrollToSelectedTab } from "@rte-ds/core/components/tab/tab.utils";
 import {
   forwardRef,
   HTMLAttributes,

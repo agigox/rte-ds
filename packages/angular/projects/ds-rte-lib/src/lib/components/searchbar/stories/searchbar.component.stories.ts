@@ -1,9 +1,6 @@
 import { Component, ElementRef, signal, viewChild, effect, computed } from "@angular/core";
-import { DROPDOWN_OFFSET } from "@design-system-rte/core/components/searchbar/searchbar.constants";
-import {
-  TESTING_DOWN_KEY,
-  TESTING_ENTER_KEY,
-} from "@design-system-rte/core/constants/keyboard/keyboard-test.constants";
+import { DROPDOWN_OFFSET } from "@rte-ds/core/components/searchbar/searchbar.constants";
+import { TESTING_DOWN_KEY, TESTING_ENTER_KEY } from "@rte-ds/core/constants/keyboard/keyboard-test.constants";
 import { Meta, moduleMetadata, StoryObj } from "@storybook/angular";
 import { expect, userEvent, waitFor, within } from "@storybook/test";
 

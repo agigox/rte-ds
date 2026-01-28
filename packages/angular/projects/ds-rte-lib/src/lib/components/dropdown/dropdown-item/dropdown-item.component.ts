@@ -1,8 +1,8 @@
 import { CommonModule } from "@angular/common";
 import { Component, computed, EventEmitter, input, output } from "@angular/core";
-import { shouldDisplayBadge } from "@design-system-rte/core/components/badge/badge.utils";
-import { DropdownItemProps } from "@design-system-rte/core/components/dropdown/dropdown.interface";
-import { ENTER_KEY, SPACE_KEY } from "@design-system-rte/core/constants/keyboard/keyboard.constants";
+import { shouldDisplayBadge } from "@rte-ds/core/components/badge/badge.utils";
+import { DropdownItemProps } from "@rte-ds/core/components/dropdown/dropdown.interface";
+import { ENTER_KEY, SPACE_KEY } from "@rte-ds/core/constants/keyboard/keyboard.constants";
 
 import { BadgeComponent } from "../../badge/badge.component";
 import { DividerComponent } from "../../divider/divider.component";

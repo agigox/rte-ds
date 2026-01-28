@@ -1,5 +1,5 @@
-import { IconSize } from "@design-system-rte/core/components/icon/icon.constants";
-import type { ModalProps as coreModalProps } from "@design-system-rte/core/components/modal/modal.interface";
+import { IconSize } from "@rte-ds/core/components/icon/icon.constants";
+import type { ModalProps as coreModalProps } from "@rte-ds/core/components/modal/modal.interface";
 import { forwardRef, useCallback, useState } from "react";
 
 import useAnimatedMount from "../../hooks/useAnimatedMount";

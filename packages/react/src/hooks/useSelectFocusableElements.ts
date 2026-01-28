@@ -1,4 +1,4 @@
-import { FOCUSABLE_ELEMENTS_QUERY } from "@design-system-rte/core/constants/dom/dom.constants";
+import { FOCUSABLE_ELEMENTS_QUERY } from "@rte-ds/core/constants/dom/dom.constants";
 import { useEffect, useState } from "react";
 
 export const useSelectFocusableElements = () => {

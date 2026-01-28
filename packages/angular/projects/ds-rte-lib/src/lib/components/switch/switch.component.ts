@@ -1,7 +1,7 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, input, signal, OnInit, output } from "@angular/core";
-import { switchHeight, switchWidth } from "@design-system-rte/core/components/switch/switch.constants";
-import { SwitchProps } from "@design-system-rte/core/components/switch/switch.interface";
+import { switchHeight, switchWidth } from "@rte-ds/core/components/switch/switch.constants";
+import { SwitchProps } from "@rte-ds/core/components/switch/switch.interface";
 
 import { IconComponent } from "../icon/icon.component";
 

@@ -5,7 +5,7 @@ import {
   defaultStoryArgs,
   clickableStoryArgs,
   disabledStoryArgs,
-} from "@design-system-rte/core/components/card/card.stories.shared";
+} from "@rte-ds/core/components/card/card.stories.shared";
 import type { Meta, StoryObj } from "@storybook/angular";
 import { moduleMetadata } from "@storybook/angular";
 import { fn, userEvent, within, expect } from "@storybook/test";

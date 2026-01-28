@@ -15,7 +15,7 @@ const fontFile = `
   font-family: 'Nunito';
   font-style: normal;
   font-weight: 300;
-  src: url('@design-system-rte/core/assets/fonts/nunito-light-300.woff2') format('woff2');
+  src: url('@rte-ds/core/assets/fonts/nunito-light-300.woff2') format('woff2');
 }
 
 @font-face {
@@ -23,7 +23,7 @@ const fontFile = `
   font-family: 'Nunito';
   font-style: normal;
   font-weight: 400;
-  src: url('@design-system-rte/core/assets/fonts/nunito-regular-400.woff2') format('woff2');
+  src: url('@rte-ds/core/assets/fonts/nunito-regular-400.woff2') format('woff2');
 }
 
 @font-face {
@@ -31,7 +31,7 @@ const fontFile = `
   font-family: 'Nunito';
   font-style: normal;
   font-weight: 600;
-  src: url('@design-system-rte/core/assets/fonts/nunito-semi-bold-600.woff2') format('woff2');
+  src: url('@rte-ds/core/assets/fonts/nunito-semi-bold-600.woff2') format('woff2');
 }
 
 @font-face {
@@ -39,7 +39,7 @@ const fontFile = `
   font-family: 'Nunito';
   font-style: normal;
   font-weight: 700;
-  src: url('@design-system-rte/core/assets/fonts/nunito-bold-700.woff2') format('woff2');
+  src: url('@rte-ds/core/assets/fonts/nunito-bold-700.woff2') format('woff2');
 }
 `;
 

@@ -1,4 +1,4 @@
-import { DropdownManager } from "@design-system-rte/core/components/dropdown/DropdownManager";
+import { DropdownManager } from "@rte-ds/core/components/dropdown/DropdownManager";
 import { useState, useEffect, useRef } from "react";
 
 export const useDropdownState = (dropdownId?: string) => {

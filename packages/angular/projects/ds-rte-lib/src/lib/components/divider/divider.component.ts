@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, computed, input } from "@angular/core";
-import { DividerProps } from "@design-system-rte/core/components/divider/divider.interface";
+import { DividerProps } from "@rte-ds/core/components/divider/divider.interface";
 
 @Component({
   selector: "rte-divider",

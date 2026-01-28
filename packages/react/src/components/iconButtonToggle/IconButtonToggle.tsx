@@ -1,4 +1,4 @@
-import { IconButtonToggleProps as CoreIconButtonToggleProps } from "@design-system-rte/core/components/button/icon-button/icon-button.interface";
+import { IconButtonToggleProps as CoreIconButtonToggleProps } from "@rte-ds/core/components/button/icon-button/icon-button.interface";
 import { forwardRef, useState } from "react";
 
 import { TogglableIconIdKey } from "../icon/Icon";

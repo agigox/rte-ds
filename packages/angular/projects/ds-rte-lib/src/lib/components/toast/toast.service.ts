@@ -1,6 +1,6 @@
 import { Injectable, ComponentRef, ViewContainerRef, inject, signal, effect } from "@angular/core";
-import { ToastDuration, ToastPlacement, ToastType } from "@design-system-rte/core/components/toast/toast.interface";
-import { getToastPriority } from "@design-system-rte/core/components/toast/toast.utils";
+import { ToastDuration, ToastPlacement, ToastType } from "@rte-ds/core/components/toast/toast.interface";
+import { getToastPriority } from "@rte-ds/core/components/toast/toast.utils";
 import { v4 as uuidv4 } from "uuid";
 
 import { OverlayService } from "../../services/overlay.service";

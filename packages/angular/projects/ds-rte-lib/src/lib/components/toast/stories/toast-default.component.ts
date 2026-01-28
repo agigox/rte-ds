@@ -1,5 +1,5 @@
 import { Component, inject, input, signal } from "@angular/core";
-import { ToastProps, ToastType } from "@design-system-rte/core/components/toast/toast.interface";
+import { ToastProps, ToastType } from "@rte-ds/core/components/toast/toast.interface";
 
 import { ButtonComponent } from "../../button/button.component";
 import { ToastConfig, ToastService } from "../toast.service";

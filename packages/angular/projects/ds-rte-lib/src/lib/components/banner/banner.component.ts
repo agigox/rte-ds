@@ -10,7 +10,7 @@ import {
   OnChanges,
   computed,
 } from "@angular/core";
-import { BannerPosition, BannerType } from "@design-system-rte/core/components/banner/banner.interface";
+import { BannerPosition, BannerType } from "@rte-ds/core/components/banner/banner.interface";
 
 import { ButtonComponent } from "../button/button.component";
 import { IconComponent } from "../icon/icon.component";

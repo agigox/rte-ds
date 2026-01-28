@@ -9,8 +9,8 @@ import {
   OnDestroy,
   ViewContainerRef,
 } from "@angular/core";
-import { Size } from "@design-system-rte/core/components/common/common-types";
-import { ESCAPE_KEY } from "@design-system-rte/core/constants/keyboard/keyboard.constants";
+import { Size } from "@rte-ds/core/components/common/common-types";
+import { ESCAPE_KEY } from "@rte-ds/core/constants/keyboard/keyboard.constants";
 
 import { OverlayService } from "../../services/overlay.service";
 import { ButtonComponent } from "../button/button.component";

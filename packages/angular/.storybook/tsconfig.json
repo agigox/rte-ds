@@ -7,7 +7,7 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "@design-system-rte/core/*": ["../../core/*"],
+      "@rte-ds/core/*": ["../../core/*"],
       "rxjs": ["../../../node_modules/rxjs"],
       "rxjs/*": ["../../../node_modules/rxjs/*"]
     },

@@ -1,7 +1,7 @@
 import { useGlobals } from "@storybook/preview-api";
 import type { Preview } from "@storybook/react";
-import "@design-system-rte/react/style.css";
-import "@design-system-rte/core/css/rte-fonts.css";
+import "@rte-ds/react/style.css";
+import "@rte-ds/core/css/rte-fonts.css";
 
 import "./preview.scss";
 

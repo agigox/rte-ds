@@ -10,8 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@design-system-rte/core": "file:../../dist/packages/core",
-    "@design-system-rte/react": "file:../../dist/packages/react",
+    "@rte-ds/core": "file:../../dist/packages/core",
+    "@rte-ds/react": "file:../../dist/packages/react",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },

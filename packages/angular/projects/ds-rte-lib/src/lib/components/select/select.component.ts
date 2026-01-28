@@ -10,14 +10,14 @@ import {
   ChangeDetectionStrategy,
 } from "@angular/core";
 import { NG_VALUE_ACCESSOR } from "@angular/forms";
-import { REQUIREMENT_INDICATOR_VALUE } from "@design-system-rte/core/components/required-indicator/required-indicator.constant";
+import { REQUIREMENT_INDICATOR_VALUE } from "@rte-ds/core/components/required-indicator/required-indicator.constant";
 import {
   SELECT_DROPDOWN_OFFSET,
   THRESHOLD_BOTTOM_POSITION,
   MIN_SELECT_WIDTH,
-} from "@design-system-rte/core/components/select/select.constants";
-import { SelectProps } from "@design-system-rte/core/components/select/select.interface";
-import { ENTER_KEY, SPACE_KEY } from "@design-system-rte/core/constants/keyboard/keyboard.constants";
+} from "@rte-ds/core/components/select/select.constants";
+import { SelectProps } from "@rte-ds/core/components/select/select.interface";
+import { ENTER_KEY, SPACE_KEY } from "@rte-ds/core/constants/keyboard/keyboard.constants";
 
 import { AssistiveTextComponent } from "../assistive-text/assistive-text.component";
 import { DropdownModule } from "../dropdown";

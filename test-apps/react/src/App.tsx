@@ -20,9 +20,9 @@ import {
   Toast,
   ToastQueueProvider,
   Select,
-} from "@design-system-rte/react";
+} from "@rte-ds/react";
 import "./App.css";
-import { Tab } from "@design-system-rte/react";
+import { Tab } from "@rte-ds/react";
 import { useState } from "react";
 
 function App() {

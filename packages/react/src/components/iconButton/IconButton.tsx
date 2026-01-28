@@ -1,5 +1,5 @@
-import { ButtonIconSize } from "@design-system-rte/core/components/button/common/common-button.constants";
-import { IconButtonProps as CoreIconButtonProps } from "@design-system-rte/core/components/button/icon-button/icon-button.interface";
+import { ButtonIconSize } from "@rte-ds/core/components/button/common/common-button.constants";
+import { IconButtonProps as CoreIconButtonProps } from "@rte-ds/core/components/button/icon-button/icon-button.interface";
 import { forwardRef } from "react";
 
 import Badge from "../badge/Badge";

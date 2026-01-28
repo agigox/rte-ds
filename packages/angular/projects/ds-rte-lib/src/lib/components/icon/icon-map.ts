@@ -1,6 +1,6 @@
 // This file is auto-generated. Do not edit manually.
 
-import { isValidIconName as isValidIconNameShared } from "@design-system-rte/core/components/icon/icon-utils";
+import { isValidIconName as isValidIconNameShared } from "@rte-ds/core/components/icon/icon-utils";
 
 export const RegularIcons = {
   add: "add",

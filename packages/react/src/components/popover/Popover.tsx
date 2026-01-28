@@ -1,11 +1,7 @@
-import { POPOVER_GAP, POPOVER_GAP_ARROW } from "@design-system-rte/core/components/popover/popover.constants";
-import { PopoverProps as CorePopoverProps } from "@design-system-rte/core/components/popover/popover.interface";
-import {
-  getAutoAlignment,
-  getAutoPlacement,
-  getCoordinates,
-} from "@design-system-rte/core/components/utils/auto-placement";
-import { ENTER_KEY } from "@design-system-rte/core/constants/keyboard/keyboard.constants";
+import { POPOVER_GAP, POPOVER_GAP_ARROW } from "@rte-ds/core/components/popover/popover.constants";
+import { PopoverProps as CorePopoverProps } from "@rte-ds/core/components/popover/popover.interface";
+import { getAutoAlignment, getAutoPlacement, getCoordinates } from "@rte-ds/core/components/utils/auto-placement";
+import { ENTER_KEY } from "@rte-ds/core/constants/keyboard/keyboard.constants";
 import { forwardRef, useCallback, useEffect, useRef, useState } from "react";
 
 import useAnimatedMount from "../../hooks/useAnimatedMount";

@@ -48,7 +48,7 @@ function generateIconMaps() {
 }
 
 function generateImportsIconsMap() {
-  return `import { isValidIconName as isValidIconNameShared } from "@design-system-rte/core/components/icon/icon-utils";\n\n`;
+  return `import { isValidIconName as isValidIconNameShared } from "@rte-ds/core/components/icon/icon-utils";\n\n`;
 }
 
 function generateRegularIconsMap() {

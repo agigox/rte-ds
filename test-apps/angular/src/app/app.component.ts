@@ -23,8 +23,8 @@ import {
   ToastService,
   SelectComponent,
   TabComponent,
-} from "@design-system-rte/angular";
-import { NavItemProps } from "@design-system-rte/core/components/side-nav/nav-item/nav-item.interface";
+} from "@rte-ds/angular";
+import { NavItemProps } from "@rte-ds/core/components/side-nav/nav-item/nav-item.interface";
 
 @Component({
   selector: "app-root",

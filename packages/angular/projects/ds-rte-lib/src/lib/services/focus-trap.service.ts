@@ -1,5 +1,5 @@
 import { inject, Injectable, Renderer2, RendererFactory2 } from "@angular/core";
-import { FOCUSABLE_ELEMENTS_QUERY } from "@design-system-rte/core/constants/dom/dom.constants";
+import { FOCUSABLE_ELEMENTS_QUERY } from "@rte-ds/core/constants/dom/dom.constants";
 
 @Injectable({ providedIn: "root" })
 export class FocusTrapService {

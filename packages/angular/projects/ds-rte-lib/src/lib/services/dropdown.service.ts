@@ -5,7 +5,7 @@ import {
   ARROW_RIGHT_KEY,
   ARROW_UP_KEY,
   ESCAPE_KEY,
-} from "@design-system-rte/core/constants/keyboard/keyboard.constants";
+} from "@rte-ds/core/constants/keyboard/keyboard.constants";
 import { BehaviorSubject, Observable } from "rxjs";
 import { map } from "rxjs/operators";
 

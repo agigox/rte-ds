@@ -1,4 +1,4 @@
-import { NavItemProps as CoreNavItemProps } from "@design-system-rte/core/components/side-nav/nav-item/nav-item.interface";
+import { NavItemProps as CoreNavItemProps } from "@rte-ds/core/components/side-nav/nav-item/nav-item.interface";
 import { ForwardedRef, forwardRef, HTMLAttributes, ReactNode, useRef } from "react";
 
 import Badge from "../../badge/Badge";

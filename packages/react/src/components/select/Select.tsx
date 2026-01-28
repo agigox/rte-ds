@@ -2,10 +2,10 @@ import {
   MIN_SELECT_WIDTH,
   SELECT_DROPDOWN_OFFSET,
   THRESHOLD_BOTTOM_POSITION,
-} from "@design-system-rte/core/components/select/select.constants";
-import { SelectProps as coreSelectProps } from "@design-system-rte/core/components/select/select.interface";
-import { ENTER_KEY, SPACE_KEY } from "@design-system-rte/core/constants/keyboard/keyboard.constants";
-import { forwardRef, useRef, useState } from "react";
+} from "@rte-ds/core/components/select/select.constants";
+import { SelectProps as coreSelectProps } from "@rte-ds/core/components/select/select.interface";
+import { ENTER_KEY, SPACE_KEY } from "@rte-ds/core/constants/keyboard/keyboard.constants";
+import { forwardRef, useEffect, useRef, useState } from "react";
 
 import AssistiveText from "../assistivetext/AssistiveText";
 import { Dropdown } from "../dropdown/Dropdown";
@@ -104,6 +104,10 @@ const Select = forwardRef<HTMLDivElement, coreSelectProps>(
       onChange?.(newValue);
       setIsActive(false);
     };
+
+    useEffect(() => {
+      setInternalValue(value || "");
+    }, [value]);
 
     return (
       <>

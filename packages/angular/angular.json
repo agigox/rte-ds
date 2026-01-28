@@ -72,7 +72,7 @@
               "."
             ],
             "styles": [
-              "@design-system-rte/core/design-tokens/main.scss",
+              "@rte-ds/core/design-tokens/main.scss",
               ".storybook/preview.scss",
               ".storybook/main.scss"
             ],

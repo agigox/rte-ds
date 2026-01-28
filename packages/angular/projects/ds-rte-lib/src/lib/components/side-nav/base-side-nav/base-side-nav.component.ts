@@ -11,8 +11,8 @@ import {
   OnDestroy,
   viewChild,
 } from "@angular/core";
-import { sideNavCollapsedSize, sideNavPanelSize } from "@design-system-rte/core/components/side-nav/side-nav.constants";
-import { SideNavAppearance } from "@design-system-rte/core/components/side-nav/side-nav.interface";
+import { sideNavCollapsedSize, sideNavPanelSize } from "@rte-ds/core/components/side-nav/side-nav.constants";
+import { SideNavAppearance } from "@rte-ds/core/components/side-nav/side-nav.interface";
 
 type SideNavSize = "s" | "m" | "l";
 

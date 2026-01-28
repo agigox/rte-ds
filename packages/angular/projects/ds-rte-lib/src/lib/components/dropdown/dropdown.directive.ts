@@ -16,16 +16,16 @@ import {
   signal,
   ViewContainerRef,
 } from "@angular/core";
-import { waitForNextFrame } from "@design-system-rte/core/common/animation";
-import { Alignment } from "@design-system-rte/core/common/common-types";
-import { Position } from "@design-system-rte/core/components/common/common-types";
-import { DROPDOWN_ANIMATION_DURATION } from "@design-system-rte/core/components/dropdown/dropdown.constants";
+import { waitForNextFrame } from "@rte-ds/core/common/animation";
+import { Alignment } from "@rte-ds/core/common/common-types";
+import { Position } from "@rte-ds/core/components/common/common-types";
+import { DROPDOWN_ANIMATION_DURATION } from "@rte-ds/core/components/dropdown/dropdown.constants";
 import {
   getAutoAlignment,
   getAutoPlacementDropdown,
   getCoordinates,
-} from "@design-system-rte/core/components/utils/auto-placement";
-import { ARROW_DOWN_KEY, ENTER_KEY, SPACE_KEY } from "@design-system-rte/core/constants/keyboard/keyboard.constants";
+} from "@rte-ds/core/components/utils/auto-placement";
+import { ARROW_DOWN_KEY, ENTER_KEY, SPACE_KEY } from "@rte-ds/core/constants/keyboard/keyboard.constants";
 
 import { DropdownService } from "../../services/dropdown.service";
 import { OverlayService } from "../../services/overlay.service";

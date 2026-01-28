@@ -9,9 +9,9 @@ import {
   SimpleChanges,
   OnChanges,
 } from "@angular/core";
-import { IconSize, IconTypeMap } from "@design-system-rte/core/components/icon/icon.constants";
-import { ToastDurationMap } from "@design-system-rte/core/components/toast/toast.constants";
-import { ToastProps, ToastType } from "@design-system-rte/core/components/toast/toast.interface";
+import { IconSize, IconTypeMap } from "@rte-ds/core/components/icon/icon.constants";
+import { ToastDurationMap } from "@rte-ds/core/components/toast/toast.constants";
+import { ToastProps, ToastType } from "@rte-ds/core/components/toast/toast.interface";
 
 import { ButtonComponent } from "../button/button.component";
 import { IconComponent } from "../icon/icon.component";

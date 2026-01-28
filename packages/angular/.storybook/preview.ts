@@ -3,7 +3,7 @@ import { importProvidersFrom } from "@angular/core";
 import { setCompodocJson } from "@storybook/addon-docs/angular";
 import { applicationConfig, type Preview, componentWrapperDecorator, moduleMetadata } from "@storybook/angular";
 
-import "@design-system-rte/core/css/rte-fonts.css";
+import "@rte-ds/core/css/rte-fonts.css";
 
 import docJson from "../documentation.json";
 

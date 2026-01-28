@@ -1,4 +1,4 @@
-import { CheckboxProps as CoreCheckboxProps } from "@design-system-rte/core/components/checkbox/checkbox.interface";
+import { CheckboxProps as CoreCheckboxProps } from "@rte-ds/core/components/checkbox/checkbox.interface";
 import { useEffect, useRef } from "react";
 
 import Icon from "../icon/Icon";

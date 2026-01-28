@@ -2,7 +2,7 @@ import {
   TESTING_ENTER_KEY,
   TESTING_ESCAPE_KEY,
   TESTING_SPACE_KEY,
-} from "@design-system-rte/core/constants/keyboard/keyboard-test.constants";
+} from "@rte-ds/core/constants/keyboard/keyboard-test.constants";
 import { Meta, StoryObj, moduleMetadata } from "@storybook/angular";
 import { userEvent, waitFor, within, expect, fn } from "@storybook/test";
 

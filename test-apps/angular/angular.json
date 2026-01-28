@@ -30,7 +30,7 @@
               "src/assets",
               {
                 "glob": "**/*",
-                "input": "node_modules/@design-system-rte/core/assets/fonts",
+                "input": "node_modules/@rte-ds/core/assets/fonts",
                 "output": "assets/fonts"
               }
             ],

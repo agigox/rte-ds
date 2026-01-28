@@ -1,5 +1,5 @@
-import { ToastDurationMap } from "@design-system-rte/core/components/toast/toast.constants";
-import { ToastDuration } from "@design-system-rte/core/components/toast/toast.interface";
+import { ToastDurationMap } from "@rte-ds/core/components/toast/toast.constants";
+import { ToastDuration } from "@rte-ds/core/components/toast/toast.interface";
 import { useCallback, useEffect, useRef } from "react";
 
 type TimeoutProperties = {

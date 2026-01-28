@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, HostBinding, input } from "@angular/core";
-import { BadgeContent } from "@design-system-rte/core/components/badge/badge.interface";
-import { ButtonSize, ButtonVariant } from "@design-system-rte/core/components/button/common/common-button";
+import { BadgeContent } from "@rte-ds/core/components/badge/badge.interface";
+import { ButtonSize, ButtonVariant } from "@rte-ds/core/components/button/common/common-button";
 
 @Component({
   selector: "button[rteButton]",

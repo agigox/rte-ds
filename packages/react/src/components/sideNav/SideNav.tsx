@@ -1,7 +1,7 @@
-import { NavItemProps } from "@design-system-rte/core/components/side-nav/nav-item/nav-item.interface";
-import { dividerAppearanceBySideNavAppearance } from "@design-system-rte/core/components/side-nav/side-nav.constants";
-import { SideNavProps as CoreSideNavProps } from "@design-system-rte/core/components/side-nav/side-nav.interface";
-import { ENTER_KEY, SPACE_KEY } from "@design-system-rte/core/constants/keyboard/keyboard.constants";
+import { NavItemProps } from "@rte-ds/core/components/side-nav/nav-item/nav-item.interface";
+import { dividerAppearanceBySideNavAppearance } from "@rte-ds/core/components/side-nav/side-nav.constants";
+import { SideNavProps as CoreSideNavProps } from "@rte-ds/core/components/side-nav/side-nav.interface";
+import { ENTER_KEY, SPACE_KEY } from "@rte-ds/core/constants/keyboard/keyboard.constants";
 import { forwardRef, Fragment, ReactNode, useEffect, useState } from "react";
 
 import { useActiveKeyboard } from "../../hooks/useActiveKeyboard";

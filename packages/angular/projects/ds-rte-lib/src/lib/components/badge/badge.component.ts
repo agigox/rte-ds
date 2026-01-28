@@ -1,13 +1,13 @@
 import { CommonModule } from "@angular/common";
 import { Component, input, computed, ChangeDetectionStrategy } from "@angular/core";
-import { BadgeContent, BadgeSize, BadgeType } from "@design-system-rte/core/components/badge/badge.interface";
+import { BadgeContent, BadgeSize, BadgeType } from "@rte-ds/core/components/badge/badge.interface";
 import {
   getBadgeIconSize,
   getDisplayCount,
   getShowBadge,
   getShowIcon,
   getShowText,
-} from "@design-system-rte/core/components/badge/badge.utils";
+} from "@rte-ds/core/components/badge/badge.utils";
 
 import { isValidIconName } from "../icon/icon-map";
 import { IconComponent } from "../icon/icon.component";

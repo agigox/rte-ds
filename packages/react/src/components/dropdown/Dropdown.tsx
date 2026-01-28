@@ -1,19 +1,19 @@
-import { Alignment, Position } from "@design-system-rte/core/components/common/common-types";
-import { DROPDOWN_ANIMATION_DURATION } from "@design-system-rte/core/components/dropdown/dropdown.constants";
-import { DropdownProps as CoreDropdownProps } from "@design-system-rte/core/components/dropdown/dropdown.interface";
-import { DropdownManager } from "@design-system-rte/core/components/dropdown/DropdownManager";
+import { Alignment, Position } from "@rte-ds/core/components/common/common-types";
+import { DROPDOWN_ANIMATION_DURATION } from "@rte-ds/core/components/dropdown/dropdown.constants";
+import { DropdownProps as CoreDropdownProps } from "@rte-ds/core/components/dropdown/dropdown.interface";
+import { DropdownManager } from "@rte-ds/core/components/dropdown/DropdownManager";
 import {
   getAutoAlignment,
   getAutoPlacementDropdown,
   getCoordinates,
-} from "@design-system-rte/core/components/utils/auto-placement";
+} from "@rte-ds/core/components/utils/auto-placement";
 import {
   ARROW_DOWN_KEY,
   ARROW_UP_KEY,
   ENTER_KEY,
   ESCAPE_KEY,
   TAB_KEY,
-} from "@design-system-rte/core/constants/keyboard/keyboard.constants";
+} from "@rte-ds/core/constants/keyboard/keyboard.constants";
 import { useEffect, useState, useRef, useCallback, forwardRef, useContext } from "react";
 
 import { useActiveKeyboard } from "../../hooks/useActiveKeyboard";

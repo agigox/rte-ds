@@ -1,16 +1,16 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, computed, input } from "@angular/core";
-import { BadgeProps } from "@design-system-rte/core/components/badge/badge.interface";
-import { shouldDisplayBadge as coreShouldDisplayBadge } from "@design-system-rte/core/components/badge/badge.utils";
-import { BREADCRUMBS_DEFAULT_ARIA_LABEL } from "@design-system-rte/core/components/breadcrumbs/breadcrumbs.constants";
+import { BadgeProps } from "@rte-ds/core/components/badge/badge.interface";
+import { shouldDisplayBadge as coreShouldDisplayBadge } from "@rte-ds/core/components/badge/badge.utils";
+import { BREADCRUMBS_DEFAULT_ARIA_LABEL } from "@rte-ds/core/components/breadcrumbs/breadcrumbs.constants";
 import {
   BreadcrumbItemProps,
   BreadcrumbsTruncatedItems,
-} from "@design-system-rte/core/components/breadcrumbs/breadcrumbs.interface";
+} from "@rte-ds/core/components/breadcrumbs/breadcrumbs.interface";
 import {
   getBreadcrumbsTruncatedItems,
   shouldTruncateBreadcrumbs,
-} from "@design-system-rte/core/components/breadcrumbs/breadcrumbs.utils";
+} from "@rte-ds/core/components/breadcrumbs/breadcrumbs.utils";
 
 import { BadgeComponent } from "../badge/badge.component";
 import { DropdownModule } from "../dropdown";

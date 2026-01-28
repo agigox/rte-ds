@@ -4,7 +4,7 @@ import {
   ENTER_KEY,
   ESCAPE_KEY,
   SPACE_KEY,
-} from "@design-system-rte/core/constants/keyboard/keyboard.constants";
+} from "@rte-ds/core/constants/keyboard/keyboard.constants";
 import { KeyboardEvent, useCallback } from "react";
 
 import { useActiveKeyboard } from "../../../hooks/useActiveKeyboard";

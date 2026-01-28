@@ -13,7 +13,7 @@ import {
   OnChanges,
   SimpleChanges,
 } from "@angular/core";
-import { shouldDisplayBadge as CoreShouldDisplayBadge } from "@design-system-rte/core/components/badge/badge.utils";
+import { shouldDisplayBadge as CoreShouldDisplayBadge } from "@rte-ds/core/components/badge/badge.utils";
 import {
   getSegmentPosition,
   focusNextNotSegmentElement,
@@ -21,19 +21,16 @@ import {
   focusNextSegmentElement,
   focusPreviousSegmentElement,
   isValidSegmentedControlOptions,
-} from "@design-system-rte/core/components/segmented-control/segmented-control-utils";
-import {
-  SegmentOptions,
-  SegmentProps,
-} from "@design-system-rte/core/components/segmented-control/segmented-control.interface";
-import { FOCUSABLE_ELEMENTS_QUERY } from "@design-system-rte/core/constants/dom/dom.constants";
+} from "@rte-ds/core/components/segmented-control/segmented-control-utils";
+import { SegmentOptions, SegmentProps } from "@rte-ds/core/components/segmented-control/segmented-control.interface";
+import { FOCUSABLE_ELEMENTS_QUERY } from "@rte-ds/core/constants/dom/dom.constants";
 import {
   ARROW_LEFT_KEY,
   ARROW_RIGHT_KEY,
   ENTER_KEY,
   SPACE_KEY,
   TAB_KEY,
-} from "@design-system-rte/core/constants/keyboard/keyboard.constants";
+} from "@rte-ds/core/constants/keyboard/keyboard.constants";
 
 import { BadgeComponent } from "../badge/badge.component";
 import { IconComponent } from "../icon/icon.component";

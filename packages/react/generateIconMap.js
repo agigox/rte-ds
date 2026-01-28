@@ -56,7 +56,7 @@ function generateIconMaps() {
 }
 
 function generateImportsIconsMap() {
-  let string = `import { isValidIconName as isValidIconNameShared } from "@design-system-rte/core/components/icon/icon-utils";\n\n`;
+  let string = `import { isValidIconName as isValidIconNameShared } from "@rte-ds/core/components/icon/icon-utils";\n\n`;
   string += `import {\n`;
   ALL_ICONS.forEach((iconName) => {
     const iconNameCamelCase = iconName.charAt(0).toUpperCase() + iconName.slice(1);

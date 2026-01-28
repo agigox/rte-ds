@@ -1,14 +1,14 @@
-import { shouldDisplayBadge } from "@design-system-rte/core/components/badge/badge.utils";
-import { DropdownProps } from "@design-system-rte/core/components/dropdown/dropdown.interface";
+import { shouldDisplayBadge } from "@rte-ds/core/components/badge/badge.utils";
+import { DropdownProps } from "@rte-ds/core/components/dropdown/dropdown.interface";
 import {
   splitButtonLeftIconSize,
   splitButtonRightIconSize,
-} from "@design-system-rte/core/components/split-button/split-button.constants";
+} from "@rte-ds/core/components/split-button/split-button.constants";
 import {
   SplitButtonProps as CoreSplitButtonProps,
   SplitButtonItemProps as CoreSplitButtonOptionProps,
-} from "@design-system-rte/core/components/split-button/split-button.interface";
-import { ARROW_DOWN_KEY, ENTER_KEY } from "@design-system-rte/core/constants/keyboard/keyboard.constants";
+} from "@rte-ds/core/components/split-button/split-button.interface";
+import { ARROW_DOWN_KEY, ENTER_KEY } from "@rte-ds/core/constants/keyboard/keyboard.constants";
 import { ButtonHTMLAttributes, ForwardedRef, forwardRef, KeyboardEvent, MouseEvent, useRef, useState } from "react";
 
 import Badge from "../badge/Badge";

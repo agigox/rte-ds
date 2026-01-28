@@ -1,4 +1,4 @@
-import { LinkProps as CoreLinkProps } from "@design-system-rte/core/components/link/link.interface";
+import { LinkProps as CoreLinkProps } from "@rte-ds/core/components/link/link.interface";
 import { forwardRef } from "react";
 
 import Icon from "../icon/Icon";

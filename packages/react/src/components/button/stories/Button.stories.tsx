@@ -1,7 +1,4 @@
-import {
-  TESTING_ENTER_KEY,
-  TESTING_SPACE_KEY,
-} from "@design-system-rte/core/constants/keyboard/keyboard-test.constants";
+import { TESTING_ENTER_KEY, TESTING_SPACE_KEY } from "@rte-ds/core/constants/keyboard/keyboard-test.constants";
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn, userEvent, within, expect } from "@storybook/test";
 

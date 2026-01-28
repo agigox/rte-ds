@@ -1,5 +1,5 @@
-import { Mode, Theme } from "@design-system-rte/core/common/common-types";
-import { Chip, IconButton } from "@design-system-rte/react";
+import { Mode, Theme } from "@rte-ds/core/common/common-types";
+import { Chip, IconButton } from "@rte-ds/react";
 import { useState } from "react";
 
 import styles from "./ThemeSelector.module.scss";

@@ -3,7 +3,7 @@ import {
   TESTING_ARROW_RIGHT_KEY,
   TESTING_ENTER_KEY,
   TESTING_SPACE_KEY,
-} from "@design-system-rte/core/constants/keyboard/keyboard-test.constants";
+} from "@rte-ds/core/constants/keyboard/keyboard-test.constants";
 import { Meta, StoryObj } from "@storybook/angular";
 import { userEvent, within, expect } from "@storybook/test";
 

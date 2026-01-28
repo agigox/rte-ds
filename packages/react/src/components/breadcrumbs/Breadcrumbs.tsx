@@ -1,10 +1,10 @@
-import { shouldDisplayBadge } from "@design-system-rte/core/components/badge/badge.utils.ts";
-import { BREADCRUMBS_DEFAULT_ARIA_LABEL } from "@design-system-rte/core/components/breadcrumbs/breadcrumbs.constants";
-import { BreadcrumbsProps as BreadcrumbsPropsCore } from "@design-system-rte/core/components/breadcrumbs/breadcrumbs.interface";
+import { shouldDisplayBadge } from "@rte-ds/core/components/badge/badge.utils.ts";
+import { BREADCRUMBS_DEFAULT_ARIA_LABEL } from "@rte-ds/core/components/breadcrumbs/breadcrumbs.constants";
+import { BreadcrumbsProps as BreadcrumbsPropsCore } from "@rte-ds/core/components/breadcrumbs/breadcrumbs.interface";
 import {
   getBreadcrumbsTruncatedItems,
   shouldTruncateBreadcrumbs,
-} from "@design-system-rte/core/components/breadcrumbs/breadcrumbs.utils";
+} from "@rte-ds/core/components/breadcrumbs/breadcrumbs.utils";
 import { forwardRef, useState, Fragment } from "react";
 
 import Badge from "../badge/Badge.tsx";

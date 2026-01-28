@@ -1,7 +1,7 @@
 import {
   IconProps as coreIconProps,
   IconWrapperProps as CoreIconWrapperProps,
-} from "@design-system-rte/core/components/icon/icon.interface";
+} from "@rte-ds/core/components/icon/icon.interface";
 
 import { RegularIcons, isValidIconName, TogglableIcons } from "./IconMap";
 

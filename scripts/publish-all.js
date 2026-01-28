@@ -42,7 +42,7 @@ function publishWithChangeset() {
 }
 
 function buildAngularLibrary() {
-  console.log("\n🚀 Publishing @design-system-rte/angular manually...");
+  console.log("\n🚀 Publishing @rte-ds/angular manually...");
   run("cd packages/angular && ng build ds-rte-lib");
 }
 

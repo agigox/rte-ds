@@ -1,5 +1,5 @@
-import { loaderSize } from "@design-system-rte/core/components/loader/loader.constants";
-import { LoaderProps as CoreLoaderProps } from "@design-system-rte/core/components/loader/loader.interface";
+import { loaderSize } from "@rte-ds/core/components/loader/loader.constants";
+import { LoaderProps as CoreLoaderProps } from "@rte-ds/core/components/loader/loader.interface";
 import { forwardRef } from "react";
 
 import { concatClassNames } from "../utils";

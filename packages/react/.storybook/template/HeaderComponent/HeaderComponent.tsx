@@ -1,4 +1,4 @@
-import { Link } from "@design-system-rte/react";
+import { Link } from "@rte-ds/react";
 
 import Figma from "../../asset/img/figma.png";
 import Github from "../../asset/img/github.png";

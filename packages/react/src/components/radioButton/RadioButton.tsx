@@ -1,5 +1,5 @@
-import { labelSize } from "@design-system-rte/core/components/radio-button/radio-button.constants";
-import { RadioButtonProps as CoreRadioButtonProps } from "@design-system-rte/core/components/radio-button/radio-button.interface";
+import { labelSize } from "@rte-ds/core/components/radio-button/radio-button.constants";
+import { RadioButtonProps as CoreRadioButtonProps } from "@rte-ds/core/components/radio-button/radio-button.interface";
 import React, { forwardRef } from "react";
 
 import { concatClassNames } from "../utils";

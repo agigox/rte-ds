@@ -1,6 +1,6 @@
-import { ASSISTIVE_TEXT_ICON_SIZE } from "@design-system-rte/core/components/assistive-text/assistive-text.constants";
-import { AssistiveTextProps } from "@design-system-rte/core/components/assistive-text/assistive-text.interface";
-import { getIconNameFromAppearance } from "@design-system-rte/core/components/assistive-text/assistive-text.utils";
+import { ASSISTIVE_TEXT_ICON_SIZE } from "@rte-ds/core/components/assistive-text/assistive-text.constants";
+import { AssistiveTextProps } from "@rte-ds/core/components/assistive-text/assistive-text.interface";
+import { getIconNameFromAppearance } from "@rte-ds/core/components/assistive-text/assistive-text.utils";
 
 import Icon from "../icon/Icon";
 import Link from "../link/Link";

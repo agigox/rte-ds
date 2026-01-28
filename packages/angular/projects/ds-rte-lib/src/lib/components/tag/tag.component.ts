@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, input, computed } from "@angular/core";
-import { TagProps } from "@design-system-rte/core/components/tag/tag.interface";
+import { TagProps } from "@rte-ds/core/components/tag/tag.interface";
 
 import { isValidIconName } from "../icon/icon-map";
 import { IconComponent } from "../icon/icon.component";

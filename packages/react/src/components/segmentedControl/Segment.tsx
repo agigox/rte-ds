@@ -1,18 +1,18 @@
-import { shouldDisplayBadge } from "@design-system-rte/core/components/badge/badge.utils";
+import { shouldDisplayBadge } from "@rte-ds/core/components/badge/badge.utils";
 import {
   focusNextNotSegmentElement,
   focusNextSegmentElement,
   focusPreviousNotSegmentElement,
   focusPreviousSegmentElement,
-} from "@design-system-rte/core/components/segmented-control/segmented-control-utils";
-import { SegmentProps as CoreSegmentProps } from "@design-system-rte/core/components/segmented-control/segmented-control.interface";
+} from "@rte-ds/core/components/segmented-control/segmented-control-utils";
+import { SegmentProps as CoreSegmentProps } from "@rte-ds/core/components/segmented-control/segmented-control.interface";
 import {
   ARROW_LEFT_KEY,
   ARROW_RIGHT_KEY,
   ENTER_KEY,
   SPACE_KEY,
   TAB_KEY,
-} from "@design-system-rte/core/constants/keyboard/keyboard.constants";
+} from "@rte-ds/core/constants/keyboard/keyboard.constants";
 import { useRef } from "react";
 
 import { useActiveKeyboard } from "../../hooks/useActiveKeyboard";

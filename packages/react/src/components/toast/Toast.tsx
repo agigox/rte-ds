@@ -1,5 +1,5 @@
-import { IconSize, IconTypeMap } from "@design-system-rte/core/components/icon/icon.constants";
-import { ToastProps as coreToastProps } from "@design-system-rte/core/components/toast/toast.interface";
+import { IconSize, IconTypeMap } from "@rte-ds/core/components/icon/icon.constants";
+import { ToastProps as coreToastProps } from "@rte-ds/core/components/toast/toast.interface";
 import { forwardRef, MouseEventHandler, useCallback, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 

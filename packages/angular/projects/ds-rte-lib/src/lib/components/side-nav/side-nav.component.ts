@@ -1,12 +1,12 @@
 import { CommonModule } from "@angular/common";
 import { ChangeDetectionStrategy, Component, computed, effect, input, output, signal } from "@angular/core";
-import { DividerAppearance } from "@design-system-rte/core/components/divider/divider.interface";
-import { NavItemProps } from "@design-system-rte/core/components/side-nav/nav-item/nav-item.interface";
-import { NavMenuProps } from "@design-system-rte/core/components/side-nav/nav-menu/nav-menu.interface";
-import { dividerAppearanceBySideNavAppearance } from "@design-system-rte/core/components/side-nav/side-nav.constants";
-import { SideNavAppearance, SideNavHeaderConfig } from "@design-system-rte/core/components/side-nav/side-nav.interface";
-import { SideNavSize } from "@design-system-rte/core/components/side-nav/side-nav.interface";
-import { ENTER_KEY, SPACE_KEY } from "@design-system-rte/core/constants/keyboard/keyboard.constants";
+import { DividerAppearance } from "@rte-ds/core/components/divider/divider.interface";
+import { NavItemProps } from "@rte-ds/core/components/side-nav/nav-item/nav-item.interface";
+import { NavMenuProps } from "@rte-ds/core/components/side-nav/nav-menu/nav-menu.interface";
+import { dividerAppearanceBySideNavAppearance } from "@rte-ds/core/components/side-nav/side-nav.constants";
+import { SideNavAppearance, SideNavHeaderConfig } from "@rte-ds/core/components/side-nav/side-nav.interface";
+import { SideNavSize } from "@rte-ds/core/components/side-nav/side-nav.interface";
+import { ENTER_KEY, SPACE_KEY } from "@rte-ds/core/constants/keyboard/keyboard.constants";
 
 import { DividerComponent } from "../divider/divider.component";
 

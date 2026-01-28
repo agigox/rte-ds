@@ -11,13 +11,9 @@ import {
   Renderer2,
   ViewContainerRef,
 } from "@angular/core";
-import { POPOVER_GAP, POPOVER_GAP_ARROW } from "@design-system-rte/core/components/popover/popover.constants";
-import {
-  getAutoAlignment,
-  getAutoPlacement,
-  getCoordinates,
-} from "@design-system-rte/core/components/utils/auto-placement";
-import { ESCAPE_KEY } from "@design-system-rte/core/constants/keyboard/keyboard.constants";
+import { POPOVER_GAP, POPOVER_GAP_ARROW } from "@rte-ds/core/components/popover/popover.constants";
+import { getAutoAlignment, getAutoPlacement, getCoordinates } from "@rte-ds/core/components/utils/auto-placement";
+import { ESCAPE_KEY } from "@rte-ds/core/constants/keyboard/keyboard.constants";
 
 import { OverlayService } from "../../services/overlay.service";
 

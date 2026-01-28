@@ -1,4 +1,4 @@
-import { RadioButtonGroupProps as CoreRadioButtonGroupProps } from "@design-system-rte/core/components/radio-button-group/radio-button-group.interface";
+import { RadioButtonGroupProps as CoreRadioButtonGroupProps } from "@rte-ds/core/components/radio-button-group/radio-button-group.interface";
 import React, { forwardRef } from "react";
 
 import RadioButton from "../radioButton/RadioButton";

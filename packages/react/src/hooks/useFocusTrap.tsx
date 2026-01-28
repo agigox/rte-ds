@@ -1,4 +1,4 @@
-import { FOCUSABLE_ELEMENTS_QUERY } from "@design-system-rte/core/constants/dom/dom.constants";
+import { FOCUSABLE_ELEMENTS_QUERY } from "@rte-ds/core/constants/dom/dom.constants";
 import { useEffect } from "react";
 
 export const useFocusTrap = <TElement extends HTMLElement>(containerElement?: TElement, shouldRender?: boolean) => {

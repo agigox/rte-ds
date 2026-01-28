@@ -1,10 +1,10 @@
-import { TabItemProps as CoreTabItemProps } from "@design-system-rte/core/components/tab/tab.interface";
+import { TabItemProps as CoreTabItemProps } from "@rte-ds/core/components/tab/tab.interface";
 import {
   ARROW_DOWN_KEY,
   ARROW_LEFT_KEY,
   ARROW_RIGHT_KEY,
   ARROW_UP_KEY,
-} from "@design-system-rte/core/constants/keyboard/keyboard.constants";
+} from "@rte-ds/core/constants/keyboard/keyboard.constants";
 import { HTMLAttributes, useCallback, useEffect, useRef, useState, MouseEvent, KeyboardEvent, forwardRef } from "react";
 
 import Badge from "../../badge/Badge";

@@ -1,4 +1,4 @@
-import { Icon } from "@design-system-rte/react";
+import { Icon } from "@rte-ds/react";
 
 import "./IconTitle.css";
 

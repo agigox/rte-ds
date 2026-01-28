@@ -7,7 +7,7 @@ import dts from "vite-plugin-dts";
 export default defineConfig({
   resolve: {
     alias: {
-      "@design-system-rte/core": resolve(__dirname, "../core"),
+      "@rte-ds/core": resolve(__dirname, "../core"),
       "/assets": resolve(__dirname, "../core/assets"),
     },
   },

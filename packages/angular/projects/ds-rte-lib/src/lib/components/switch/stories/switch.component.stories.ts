@@ -1,4 +1,4 @@
-import { ENTER_KEY, SPACE_KEY } from "@design-system-rte/core/constants/keyboard/keyboard.constants";
+import { ENTER_KEY, SPACE_KEY } from "@rte-ds/core/constants/keyboard/keyboard.constants";
 import { componentWrapperDecorator, Meta, StoryObj } from "@storybook/angular";
 import { expect, within, userEvent } from "@storybook/test";
 

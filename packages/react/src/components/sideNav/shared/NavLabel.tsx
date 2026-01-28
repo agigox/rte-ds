@@ -1,4 +1,4 @@
-import { getNavItemLabelIconSize } from "@design-system-rte/core/components/side-nav/nav-item/nav-item.utils";
+import { getNavItemLabelIconSize } from "@rte-ds/core/components/side-nav/nav-item/nav-item.utils";
 import { ReactNode } from "react";
 
 import Icon from "../../icon/Icon";
