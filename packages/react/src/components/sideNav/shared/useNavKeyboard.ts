@@ -16,6 +16,15 @@ interface UseNavKeyboardOptions {
   includeEscape?: boolean;
 }
 
+/**
+ * Check if the event target is an input element where keyboard events should not be intercepted
+ */
+const isInputElement = (target: EventTarget | null): boolean => {
+  if (!target || !(target instanceof HTMLElement)) return false;
+  const tagName = target.tagName.toLowerCase();
+  return tagName === "input" || tagName === "textarea" || tagName === "select" || target.isContentEditable;
+};
+
 function useNavKeyboard<T extends HTMLElement = HTMLElement>({
   onEnterOrSpace,
   onEscape,
@@ -24,6 +33,9 @@ function useNavKeyboard<T extends HTMLElement = HTMLElement>({
 }: UseNavKeyboardOptions = {}) {
   const handleKeyDown = useCallback(
     (e: KeyboardEvent<T>) => {
+      // Don't intercept keyboard events from input elements
+      if (isInputElement(e.target)) return;
+
       if ([SPACE_KEY, ENTER_KEY].includes(e.key)) {
         e.preventDefault();
         onEnterOrSpace?.();

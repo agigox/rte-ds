@@ -15,6 +15,15 @@ type handlersActiveKeyboard<T extends HTMLElement> = {
 
 const noop = () => {};
 
+/**
+ * Check if the event target is an input element where keyboard events should not be intercepted
+ */
+const isInputElement = (target: EventTarget | null): boolean => {
+  if (!target || !(target instanceof HTMLElement)) return false;
+  const tagName = target.tagName.toLowerCase();
+  return tagName === "input" || tagName === "textarea" || tagName === "select" || target.isContentEditable;
+};
+
 export const useActiveKeyboard = <T extends HTMLElement>(
   handlerFunctions: handlersActiveKeyboard<T> = {},
   options: OptionsActiveKeyboard = {},
@@ -29,6 +38,9 @@ export const useActiveKeyboard = <T extends HTMLElement>(
   const interactiveKeysRef = useRef<string[]>(interactiveKeyCodes ?? [SPACE_KEY, ENTER_KEY]);
 
   const onKeyDown = (e: KeyboardEvent<T>) => {
+    // Don't intercept keyboard events from input elements
+    if (isInputElement(e.target)) return;
+
     if (interactiveKeysRef.current?.includes(e.key) && (!id || (e.target as T).id === id)) {
       e.preventDefault();
       handlerOnKeyDown(e);
