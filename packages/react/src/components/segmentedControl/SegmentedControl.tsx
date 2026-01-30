@@ -1,6 +1,6 @@
 import {
   getSegmentPosition,
-  isValidSegmentedControlOptions,
+  // isValidSegmentedControlOptions,
 } from "@rte-ds/core/components/segmented-control/segmented-control-utils";
 import { SegmentedControlProps as CoreSegmentedControlProps } from "@rte-ds/core/components/segmented-control/segmented-control.interface";
 import { forwardRef, MutableRefObject, useRef } from "react";
@@ -25,10 +25,11 @@ const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps>(
       const id = target.getAttribute("id") || "";
       onChange(id);
     };
-
+    /*
     if (!isValidSegmentedControlOptions(options)) {
       return null;
     }
+      */
 
     return (
       <div

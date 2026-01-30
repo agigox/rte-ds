@@ -13,6 +13,7 @@ import Tab from "../Tab";
 const meta = {
   title: "Composants/Tab",
   component: Tab,
+  tags: ["autodocs"],
   argTypes: {
     options: { control: "object" },
     alignment: {

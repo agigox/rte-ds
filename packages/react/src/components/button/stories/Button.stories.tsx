@@ -22,9 +22,23 @@ const meta = {
       control: "select",
       options: ["s", "m", "l"],
     },
+    icon: {
+      control: "select",
+      options: [...RegularIconIds, ...TogglableIconIds].sort((a, b) => a.localeCompare(b)),
+      description: "Icon name to display in the button",
+    },
     iconPosition: {
       control: "select",
       options: ["left", "right"],
+    },
+    iconColor: {
+      control: "color",
+      description: "Color of the icon",
+    },
+    iconAppearance: {
+      control: "select",
+      options: ["outlined", "filled"],
+      description: "Appearance of the icon (for togglable icons)",
     },
     disabled: {
       control: "boolean",
@@ -112,5 +126,56 @@ export const KeyboardInteraction: Story = {
     await userEvent.keyboard(TESTING_SPACE_KEY);
     expect(mockFn).toHaveBeenCalledTimes(2);
     button.blur();
+  },
+};
+
+export const WithIconLeft: Story = {
+  args: {
+    ...Default.args,
+    label: "Download",
+    icon: "download",
+    iconPosition: "left",
+  },
+};
+
+export const WithIconRight: Story = {
+  args: {
+    ...Default.args,
+    label: "Next",
+    icon: "arrow-chevron-right",
+    iconPosition: "right",
+  },
+};
+
+export const IconVariants: Story = {
+  args: {
+    ...Default.args,
+  },
+  render: (args) => {
+    return (
+      <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+        <Button {...args} variant="primary" label="Primary" icon="check" />
+        <Button {...args} variant="secondary" label="Secondary" icon="settings" />
+        <Button {...args} variant="danger" label="Delete" icon="delete" />
+        <Button {...args} variant="text" label="Edit" icon="edit" />
+        <Button {...args} variant="transparent" label="Info" icon="info" />
+      </div>
+    );
+  },
+};
+
+export const IconSizes: Story = {
+  args: {
+    ...Default.args,
+    icon: "add",
+  },
+  render: (args) => {
+    return (
+      <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+        <Button {...args} size="s" label="Small" />
+        <Button {...args} size="m" label="Medium" />
+        <Button {...args} size="l" label="Large" />
+      </div>
+    );
   },
 };

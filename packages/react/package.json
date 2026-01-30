@@ -1,6 +1,6 @@
 {
   "name": "@rte-ds/react",
-  "version": "1.3.0",
+  "version": "1.3.5",
   "type": "module",
   "module": "./dist/react-package.js",
   "main": "./dist/react-package.js",

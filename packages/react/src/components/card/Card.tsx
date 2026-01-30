@@ -13,7 +13,17 @@ interface CardProps extends CardPropsCore, Omit<HTMLAttributes<HTMLDivElement>, 
 
 const Card = forwardRef<HTMLDivElement, CardProps>(
   (
-    { size = "m", cardType = "default", clickable = false, disabled = false, children, onClick, style, ...props },
+    {
+      size = "m",
+      cardType = "default",
+      clickable = false,
+      disabled = false,
+      children,
+      onClick,
+      style,
+      className,
+      ...props
+    },
     ref,
   ) => {
     const keyboardHandler = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -39,7 +49,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
     return (
       <div
         ref={ref}
-        className={styles.card}
+        className={`${styles.card}${className ? ` ${className}` : ""}`}
         style={{ width: cardSize[size], ...style }}
         data-card-type={cardType}
         data-clickable={clickable}
