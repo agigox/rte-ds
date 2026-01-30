@@ -1,9 +1,9 @@
-import { Size } from "../common/common-types";
+import { CardSize } from "./card.constats";
 
 export type CardType = "default" | "outlined";
 
 export interface CardProps {
-  size?: Size;
+  size?: CardSize;
   cardType?: CardType;
   clickable?: boolean;
   disabled?: boolean;
