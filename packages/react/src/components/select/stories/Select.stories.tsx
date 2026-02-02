@@ -205,6 +205,43 @@ export const KeyboardInteraction: Story = {
   },
 };
 
+export const WithIcons: Story = {
+  args: {
+    id: "select-with-icons",
+    label: "Choisir une catégorie",
+    showLabel: true,
+    isError: false,
+    assistiveAppearance: "description",
+    showAssistiveIcon: false,
+    assistiveTextLabel: "Select an option with an icon.",
+    options: [
+      { value: "home", label: "Accueil", icon: "building-home" },
+      { value: "settings", label: "Paramètres", icon: "action-settings" },
+      { value: "user", label: "Utilisateur", icon: "user-single" },
+      { value: "folder", label: "Dossiers", icon: "content-folder" },
+    ],
+    disabled: false,
+    readonly: false,
+    showResetButton: true,
+  },
+  render: (args) => {
+    const [selectedOption, setSelectedOption] = useState<{ label: string; value: string }>();
+
+    const handleOnChange = (value: string) => {
+      setSelectedOption(args.options.find((option) => option.value === value));
+    };
+
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "280px" }}>
+        <Select {...args} onChange={handleOnChange} value={selectedOption?.value} />
+        <span style={{ fontFamily: "Arial", color: "var(--content-primary)" }}>
+          Selected value : {selectedOption?.label || "No value"}
+        </span>
+      </div>
+    );
+  },
+};
+
 export const ControlledFromOutside: Story = {
   args: {
     ...Default.args,

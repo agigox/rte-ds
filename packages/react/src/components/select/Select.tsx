@@ -59,7 +59,9 @@ const Select = forwardRef<HTMLDivElement, coreSelectProps>(
 
     const shouldDisplayClearButton = showResetButton && !!internalValue && !readonly && !disabled;
 
-    const currentOptionLabel = options.find((option) => option.value === internalValue)?.label;
+    const currentOption = options.find((option) => option.value === internalValue);
+    const currentOptionLabel = currentOption?.label;
+    const currentOptionIcon = currentOption?.icon;
 
     const shouldDisplayErrorIcon = isError && !disabled && !readonly;
 
@@ -152,6 +154,7 @@ const Select = forwardRef<HTMLDivElement, coreSelectProps>(
                   <div className={styles["select-content"]}>
                     {shouldDisplayErrorIcon && <Icon name="error" className={styles["error-icon"]} />}
                     <div className={styles["select-value"]}>
+                      {currentOptionIcon && <Icon name={currentOptionIcon} className={styles["select-value-icon"]} />}
                       <span>{currentOptionLabel}</span>
                     </div>
                     <div className={styles["select-right-icons"]}>
@@ -177,10 +180,11 @@ const Select = forwardRef<HTMLDivElement, coreSelectProps>(
               position={computeDropdownPosition()}
             >
               {options.length === 0 && <DropdownItem label="No options available" onClick={() => {}} />}
-              {options.map(({ value, label }, index) => (
+              {options.map(({ value, label, icon }, index) => (
                 <DropdownItem
                   key={index + value}
                   label={label}
+                  leftIcon={icon}
                   isSelected={value === internalValue}
                   onClick={() => {
                     handleOnChange(value);

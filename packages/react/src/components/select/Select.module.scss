@@ -167,12 +167,18 @@
         text-overflow: ellipsis;
         overflow: hidden;
         color: var(--content-primary);
+        gap: $positive-spacing_050;
 
         span {
           text-overflow: ellipsis;
           overflow: hidden;
           white-space: nowrap;
         }
+      }
+
+      .select-value-icon {
+        flex-shrink: 0;
+        color: var(--content-secondary);
       }
 
       .select-right-icons {
