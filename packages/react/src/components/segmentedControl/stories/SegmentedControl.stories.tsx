@@ -19,6 +19,15 @@ const meta = {
   component: SegmentedControl,
   tags: ["autodocs"],
   argTypes: {
+    size: {
+      control: "select",
+      options: ["s", "l"],
+      description: "Size of the segmented control",
+      table: {
+        type: { summary: "'s' | 'l'" },
+        defaultValue: { summary: "'l'" },
+      },
+    },
     options: {
       control: { type: "object" },
       description: "Array of segment options",
@@ -182,6 +191,60 @@ export const WithBadge: Story = {
     return (
       <div style={{ width: "380px" }}>
         <SegmentedControl options={args.options} onChange={handleOnChange} selectedSegment={selected} />
+      </div>
+    );
+  },
+};
+
+export const SmallSize: Story = {
+  args: {
+    options: [
+      { label: "Tous", id: "tous" },
+      { label: "E1-Pollution", id: "e1" },
+      { label: "E2-Pollution", id: "e2" },
+      { label: "E3-Pollution", id: "e3" },
+      { label: "E4-Pollution", id: "e4" },
+    ],
+    size: "s",
+    onChange: fn(),
+  },
+
+  render: (args) => {
+    const [selected, setSelected] = useState("tous");
+
+    const handleOnChange = (id: string) => {
+      setSelected(id);
+    };
+
+    return (
+      <div style={{ width: "450px" }}>
+        <SegmentedControl options={args.options} onChange={handleOnChange} selectedSegment={selected} size={args.size} />
+      </div>
+    );
+  },
+};
+
+export const SmallSizeWithIcons: Story = {
+  args: {
+    options: [
+      { id: "agenda", icon: "view-agenda", label: "Vue agenda" },
+      { id: "column", icon: "view-column", label: "Vue colonne" },
+      { id: "grid", icon: "view-grid", label: "Vue grille" },
+    ],
+    size: "s",
+    onChange: fn(),
+  },
+
+  render: (args) => {
+    const [selected, setSelected] = useState("agenda");
+
+    const handleOnChange = (id: string) => {
+      setSelected(id);
+    };
+
+    return (
+      <div style={{ width: "200px" }}>
+        <SegmentedControl options={args.options} onChange={handleOnChange} selectedSegment={selected} size={args.size} />
       </div>
     );
   },

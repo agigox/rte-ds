@@ -10,13 +10,16 @@ import useSelectedIndicatorPosition from "../../hooks/useSelectedIndicatorPositi
 import Segment from "./Segment";
 import style from "./SegmentedControl.module.scss";
 
+export type SegmentedControlSize = "s" | "l";
+
 interface SegmentedControlProps
   extends CoreSegmentedControlProps, Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
   onChange: (id: string) => void;
+  size?: SegmentedControlSize;
 }
 
 const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps>(
-  ({ options, onChange, selectedSegment, ...props }, ref) => {
+  ({ options, onChange, selectedSegment, size = "l", ...props }, ref) => {
     const containerRef: MutableRefObject<HTMLDivElement | null> = useRef<HTMLDivElement>(null);
     const sliderStyle = useSelectedIndicatorPosition(containerRef, selectedSegment);
 
@@ -40,11 +43,17 @@ const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps>(
         }}
         role="radiogroup"
         className={style["segmented-control"]}
+        data-size={size}
         {...props}
       >
         <span
           className={style["segment-selected-indicator"]}
-          style={{ left: sliderStyle.left, top: sliderStyle.top, width: sliderStyle.width }}
+          data-size={size}
+          style={{
+            left: sliderStyle.left,
+            top: sliderStyle.top,
+            width: sliderStyle.width,
+          }}
         />
         {options.map((option, index) => (
           <Segment
@@ -52,6 +61,7 @@ const SegmentedControl = forwardRef<HTMLDivElement, SegmentedControlProps>(
             position={getSegmentPosition(index, options.length)}
             onClick={handleOnClick}
             isSelected={selectedSegment === option.id}
+            size={size}
             {...option}
           />
         ))}

@@ -22,9 +22,11 @@ import Icon from "../icon/Icon";
 
 import useFocusCurrentSegmentElement from "./hooks/useFocusFirstSegment";
 import style from "./SegmentedControl.module.scss";
+import type { SegmentedControlSize } from "./SegmentedControl";
 
 interface SegmentProps extends CoreSegmentProps {
   onClick?: (event: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>) => void;
+  size?: SegmentedControlSize;
 }
 
 const Segment = ({
@@ -40,8 +42,10 @@ const Segment = ({
   badgeType,
   badgeSize,
   showBadge,
+  size = "l",
   ...props
 }: SegmentProps) => {
+  const iconSize = size === "s" ? 16 : 24;
   const ref = useRef<HTMLDivElement>(null);
 
   const allFocusableElement = useSelectFocusableElements();
@@ -99,7 +103,7 @@ const Segment = ({
   };
 
   return (
-    <div className={style["segment-container"]} data-position={position} {...props}>
+    <div className={style["segment-container"]} data-position={position} data-size={size} {...props}>
       <div
         id={id}
         role="radio"
@@ -108,6 +112,7 @@ const Segment = ({
         className={style.segment}
         data-segment-type={icon ? "icon" : "label"}
         data-selected={isSelected}
+        data-size={size}
         onKeyDown={onKeyDown}
         onKeyUp={onKeyUp}
         onBlur={onBlur}
@@ -115,10 +120,10 @@ const Segment = ({
         tabIndex={0}
         ref={ref}
       >
-        {isSelected && <Icon name="check-small" appearance="filled" size={24} className={style["selected-icon"]} />}
+        {isSelected && <Icon name="check-small" appearance="filled" size={iconSize} className={style["selected-icon"]} />}
         <div className={style["segment-content"]}>
           {icon ? (
-            <Icon name={icon} appearance={isSelected ? "filled" : "outlined"} size={24} />
+            <Icon name={icon} appearance={isSelected ? "filled" : "outlined"} size={iconSize} />
           ) : (
             <span className={style["segment-label"]}>{label}</span>
           )}

@@ -19,6 +19,13 @@ const meta = {
     reverse: {
       control: "boolean",
     },
+    icon: {
+      control: "text",
+    },
+    iconPosition: {
+      control: "radio",
+      options: ["left", "right"],
+    },
   },
 } satisfies Meta<typeof Link>;
 export default meta;
@@ -75,6 +82,41 @@ export const Reverse: Story = {
       <div style={{ display: "flex", gap: 8, backgroundColor: "black", padding: 16 }}>
         <Link {...args} label="External Link" href="#" />
         <Link {...args} label="External Link" href="#" externalLink />
+      </div>
+    );
+  },
+};
+
+export const WithIconLeft: Story = {
+  args: {
+    label: "Download",
+    href: "#",
+    icon: "download",
+    iconPosition: "left",
+  },
+};
+
+export const WithIconRight: Story = {
+  args: {
+    label: "Next page",
+    href: "#",
+    icon: "arrow-right",
+    iconPosition: "right",
+  },
+};
+
+export const WithIconVariants: Story = {
+  args: {
+    label: "Link with icon",
+    href: "#",
+  },
+  render: (args) => {
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+        <Link {...args} label="Download file" icon="download" iconPosition="left" />
+        <Link {...args} label="Go to next" icon="arrow-right" iconPosition="right" />
+        <Link {...args} label="External with icon" icon="link" externalLink />
+        <Link {...args} label="Subtle with icon" icon="info" subtle />
       </div>
     );
   },

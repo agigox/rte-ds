@@ -140,6 +140,18 @@
         }
     }
 
+    .icon {
+        flex-shrink: 0;
+
+        &:first-child {
+            margin-right: $positive-spacing_025;
+        }
+
+        &:not(:first-child) {
+            margin-left: $positive-spacing_025;
+        }
+    }
+
     .external-link-icon {
         align-self: start;
         margin-left: $positive-spacing_025;

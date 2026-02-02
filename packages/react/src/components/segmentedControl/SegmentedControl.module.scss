@@ -1,10 +1,13 @@
-@use '@rte-ds/core/design-tokens/main-internal.scss' as *;
+@use "@rte-ds/core/design-tokens/main-internal.scss" as *;
 
 .segmented-control {
   display: flex;
   min-width: 168px;
   max-width: 720px;
   height: 48px;
+  &[data-size="s"] {
+    height: 32px;
+  }
 
   &[data-number-of-segments="3"] {
     min-width: 256px;
@@ -17,7 +20,13 @@
   height: 40px;
   background: var(--background-default);
   border-radius: $radius-pill;
-  transition: left 0.2s ease-out, width 0.2s ease-out;
+  transition:
+    left 0.2s ease-out,
+    width 0.2s ease-out;
+
+  &[data-size="s"] {
+    height: 24px;
+  }
 }
 
 .segment-container {
@@ -43,13 +52,17 @@
     background: var(--background-brand-default);
     padding-right: $positive-spacing_050;
   }
+
+  &[data-size="s"] {
+    padding: 0 $positive-spacing_025;
+  }
 }
 
 .segment {
   display: flex;
   padding: $positive-spacing_075 $positive-spacing_100;
   align-items: center;
-  border-radius: $radius-pill ;
+  border-radius: $radius-pill;
   color: var(--content-primary-inverse);
   flex: 1 1 auto;
   overflow: hidden;
@@ -81,6 +94,11 @@
     padding: $positive-spacing_100;
   }
 
+  &[data-size="s"] {
+    padding: 0 $positive-spacing_100;
+    height: 24px;
+  }
+
   .segment-content {
     display: flex;
     align-items: center;
@@ -100,5 +118,10 @@
   .selected-icon {
     min-width: 24px;
     min-height: 24px;
+  }
+  &[data-size="s"] {
+    .segment-label {
+      @include typography-button-s;
+    }
   }
 }
