@@ -218,7 +218,12 @@ export const SmallSize: Story = {
 
     return (
       <div style={{ width: "450px" }}>
-        <SegmentedControl options={args.options} onChange={handleOnChange} selectedSegment={selected} size={args.size} />
+        <SegmentedControl
+          options={args.options}
+          onChange={handleOnChange}
+          selectedSegment={selected}
+          size={args.size}
+        />
       </div>
     );
   },
@@ -244,7 +249,12 @@ export const SmallSizeWithIcons: Story = {
 
     return (
       <div style={{ width: "200px" }}>
-        <SegmentedControl options={args.options} onChange={handleOnChange} selectedSegment={selected} size={args.size} />
+        <SegmentedControl
+          options={args.options}
+          onChange={handleOnChange}
+          selectedSegment={selected}
+          size={args.size}
+        />
       </div>
     );
   },

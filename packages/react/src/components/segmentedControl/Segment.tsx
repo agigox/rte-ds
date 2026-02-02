@@ -21,8 +21,8 @@ import Badge from "../badge/Badge";
 import Icon from "../icon/Icon";
 
 import useFocusCurrentSegmentElement from "./hooks/useFocusFirstSegment";
-import style from "./SegmentedControl.module.scss";
 import type { SegmentedControlSize } from "./SegmentedControl";
+import style from "./SegmentedControl.module.scss";
 
 interface SegmentProps extends CoreSegmentProps {
   onClick?: (event: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>) => void;
@@ -120,7 +120,9 @@ const Segment = ({
         tabIndex={0}
         ref={ref}
       >
-        {isSelected && <Icon name="check-small" appearance="filled" size={iconSize} className={style["selected-icon"]} />}
+        {isSelected && (
+          <Icon name="check-small" appearance="filled" size={iconSize} className={style["selected-icon"]} />
+        )}
         <div className={style["segment-content"]}>
           {icon ? (
             <Icon name={icon} appearance={isSelected ? "filled" : "outlined"} size={iconSize} />
