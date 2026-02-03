@@ -39,10 +39,14 @@ const Select = forwardRef<HTMLDivElement, coreSelectProps>(
       readonly,
       showResetButton,
       width = MIN_SELECT_WIDTH,
+      multiple = false,
+      multipleValue,
+      onMultipleChange,
     },
     ref,
   ) => {
     const [internalValue, setInternalValue] = useState(value || "");
+    const [internalMultipleValue, setInternalMultipleValue] = useState<string[]>(multipleValue || []);
 
     const [isActive, setIsActive] = useState(false);
 
@@ -57,11 +61,32 @@ const Select = forwardRef<HTMLDivElement, coreSelectProps>(
       }
     };
 
-    const shouldDisplayClearButton = showResetButton && !!internalValue && !readonly && !disabled;
+    const hasValue = multiple ? internalMultipleValue.length > 0 : !!internalValue;
+    const shouldDisplayClearButton = showResetButton && hasValue && !readonly && !disabled;
 
     const currentOption = options.find((option) => option.value === internalValue);
     const currentOptionLabel = currentOption?.label;
     const currentOptionIcon = currentOption?.icon;
+
+    const getMultipleDisplayValue = () => {
+      if (internalMultipleValue.length === 0) return "";
+      if (internalMultipleValue.length === 1) {
+        return options.find((opt) => opt.value === internalMultipleValue[0])?.label || "";
+      }
+      return `${internalMultipleValue.length} sélectionnés`;
+    };
+
+    const isOptionSelected = (optionValue: string) => {
+      return internalMultipleValue.includes(optionValue);
+    };
+
+    const handleMultipleSelect = (optionValue: string) => {
+      const newValues = isOptionSelected(optionValue)
+        ? internalMultipleValue.filter((v) => v !== optionValue)
+        : [...internalMultipleValue, optionValue];
+      setInternalMultipleValue(newValues);
+      onMultipleChange?.(newValues);
+    };
 
     const shouldDisplayErrorIcon = isError && !disabled && !readonly;
 
@@ -96,7 +121,12 @@ const Select = forwardRef<HTMLDivElement, coreSelectProps>(
 
     const handleOnClear = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       e.stopPropagation();
-      handleOnChange("");
+      if (multiple) {
+        setInternalMultipleValue([]);
+        onMultipleChange?.([]);
+      } else {
+        handleOnChange("");
+      }
       onClear?.();
       selectRef.current?.focus();
     };
@@ -110,6 +140,10 @@ const Select = forwardRef<HTMLDivElement, coreSelectProps>(
     useEffect(() => {
       setInternalValue(value || "");
     }, [value]);
+
+    useEffect(() => {
+      setInternalMultipleValue(multipleValue || []);
+    }, [multipleValue]);
 
     return (
       <>
@@ -154,8 +188,10 @@ const Select = forwardRef<HTMLDivElement, coreSelectProps>(
                   <div className={styles["select-content"]}>
                     {shouldDisplayErrorIcon && <Icon name="error" className={styles["error-icon"]} />}
                     <div className={styles["select-value"]}>
-                      {currentOptionIcon && <Icon name={currentOptionIcon} className={styles["select-value-icon"]} />}
-                      <span>{currentOptionLabel}</span>
+                      {!multiple && currentOptionIcon && (
+                        <Icon name={currentOptionIcon} className={styles["select-value-icon"]} />
+                      )}
+                      <span>{multiple ? getMultipleDisplayValue() : currentOptionLabel}</span>
                     </div>
                     <div className={styles["select-right-icons"]}>
                       {shouldDisplayClearButton && (
@@ -180,17 +216,36 @@ const Select = forwardRef<HTMLDivElement, coreSelectProps>(
               position={computeDropdownPosition()}
             >
               {options.length === 0 && <DropdownItem label="No options available" onClick={() => {}} />}
-              {options.map(({ value, label, icon }, index) => (
-                <DropdownItem
-                  key={index + value}
-                  label={label}
-                  leftIcon={icon}
-                  isSelected={value === internalValue}
-                  onClick={() => {
-                    handleOnChange(value);
-                  }}
-                />
-              ))}
+              {multiple
+                ? options.map(({ value, label, icon }, index) => (
+                    <li
+                      key={index + value}
+                      className={styles["dropdown-item-multiple"]}
+                      role="option"
+                      aria-selected={isOptionSelected(value)}
+                      onClick={() => handleMultipleSelect(value)}
+                      tabIndex={0}
+                    >
+                      <Icon
+                        name={isOptionSelected(value) ? "checkbox" : "checkbox-empty"}
+                        appearance={isOptionSelected(value) ? "filled" : "outlined"}
+                        className={styles["checkbox-icon"]}
+                      />
+                      {icon && <Icon name={icon} className={styles["option-icon"]} />}
+                      <span>{label}</span>
+                    </li>
+                  ))
+                : options.map(({ value, label, icon }, index) => (
+                    <DropdownItem
+                      key={index + value}
+                      label={label}
+                      leftIcon={icon}
+                      isSelected={value === internalValue}
+                      onClick={() => {
+                        handleOnChange(value);
+                      }}
+                    />
+                  ))}
             </Dropdown>
 
             {assistiveTextLabel && (

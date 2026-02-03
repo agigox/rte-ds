@@ -320,3 +320,81 @@ export const ControlledFromOutside: Story = {
     expect(select).toHaveTextContent("Option 1");
   },
 };
+
+export const Multiple: Story = {
+  args: {
+    id: "select-multiple",
+    label: "Sélection multiple",
+    showLabel: true,
+    isError: false,
+    assistiveAppearance: "description",
+    showAssistiveIcon: false,
+    assistiveTextLabel: "Vous pouvez sélectionner plusieurs options.",
+    options: [
+      { value: "option-1", label: "Option 1" },
+      { value: "option-2", label: "Option 2" },
+      { value: "option-3", label: "Option 3" },
+      { value: "option-4", label: "Option 4" },
+      { value: "option-5", label: "Option 5" },
+    ],
+    disabled: false,
+    readonly: false,
+    showResetButton: true,
+    multiple: true,
+  },
+  render: (args) => {
+    const [selectedValues, setSelectedValues] = useState<string[]>([]);
+
+    const handleMultipleChange = (values: string[]) => {
+      setSelectedValues(values);
+    };
+
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "280px" }}>
+        <Select {...args} multipleValue={selectedValues} onMultipleChange={handleMultipleChange} />
+        <span style={{ fontFamily: "Arial", color: "var(--content-primary)" }}>
+          Selected values : {selectedValues.length > 0 ? selectedValues.join(", ") : "No value"}
+        </span>
+      </div>
+    );
+  },
+};
+
+export const MultipleWithIcons: Story = {
+  args: {
+    id: "select-multiple-icons",
+    label: "Sélection multiple avec icônes",
+    showLabel: true,
+    isError: false,
+    assistiveAppearance: "description",
+    showAssistiveIcon: false,
+    assistiveTextLabel: "Sélectionnez plusieurs catégories.",
+    options: [
+      { value: "home", label: "Accueil", icon: "building-home" },
+      { value: "settings", label: "Paramètres", icon: "action-settings" },
+      { value: "user", label: "Utilisateur", icon: "user-single" },
+      { value: "folder", label: "Dossiers", icon: "content-folder" },
+      { value: "search", label: "Recherche", icon: "action-search" },
+    ],
+    disabled: false,
+    readonly: false,
+    showResetButton: true,
+    multiple: true,
+  },
+  render: (args) => {
+    const [selectedValues, setSelectedValues] = useState<string[]>(["home", "settings"]);
+
+    const handleMultipleChange = (values: string[]) => {
+      setSelectedValues(values);
+    };
+
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "320px" }}>
+        <Select {...args} multipleValue={selectedValues} onMultipleChange={handleMultipleChange} />
+        <span style={{ fontFamily: "Arial", color: "var(--content-primary)" }}>
+          Selected values : {selectedValues.length > 0 ? selectedValues.join(", ") : "No value"}
+        </span>
+      </div>
+    );
+  },
+};

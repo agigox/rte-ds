@@ -1,4 +1,4 @@
-@use '@rte-ds/core/design-tokens/main-internal.scss' as *;
+@use "@rte-ds/core/design-tokens/main-internal.scss" as *;
 
 .select-container {
   @include typography-text-m;
@@ -31,7 +31,6 @@
     white-space: normal;
     overflow-wrap: normal;
     word-break: normal;
-
   }
 
   .select-wrapper {
@@ -103,7 +102,6 @@
       }
     }
 
-
     &[data-disabled="true"] {
       background-color: var(--background-disabled);
       border-color: var(--border-disabled);
@@ -161,13 +159,13 @@
       .select-value {
         @include typography-text-m;
         display: flex;
-        padding: 0 $positive-spacing_100;
+        padding: 0;
         align-items: center;
         flex: 1 0 0;
         text-overflow: ellipsis;
         overflow: hidden;
         color: var(--content-primary);
-        gap: $positive-spacing_050;
+        gap: $positive-spacing_100;
 
         span {
           text-overflow: ellipsis;
@@ -199,5 +197,49 @@
         }
       }
     }
+  }
+}
+
+.dropdown-item-multiple {
+  @include typography-text-m-regular;
+  display: flex;
+  height: 40px;
+  padding: $positive-spacing_100 $positive-spacing_150;
+  align-items: center;
+  gap: $positive-spacing_150;
+  align-self: stretch;
+  cursor: pointer;
+  color: var(--content-secondary);
+  list-style: none;
+  box-sizing: border-box;
+
+  &:hover {
+    background-color: var(--background-hover);
+  }
+
+  &:focus-visible {
+    outline: none;
+    background-color: var(--background-hover);
+  }
+
+  &[aria-selected="true"] {
+    background-color: var(--background-brand-inverse-pressed);
+  }
+
+  .checkbox-icon {
+    flex-shrink: 0;
+    color: var(--content-brand-default);
+  }
+
+  .option-icon {
+    flex-shrink: 0;
+    color: var(--content-secondary);
+  }
+
+  span {
+    flex: 1;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 }

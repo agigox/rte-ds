@@ -12,4 +12,7 @@ export interface SelectProps extends InputProps {
   options: SelectOption[];
   showResetButton?: boolean;
   width?: number;
+  multiple?: boolean;
+  multipleValue?: string[];
+  onMultipleChange?: (values: string[]) => void;
 }
