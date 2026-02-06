@@ -130,7 +130,7 @@
       outline: none;
 
       &:hover {
-        cursor: default;
+        cursor: pointer;
       }
 
       .trigger-icon {
@@ -224,6 +224,18 @@
 
   &[aria-selected="true"] {
     background-color: var(--background-brand-inverse-pressed);
+  }
+
+  &[data-read-only="true"] {
+    cursor: default;
+
+    &:hover {
+      background-color: transparent;
+    }
+
+    &:focus-visible {
+      background-color: transparent;
+    }
   }
 
   .checkbox-icon {

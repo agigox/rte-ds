@@ -1,11 +1,11 @@
-@use '@rte-ds/core/design-tokens/main-internal.scss' as *;
+@use "@rte-ds/core/design-tokens/main-internal.scss" as *;
 
 .sideNavContainer {
   height: auto;
   padding: $positive-spacing_0;
   position: relative;
   display: flex;
-  align-items: stretch; 
+  align-items: stretch;
   flex: 1;
 }
 
@@ -31,7 +31,7 @@
 
   max-height: var(--content-height);
 
-  &[data-appearance='neutral'] {
+  &[data-appearance="neutral"] {
     background-color: var(--background-neutral-navigation-default);
     color: var(--content-secondary);
   }
@@ -57,4 +57,69 @@
   justify-content: space-between;
   box-sizing: border-box;
   width: 100%;
+}
+
+.sideNavProfile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $positive-spacing-100;
+  padding: $positive-spacing-100 $positive-spacing-200;
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: $radius-s;
+  transition: background-color 200ms;
+
+  &[data-collapsed="true"] {
+    justify-content: center;
+    padding: $positive-spacing-100;
+  }
+
+  &[data-clickable="true"] {
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--background-brand-navigation-hover);
+    }
+
+    &:active {
+      background-color: var(--background-brand-navigation-pressed);
+    }
+
+    &:focus-visible {
+      outline: $width-xs solid var(--border-brand-focused);
+      outline-offset: -$width-xs;
+    }
+  }
+}
+
+.profileName {
+  @include typography-button-m;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sideNavTeamData {
+  display: flex;
+  flex-direction: column;
+  padding: $positive-spacing-100 $positive-spacing-200;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.teamDataItem {
+  display: flex;
+}
+
+.teamDataLabel {
+  @include typography-text-m-regular;
+  font-family: $heading-m-semibold-font-family;
+  color: #456b95;
+  width: 76px;
+}
+
+.teamDataValue {
+  @include typography-text-m-regular;
+  font-family: $heading-m-semibold-font-family;
 }

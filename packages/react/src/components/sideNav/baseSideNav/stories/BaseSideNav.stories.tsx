@@ -11,7 +11,10 @@ const meta = {
     size: { control: "select", options: ["s", "m", "l"] },
     showHeader: { control: "boolean" },
     showFooter: { control: "boolean" },
+    showProfile: { control: "boolean" },
+    profile: { control: "text" },
     appearance: { control: "select", options: ["neutral", "brand"] },
+    collapsed: { control: "boolean" },
   },
 } satisfies Meta<typeof BaseSideNav>;
 
@@ -169,6 +172,60 @@ export const ColoredSections: Story = {
           🔧 Footer Section
         </div>
       }
+    >
+      {PageContent}
+    </BaseSideNav>
+  ),
+};
+
+export const WithProfile: Story = {
+  args: {
+    size: "m",
+    showHeader: true,
+    showFooter: true,
+    showProfile: true,
+    profile: "Adam Smith",
+    appearance: "brand",
+    collapsed: false,
+  },
+  render: (args) => (
+    <BaseSideNav
+      size={args.size}
+      showHeader={args.showHeader}
+      showFooter={args.showFooter}
+      showProfile={args.showProfile}
+      profile={args.profile}
+      appearance={args.appearance}
+      collapsed={args.collapsed}
+      header={<div style={{ fontWeight: "600", fontSize: "0.875rem" }}>Navigation</div>}
+      body={SimpleBody}
+      footer={<div style={{ fontSize: "0.75rem" }}>© 2025</div>}
+    >
+      {PageContent}
+    </BaseSideNav>
+  ),
+};
+
+export const WithProfileCollapsed: Story = {
+  args: {
+    size: "m",
+    showHeader: false,
+    showFooter: false,
+    showProfile: true,
+    profile: "Adam Smith",
+    appearance: "brand",
+    collapsed: true,
+  },
+  render: (args) => (
+    <BaseSideNav
+      size={args.size}
+      showHeader={args.showHeader}
+      showFooter={args.showFooter}
+      showProfile={args.showProfile}
+      profile={args.profile}
+      appearance={args.appearance}
+      collapsed={args.collapsed}
+      body={SimpleBody}
     >
       {PageContent}
     </BaseSideNav>

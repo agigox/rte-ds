@@ -47,6 +47,7 @@ const meta: Meta<typeof TextInput> = {
     readOnly: { control: "boolean" },
     onChange: mockFn,
     onRightIconClick: { action: "right icon clicked" },
+    unit: { control: "text", description: "Unit to display after the input value (e.g., kg, km, €)" },
   },
 };
 export default meta;
@@ -325,4 +326,31 @@ export const KeyboardRightIconVisibility: Story = {
     await userEvent.keyboard(SPACE_KEY);
     expect(textInput).toHaveAttribute("type", "text");
   },
+};
+
+export const WithUnit: Story = {
+  args: {
+    ...Default.args,
+    unit: "kg",
+  },
+  render: (args) => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "32px", fontFamily: "Nunito Sans" }}>
+      <div>
+        <h3>Unit: kg</h3>
+        <TextInput {...args} label="Weight" unit="kg" />
+      </div>
+      <div>
+        <h3>Unit: km</h3>
+        <TextInput {...args} label="Distance" unit="km" />
+      </div>
+      <div>
+        <h3>Unit: €</h3>
+        <TextInput {...args} label="Price" unit="€" />
+      </div>
+      <div>
+        <h3>Unit: %</h3>
+        <TextInput {...args} label="Percentage" unit="%" />
+      </div>
+    </div>
+  ),
 };

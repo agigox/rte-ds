@@ -3,6 +3,7 @@ import { ChangeEvent, FocusEvent, forwardRef, MutableRefObject, TextareaHTMLAttr
 
 import AssistiveText from "../assistivetext/AssistiveText";
 import RequiredIndicator from "../requiredindicator/RequiredIndicator";
+import Tooltip from "../tooltip/Tooltip";
 import { concatClassNames } from "../utils";
 
 import style from "./Textarea.module.scss";
@@ -12,6 +13,7 @@ interface TextareaProps
     CoreTextareaProps,
     Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, "onChange" | "value" | "defaultValue" | "placeholder"> {
   onChange?: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+  tooltipTextLabel?: string;
 }
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
@@ -36,6 +38,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       defaultValue,
       showCounter,
       value,
+      tooltipTextLabel,
       ...props
     },
     ref,
@@ -62,7 +65,7 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       }
     };
 
-    return (
+    const content = (
       <div className={style.container} data-label-position={labelPosition}>
         {label && labelPosition === "side" && (
           <label id={labelId} className={style.label} htmlFor={id} data-label-position={labelPosition}>
@@ -115,6 +118,18 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           </div>
         </div>
       </div>
+    );
+
+    return (
+      <>
+        {tooltipTextLabel ? (
+          <Tooltip alignment="start" arrow label={tooltipTextLabel} position="bottom">
+            {content}
+          </Tooltip>
+        ) : (
+          content
+        )}
+      </>
     );
   },
 );

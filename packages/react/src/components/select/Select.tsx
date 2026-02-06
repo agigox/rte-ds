@@ -13,15 +13,22 @@ import { DropdownItem } from "../dropdown/dropdownItem/DropdownItem";
 import Icon from "../icon/Icon";
 import IconButton from "../iconButton/IconButton";
 import RequiredIndicator from "../requiredindicator/RequiredIndicator";
+import Tooltip from "../tooltip/Tooltip";
 import { concatClassNames } from "../utils";
 
 import styles from "./Select.module.scss";
 
-const Select = forwardRef<HTMLDivElement, coreSelectProps>(
+interface SelectProps extends coreSelectProps {
+  labelId?: string;
+  tooltipTextLabel?: string;
+}
+
+const Select = forwardRef<HTMLDivElement, SelectProps>(
   (
     {
       id,
       label,
+      labelId,
       labelPosition = "top",
       required = false,
       value,
@@ -42,6 +49,7 @@ const Select = forwardRef<HTMLDivElement, coreSelectProps>(
       multiple = false,
       multipleValue,
       onMultipleChange,
+      tooltipTextLabel,
     },
     ref,
   ) => {
@@ -102,7 +110,7 @@ const Select = forwardRef<HTMLDivElement, coreSelectProps>(
 
     const handleOnClick = () => {
       if (selectRef.current) {
-        if (disabled || readonly) {
+        if (disabled) {
           return;
         }
         selectRef.current.focus();
@@ -145,120 +153,134 @@ const Select = forwardRef<HTMLDivElement, coreSelectProps>(
       setInternalMultipleValue(multipleValue || []);
     }, [multipleValue]);
 
-    return (
-      <>
-        <div className={styles["select-container"]} data-label-position={labelPosition}>
-          {showLabel && labelPosition === "side" && (
-            <label htmlFor={id} id={label} className={styles["select-label"]}>
+    const content = (
+      <div className={styles["select-container"]} data-label-position={labelPosition}>
+        {showLabel && labelPosition === "side" && (
+          <label htmlFor={id} id={labelId} className={styles["select-label"]}>
+            {label}
+            <RequiredIndicator required={required} showLabelRequirement={showLabelRequirement} />
+          </label>
+        )}
+        <div className={styles["select-header"]}>
+          {showLabel && labelPosition === "top" && (
+            <label htmlFor={id} id={labelId} className={styles["select-label"]}>
               {label}
               <RequiredIndicator required={required} showLabelRequirement={showLabelRequirement} />
             </label>
           )}
-          <div className={styles["select-header"]}>
-            {showLabel && labelPosition === "top" && (
-              <label htmlFor={id} id={label} className={styles["select-label"]}>
-                {label}
-                <RequiredIndicator required={required} showLabelRequirement={showLabelRequirement} />
-              </label>
-            )}
-            <Dropdown
-              style={{ width: selectRef.current?.offsetWidth }}
-              dropdownId={id + "-dropdown"}
-              onClose={() => {
-                setIsActive(false);
-              }}
-              offset={SELECT_DROPDOWN_OFFSET}
-              trigger={
-                <div
-                  ref={selectRefCallback}
-                  aria-expanded={isActive}
-                  aria-labelledby={label}
-                  data-error={isError ? "true" : "false"}
-                  data-active={isActive ? "true" : "false"}
-                  data-disabled={disabled ? "true" : "false"}
-                  data-read-only={readonly ? "true" : "false"}
-                  id={id}
-                  className={styles["select-wrapper"]}
-                  role="combobox"
-                  tabIndex={disabled || readonly ? -1 : 0}
-                  onClick={handleOnClick}
-                  onKeyDown={handleKeyDown}
-                  style={{ width: width }}
-                >
-                  <div className={styles["select-content"]}>
-                    {shouldDisplayErrorIcon && <Icon name="error" className={styles["error-icon"]} />}
-                    <div className={styles["select-value"]}>
-                      {!multiple && currentOptionIcon && (
-                        <Icon name={currentOptionIcon} className={styles["select-value-icon"]} />
-                      )}
-                      <span>{multiple ? getMultipleDisplayValue() : currentOptionLabel}</span>
-                    </div>
-                    <div className={styles["select-right-icons"]}>
-                      {shouldDisplayClearButton && (
-                        <IconButton
-                          name="cancel"
-                          variant="neutral"
-                          className={concatClassNames(styles["icon-button"], styles["clear-icon"])}
-                          onClick={handleOnClear}
-                          disabled={disabled}
-                        />
-                      )}
-                      <Icon
-                        name={isActive ? "arrow-chevron-up" : "arrow-chevron-down"}
-                        data-testid="trigger-icon"
-                        className={styles["trigger-icon"]}
+          <Dropdown
+            style={{ width: selectRef.current?.offsetWidth }}
+            dropdownId={id + "-dropdown"}
+            onClose={() => {
+              setIsActive(false);
+            }}
+            offset={SELECT_DROPDOWN_OFFSET}
+            trigger={
+              <div
+                ref={selectRefCallback}
+                aria-expanded={isActive}
+                aria-labelledby={labelId}
+                data-error={isError ? "true" : "false"}
+                data-active={isActive ? "true" : "false"}
+                data-disabled={disabled ? "true" : "false"}
+                data-read-only={readonly ? "true" : "false"}
+                id={id}
+                className={styles["select-wrapper"]}
+                role="combobox"
+                tabIndex={disabled ? -1 : 0}
+                onClick={handleOnClick}
+                onKeyDown={handleKeyDown}
+                style={{ width: width }}
+              >
+                <div className={styles["select-content"]}>
+                  {shouldDisplayErrorIcon && <Icon name="error" className={styles["error-icon"]} />}
+                  <div className={styles["select-value"]}>
+                    {!multiple && currentOptionIcon && (
+                      <Icon name={currentOptionIcon} className={styles["select-value-icon"]} />
+                    )}
+                    <span>{multiple ? getMultipleDisplayValue() : currentOptionLabel}</span>
+                  </div>
+                  <div className={styles["select-right-icons"]}>
+                    {shouldDisplayClearButton && (
+                      <IconButton
+                        name="cancel"
+                        variant="neutral"
+                        className={concatClassNames(styles["icon-button"], styles["clear-icon"])}
+                        onClick={handleOnClear}
+                        disabled={disabled}
                       />
-                    </div>
+                    )}
+                    <Icon
+                      name={isActive ? "arrow-chevron-up" : "arrow-chevron-down"}
+                      data-testid="trigger-icon"
+                      className={styles["trigger-icon"]}
+                    />
                   </div>
                 </div>
-              }
-              isOpen={isActive}
-              position={computeDropdownPosition()}
-            >
-              {options.length === 0 && <DropdownItem label="No options available" onClick={() => {}} />}
-              {multiple
-                ? options.map(({ value, label, icon }, index) => (
-                    <li
-                      key={index + value}
-                      className={styles["dropdown-item-multiple"]}
-                      role="option"
-                      aria-selected={isOptionSelected(value)}
-                      onClick={() => handleMultipleSelect(value)}
-                      tabIndex={0}
-                    >
-                      <Icon
-                        name={isOptionSelected(value) ? "checkbox" : "checkbox-empty"}
-                        appearance={isOptionSelected(value) ? "filled" : "outlined"}
-                        className={styles["checkbox-icon"]}
-                      />
-                      {icon && <Icon name={icon} className={styles["option-icon"]} />}
-                      <span>{label}</span>
-                    </li>
-                  ))
-                : options.map(({ value, label, icon }, index) => (
-                    <DropdownItem
-                      key={index + value}
-                      label={label}
-                      leftIcon={icon}
-                      isSelected={value === internalValue}
-                      onClick={() => {
-                        handleOnChange(value);
-                      }}
+              </div>
+            }
+            isOpen={isActive}
+            position={computeDropdownPosition()}
+          >
+            {options.length === 0 && <DropdownItem label="No options available" onClick={() => {}} />}
+            {multiple
+              ? options.map(({ value, label, icon }, index) => (
+                  <li
+                    key={index + value}
+                    className={styles["dropdown-item-multiple"]}
+                    role="option"
+                    aria-selected={isOptionSelected(value)}
+                    onClick={() => !readonly && handleMultipleSelect(value)}
+                    tabIndex={readonly ? -1 : 0}
+                    data-read-only={readonly ? "true" : "false"}
+                  >
+                    <Icon
+                      name={isOptionSelected(value) ? "checkbox" : "checkbox-empty"}
+                      appearance={isOptionSelected(value) ? "filled" : "outlined"}
+                      className={styles["checkbox-icon"]}
                     />
-                  ))}
-            </Dropdown>
+                    {icon && <Icon name={icon} className={styles["option-icon"]} />}
+                    <span>{label}</span>
+                  </li>
+                ))
+              : options.map(({ value, label, icon }, index) => (
+                  <DropdownItem
+                    key={index + value}
+                    label={label}
+                    leftIcon={icon}
+                    isSelected={value === internalValue}
+                    disabled={readonly}
+                    onClick={() => {
+                      if (!readonly) {
+                        handleOnChange(value);
+                      }
+                    }}
+                  />
+                ))}
+          </Dropdown>
 
-            {assistiveTextLabel && (
-              <AssistiveText
-                label={assistiveTextLabel}
-                appearance={isError ? "error" : assistiveAppearance}
-                showIcon={showAssistiveIcon}
-                href={assistiveTextLink}
-                width={width}
-              />
-            )}
-          </div>
+          {assistiveTextLabel && (
+            <AssistiveText
+              label={assistiveTextLabel}
+              appearance={isError ? "error" : assistiveAppearance}
+              showIcon={showAssistiveIcon}
+              href={assistiveTextLink}
+              width={width}
+            />
+          )}
         </div>
+      </div>
+    );
+
+    return (
+      <>
+        {tooltipTextLabel ? (
+          <Tooltip alignment="start" arrow label={tooltipTextLabel} position="bottom">
+            {content}
+          </Tooltip>
+        ) : (
+          content
+        )}
       </>
     );
   },

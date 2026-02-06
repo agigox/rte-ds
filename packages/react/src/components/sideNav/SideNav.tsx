@@ -12,10 +12,20 @@ import NavItem from "./navItem/NavItem";
 import NavMenu from "./navMenu/NavMenu";
 import style from "./SideNav.module.scss";
 
+interface TeamDataItem {
+  label: string;
+  value: string;
+}
+
 interface SideNavProps extends Partial<CoreSideNavProps>, Omit<React.HTMLAttributes<HTMLDivElement>, "content"> {
   children?: ReactNode;
   defaultCollapsed?: boolean;
   onCollapsedChange?: (collapsed: boolean) => void;
+  showProfile?: boolean;
+  profile?: string;
+  onProfileClick?: () => void;
+  showTeamData?: boolean;
+  teamData?: TeamDataItem[];
 }
 
 const TRANSITION_DURATION = 300;
@@ -34,6 +44,11 @@ const SideNav = forwardRef<HTMLElement | HTMLDivElement, SideNavProps>(
       onCollapsedChange,
       appearance = "brand",
       activeItem,
+      showProfile,
+      profile,
+      onProfileClick,
+      showTeamData,
+      teamData,
     }: SideNavProps,
     ref,
   ) => {
@@ -182,6 +197,11 @@ const SideNav = forwardRef<HTMLElement | HTMLDivElement, SideNavProps>(
         size={size}
         collapsed={isCollapsed}
         appearance={appearance}
+        showProfile={showProfile}
+        profile={profile}
+        onProfileClick={onProfileClick}
+        showTeamData={showTeamData}
+        teamData={teamData}
         style={{ height: "100vh" }}
         header={
           <div className={style.sideNavHeaderContainer}>

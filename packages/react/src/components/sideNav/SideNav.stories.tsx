@@ -34,6 +34,11 @@ const meta = {
     appearance: { control: "select", options: ["neutral", "brand"] },
     collapsed: { control: "boolean" },
     activeItem: { control: "text" },
+    showProfile: { control: "boolean" },
+    profile: { control: "text" },
+    onProfileClick: { action: "profile clicked" },
+    showTeamData: { control: "boolean" },
+    teamData: { control: "object" },
   },
   render: (args) => (
     <SideNav
@@ -46,6 +51,11 @@ const meta = {
       collapsed={args.collapsed}
       activeItem={args.activeItem}
       onCollapsedChange={args.onCollapsedChange}
+      showProfile={args.showProfile}
+      profile={args.profile}
+      onProfileClick={args.onProfileClick}
+      showTeamData={args.showTeamData}
+      teamData={args.teamData}
     >
       {PageContent}
     </SideNav>
@@ -648,5 +658,49 @@ export const WithDividers: Story = {
     headerConfig: defaultHeaderConfig,
     items: navigationItemsWithDividers,
     collapsible: true,
+  },
+};
+
+export const WithProfile: Story = {
+  args: {
+    ...Default.args,
+    headerConfig: defaultHeaderConfig,
+    items: navigationItems,
+    collapsible: true,
+    showProfile: true,
+    profile: "Julien Neuville",
+    onProfileClick: () => console.log("Profile clicked"),
+  },
+};
+
+export const WithProfileCollapsed: Story = {
+  args: {
+    ...Default.args,
+    headerConfig: defaultHeaderConfig,
+    items: navigationItems,
+    collapsible: true,
+    collapsed: true,
+    showProfile: true,
+    profile: "Julien Neuville",
+  },
+  decorators: [createCollapsedStateDecorator()],
+};
+
+export const WithProfileAndTeamData: Story = {
+  args: {
+    ...Default.args,
+    headerConfig: defaultHeaderConfig,
+    items: navigationItems,
+    collapsible: true,
+    showProfile: true,
+    profile: "Julien Neuville",
+    onProfileClick: () => console.log("Profile clicked"),
+    showTeamData: true,
+    teamData: [
+      { label: "Direction", value: "Maintenance" },
+      { label: "Centre", value: "Aura" },
+      { label: "GMR", value: "lorem" },
+      { label: "Equipe", value: "Emasi" },
+    ],
   },
 };

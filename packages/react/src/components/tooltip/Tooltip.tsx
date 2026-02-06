@@ -61,11 +61,17 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
           position === "auto"
             ? getAutoPlacement(triggerRef.current, tooltipElement!, "top", tooltipGap, true)
             : position;
-        const computedCoordinates = getCoordinates(computedPosition, triggerRef.current, tooltipElement, tooltipGap);
+        const computedCoordinates = getCoordinates(
+          computedPosition,
+          triggerRef.current,
+          tooltipElement,
+          tooltipGap,
+          alignment,
+        );
         setAutoPosition(computedPosition);
         setCoordinates(computedCoordinates);
       }
-    }, [isOpen, position, arrow, tooltipElement, gap]);
+    }, [isOpen, position, arrow, tooltipElement, gap, alignment]);
 
     useEffect(() => {
       computePosition();

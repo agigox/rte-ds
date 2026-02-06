@@ -8,6 +8,8 @@ interface TextInputProps
     CoreTextInputProps,
     Omit<InputHTMLAttributes<HTMLInputElement>, "id" | "onChange" | "value" | "defaultValue" | "placeholder"> {
   onChange?: (value: string) => void;
+  unit?: string;
+  tooltipTextLabel?: string;
 }
 
 const TextInput = forwardRef<HTMLInputElement, TextInputProps>(({ id, ...props }: TextInputProps, ref) => {

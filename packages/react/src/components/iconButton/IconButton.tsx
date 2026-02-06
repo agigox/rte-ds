@@ -15,6 +15,7 @@ interface IconButtonProps
     Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onClick"> {
   name: RegularIconIdKey | TogglableIconIdKey;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  iconColor?: string;
 }
 
 const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
@@ -32,6 +33,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
       badgeCount,
       badgeType,
       badgeIcon,
+      iconColor,
       ...props
     },
     ref,
@@ -59,7 +61,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
               onClick={onClick}
               {...props}
             >
-              <Icon name={name} appearance={appearance} size={ButtonIconSize[size]} />
+              <Icon name={name} appearance={appearance} size={ButtonIconSize[size]} color={iconColor} />
             </button>
           </Badge>
         );
@@ -75,7 +77,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
             onClick={onClick}
             {...props}
           >
-            <Icon name={name} appearance={appearance} size={ButtonIconSize[size]} />
+            <Icon name={name} appearance={appearance} size={ButtonIconSize[size]} color={iconColor} />
           </button>
         );
       }

@@ -3,12 +3,14 @@ import { SwitchProps as CoreSwitchProps } from "@rte-ds/core/components/switch/s
 import { InputHTMLAttributes, useState } from "react";
 
 import Icon from "../icon/Icon";
+import Tooltip from "../tooltip/Tooltip";
 import { concatClassNames } from "../utils";
 
 import style from "./Switch.module.scss";
 
 interface SwitchProps extends CoreSwitchProps, InputHTMLAttributes<HTMLInputElement> {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  tooltipTextLabel?: string;
 }
 
 const Switch = ({
@@ -20,6 +22,7 @@ const Switch = ({
   readOnly = false,
   checked = false,
   onChange,
+  tooltipTextLabel,
   ...props
 }: SwitchProps) => {
   const [isChecked, setIsChecked] = useState(checked);
@@ -45,7 +48,7 @@ const Switch = ({
     }
   };
 
-  return (
+  const content = (
     <div
       className={style["switch-container"]}
       data-appearance={appearance}
@@ -79,6 +82,18 @@ const Switch = ({
         </label>
       )}
     </div>
+  );
+
+  return (
+    <>
+      {tooltipTextLabel ? (
+        <Tooltip alignment="start" arrow label={tooltipTextLabel} position="bottom">
+          {content}
+        </Tooltip>
+      ) : (
+        content
+      )}
+    </>
   );
 };
 

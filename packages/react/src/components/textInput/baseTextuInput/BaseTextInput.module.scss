@@ -139,6 +139,7 @@
                     background: linear-gradient(0deg, var(--elevation-surface-inner-shadow) 0%, var(--elevation-surface-inner-shadow) 100%), var(--background-default);
                     transition: border 200ms, outline 200ms;
                     color: var(--content-primary);
+                    @include typography-text-m;
                     @include neutral-inner-shadow;
 
                     &:hover {
@@ -219,4 +220,44 @@
     color: var(--content-tertiary);
     @include typography-text-s-regular;
     margin-block: $positive-spacing-0;
+}
+
+.inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+    .inputField {
+        // Hide native number input arrows
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            appearance: none;
+            margin: 0;
+        }
+
+        // Firefox
+        &[type="number"] {
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+    }
+}
+
+.measureText {
+    position: absolute;
+    visibility: hidden;
+    white-space: pre;
+    pointer-events: none;
+    padding-left: $positive-spacing-200;
+    @include typography-text-m-regular;
+}
+
+.unitLabel {
+    position: absolute;
+    color: var(--content-secondary);
+    pointer-events: none;
+    @include typography-text-m-regular;
+    white-space: nowrap;
 }

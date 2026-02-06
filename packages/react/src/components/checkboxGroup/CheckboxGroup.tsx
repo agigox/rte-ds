@@ -2,11 +2,14 @@ import { CheckboxGroupProps as CoreCheckboxGroupProps } from "@rte-ds/core/compo
 import React, { forwardRef } from "react";
 
 import Checkbox from "../checkbox/Checkbox";
+import Tooltip from "../tooltip/Tooltip";
 import { concatClassNames } from "../utils";
 
 import style from "./CheckboxGroup.module.scss";
 
-interface CheckboxGroupProps extends CoreCheckboxGroupProps, React.InputHTMLAttributes<HTMLDivElement> {}
+interface CheckboxGroupProps extends CoreCheckboxGroupProps, React.InputHTMLAttributes<HTMLDivElement> {
+  tooltipTextLabel?: string;
+}
 
 const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
   (
@@ -23,6 +26,7 @@ const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
       disabled = false,
       readOnly = false,
       className = "",
+      tooltipTextLabel,
       ...props
     },
     ref,
@@ -31,7 +35,7 @@ const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
       return;
     }
 
-    return (
+    const content = (
       <div ref={ref} className={concatClassNames(style.checkboxGroupContainer, className)} {...props}>
         <div
           className={style.checkboxGroupHeader}
@@ -57,6 +61,18 @@ const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
           ))}
         </div>
       </div>
+    );
+
+    return (
+      <>
+        {tooltipTextLabel ? (
+          <Tooltip alignment="start" arrow label={tooltipTextLabel} position="bottom">
+            {content}
+          </Tooltip>
+        ) : (
+          content
+        )}
+      </>
     );
   },
 );

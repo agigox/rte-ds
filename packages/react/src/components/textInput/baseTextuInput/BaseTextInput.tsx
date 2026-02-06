@@ -18,6 +18,7 @@ import AssistiveText from "../../assistivetext/AssistiveText";
 import Icon from "../../icon/Icon";
 import IconButton from "../../iconButton/IconButton";
 import RequiredIndicator from "../../requiredindicator/RequiredIndicator";
+import Tooltip from "../../tooltip/Tooltip";
 import { concatClassNames } from "../../utils";
 
 import style from "./BaseTextInput.module.scss";
@@ -30,6 +31,8 @@ interface BaseTextInputProps
   rightSlot?: ReactNode;
   inputStyle?: CSSProperties;
   highlighted?: boolean;
+  unit?: string;
+  tooltipTextLabel?: string;
 }
 
 const BaseTextInput = forwardRef<HTMLInputElement, BaseTextInputProps>(
@@ -59,11 +62,15 @@ const BaseTextInput = forwardRef<HTMLInputElement, BaseTextInputProps>(
       placeholder,
       rightSlot,
       highlighted,
+      unit,
+      tooltipTextLabel,
       ...props
     }: BaseTextInputProps,
     ref,
   ) => {
     const inputRef = useRef<HTMLInputElement | null>(null);
+    const measureRef = useRef<HTMLSpanElement | null>(null);
+    const [unitLeft, setUnitLeft] = useState(48);
 
     const getRightIconName = (rightIconActionType: RightIconAction): RightIconName => {
       if (["visibilityOn", "visibilityOff"].includes(rightIconActionType)) {
@@ -97,6 +104,15 @@ const BaseTextInput = forwardRef<HTMLInputElement, BaseTextInputProps>(
     useEffect(() => {
       setIsHiddenInput(!!showRightIcon && rightIconAction === "visibilityOn");
     }, [showRightIcon, rightIconAction]);
+
+    useEffect(() => {
+      if (unit && measureRef.current) {
+        const textWidth = measureRef.current.offsetWidth;
+        const minLeft = 48;
+        const padding = 8; // padding inside input
+        setUnitLeft(Math.max(minLeft, textWidth + padding));
+      }
+    }, [inputValue, unit]);
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
       const newValue = event.target.value;
@@ -153,14 +169,8 @@ const BaseTextInput = forwardRef<HTMLInputElement, BaseTextInputProps>(
       return showRightIcon && !!rightIconAction;
     };
 
-    return (
-      <div
-        className={style.container}
-        data-label-position={labelPosition}
-        data-error={error}
-        style={{ width }}
-        data-compact-spacing={compactSpacing}
-      >
+    const inputContent = (
+      <>
         {label && (
           <div className={style.text}>
             <div className={style.labelContainer}>
@@ -195,28 +205,41 @@ const BaseTextInput = forwardRef<HTMLInputElement, BaseTextInputProps>(
                   data-testid={`left-icon ${computedLeftIcon}`}
                 />
               )}
-              <input
-                id={id}
-                ref={(node) => {
-                  inputRef.current = node;
-                  if (typeof ref === "function") {
-                    ref(node);
-                  } else if (ref) {
-                    ref.current = node;
-                  }
-                }}
-                type={isHiddenInput ? "password" : "text"}
-                data-error={error}
-                data-highlighted={highlighted}
-                className={style.inputField}
-                maxLength={maxLength}
-                onChange={handleChange}
-                disabled={disabled}
-                readOnly={readOnly}
-                value={disabled ? "" : inputValue}
-                placeholder={placeholder}
-                {...props}
-              />
+              <div className={style.inputWrapper} data-has-unit={!!unit}>
+                {unit && (
+                  <span ref={measureRef} className={style.measureText} aria-hidden="true">
+                    {inputValue}
+                  </span>
+                )}
+                <input
+                  id={id}
+                  ref={(node) => {
+                    inputRef.current = node;
+                    if (typeof ref === "function") {
+                      ref(node);
+                    } else if (ref) {
+                      ref.current = node;
+                    }
+                  }}
+                  type={unit ? "number" : isHiddenInput ? "password" : "text"}
+                  data-error={error}
+                  data-highlighted={highlighted}
+                  className={style.inputField}
+                  data-has-unit={!!unit}
+                  maxLength={maxLength}
+                  onChange={handleChange}
+                  disabled={disabled}
+                  readOnly={readOnly}
+                  value={disabled ? "" : inputValue}
+                  placeholder={placeholder}
+                  {...props}
+                />
+                {unit && (
+                  <span className={style.unitLabel} style={{ left: `${unitLeft}px` }} aria-hidden="true">
+                    {unit}
+                  </span>
+                )}
+              </div>
 
               {shouldShowRightIcon() && (
                 <IconButton
@@ -243,6 +266,24 @@ const BaseTextInput = forwardRef<HTMLInputElement, BaseTextInputProps>(
             {" "}
             {characterCount}/{maxLength}{" "}
           </p>
+        )}
+      </>
+    );
+
+    return (
+      <div
+        className={style.container}
+        data-label-position={labelPosition}
+        data-error={error}
+        style={{ width }}
+        data-compact-spacing={compactSpacing}
+      >
+        {tooltipTextLabel ? (
+          <Tooltip alignment="start" arrow label={tooltipTextLabel} position="bottom">
+            {inputContent}
+          </Tooltip>
+        ) : (
+          inputContent
         )}
       </div>
     );
