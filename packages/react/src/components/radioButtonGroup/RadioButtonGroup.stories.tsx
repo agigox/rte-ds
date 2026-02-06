@@ -201,7 +201,9 @@ const ControlledExample = () => {
         showGroupTitle
         groupTitle="Controlled Radio Group"
       />
-      <p>Selected value: <strong>{selectedValue}</strong></p>
+      <p>
+        Selected value: <strong>{selectedValue}</strong>
+      </p>
       <div style={{ display: "flex", gap: 8 }}>
         <button onClick={() => setSelectedValue("Option 1")}>Select Option 1</button>
         <button onClick={() => setSelectedValue("Option 2")}>Select Option 2</button>

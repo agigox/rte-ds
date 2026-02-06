@@ -11,10 +11,11 @@
     .radioButtonGroupHeader {
 
         .groupTitle {
-            @include typography-heading-s;
+            @include typography-text-m-regular;
+            color: var(--content-secondary);
             align-self: stretch;
             margin: $positive-spacing_0;
-
+            padding: $positive-spacing_025 $positive-spacing_100;
         }
 
         .groupHelpText {
