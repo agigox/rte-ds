@@ -1,7 +1,11 @@
 import { join, dirname, resolve } from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 function getAbsolutePath(value: string): string {
-  return dirname(require.resolve(join(value, "package.json")));
+  return dirname(fileURLToPath(import.meta.resolve(join(value, "package.json"))));
 }
 
 const PRODUCTION_PATH = "https://opensource.rte-france.com/design-system-rte";
