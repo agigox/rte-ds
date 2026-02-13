@@ -3,6 +3,7 @@ import { SwitchProps as CoreSwitchProps } from "@rte-ds/core/components/switch/s
 import { InputHTMLAttributes, useState } from "react";
 
 import Icon from "../icon/Icon";
+import RequiredIndicator from "../requiredindicator/RequiredIndicator";
 import Tooltip from "../tooltip/Tooltip";
 import { concatClassNames } from "../utils";
 
@@ -21,6 +22,8 @@ const Switch = ({
   disabled = false,
   readOnly = false,
   checked = false,
+  required = false,
+  showLabelRequirement = false,
   onChange,
   tooltipTextLabel,
   ...props
@@ -77,9 +80,12 @@ const Switch = ({
         {showIcon && !isChecked && <Icon name="close" size={16} />}
       </div>
       {showLabel && label && (
-        <label htmlFor={label} className={concatClassNames(style["switch-label"])}>
-          {label}
-        </label>
+        <div className={style["label-container"]}>
+          <label htmlFor={label} className={concatClassNames(style["switch-label"])}>
+            {label}
+          </label>
+          <RequiredIndicator required={required} showLabelRequirement={showLabelRequirement} />
+        </div>
       )}
     </div>
   );

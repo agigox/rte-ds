@@ -21,6 +21,7 @@ import styles from "./Select.module.scss";
 interface SelectProps extends coreSelectProps {
   labelId?: string;
   tooltipTextLabel?: string;
+  styleSelectWrapper?: React.CSSProperties;
 }
 
 const Select = forwardRef<HTMLDivElement, SelectProps>(
@@ -50,6 +51,8 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
       multipleValue,
       onMultipleChange,
       tooltipTextLabel,
+      defaultOption = "",
+      styleSelectWrapper,
     },
     ref,
   ) => {
@@ -75,6 +78,7 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
     const currentOption = options.find((option) => option.value === internalValue);
     const currentOptionLabel = currentOption?.label;
     const currentOptionIcon = currentOption?.icon;
+    const showDefaultOption = !hasValue && defaultOption;
 
     const getMultipleDisplayValue = () => {
       if (internalMultipleValue.length === 0) return "";
@@ -190,15 +194,15 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
                 tabIndex={disabled ? -1 : 0}
                 onClick={handleOnClick}
                 onKeyDown={handleKeyDown}
-                style={{ width: width }}
+                style={{ width: width, ...styleSelectWrapper }}
               >
                 <div className={styles["select-content"]}>
                   {shouldDisplayErrorIcon && <Icon name="error" className={styles["error-icon"]} />}
-                  <div className={styles["select-value"]}>
+                  <div className={concatClassNames(styles["select-value"], showDefaultOption ? styles["select-placeholder"] : "")}>
                     {!multiple && currentOptionIcon && (
                       <Icon name={currentOptionIcon} className={styles["select-value-icon"]} />
                     )}
-                    <span>{multiple ? getMultipleDisplayValue() : currentOptionLabel}</span>
+                    <span>{showDefaultOption ? defaultOption : multiple ? getMultipleDisplayValue() : currentOptionLabel}</span>
                   </div>
                   <div className={styles["select-right-icons"]}>
                     {shouldDisplayClearButton && (

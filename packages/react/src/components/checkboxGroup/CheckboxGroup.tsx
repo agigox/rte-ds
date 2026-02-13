@@ -2,6 +2,7 @@ import { CheckboxGroupProps as CoreCheckboxGroupProps } from "@rte-ds/core/compo
 import React, { forwardRef } from "react";
 
 import Checkbox from "../checkbox/Checkbox";
+import RequiredIndicator from "../requiredindicator/RequiredIndicator";
 import Tooltip from "../tooltip/Tooltip";
 import { concatClassNames } from "../utils";
 
@@ -25,6 +26,8 @@ const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
       error = false,
       disabled = false,
       readOnly = false,
+      required = false,
+      showLabelRequirement = false,
       className = "",
       tooltipTextLabel,
       ...props
@@ -43,7 +46,12 @@ const CheckboxGroup = forwardRef<HTMLDivElement, CheckboxGroupProps>(
           data-disabled={disabled}
           data-read-only={readOnly}
         >
-          {groupTitle && showGroupTitle && <h3 className={style.groupTitle}>{groupTitle}</h3>}
+          {groupTitle && showGroupTitle && (
+            <div className={style.labelContainer}>
+              <h3 className={style.groupTitle}>{groupTitle}</h3>
+              <RequiredIndicator required={required} showLabelRequirement={showLabelRequirement} />
+            </div>
+          )}
           {groupHelpText && showHelpText && <p className={style.groupHelpText}>{groupHelpText}</p>}
           {errorMessage && error && <p className={style.errorMessage}>{errorMessage}</p>}
         </div>

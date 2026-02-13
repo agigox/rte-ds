@@ -7,4 +7,6 @@ export interface SwitchProps {
   label?: string;
   showIcon?: boolean;
   checked?: boolean;
+  required?: boolean;
+  showLabelRequirement?: boolean;
 }

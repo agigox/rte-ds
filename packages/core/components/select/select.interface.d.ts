@@ -15,4 +15,5 @@ export interface SelectProps extends InputProps {
   multiple?: boolean;
   multipleValue?: string[];
   onMultipleChange?: (values: string[]) => void;
+  defaultOption?: string;
 }

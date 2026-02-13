@@ -11,4 +11,6 @@ export interface RadioButtonGroupProps {
   error?: boolean;
   disabled?: boolean;
   readOnly?: boolean;
+  required?: boolean;
+  showLabelRequirement?: boolean;
 }

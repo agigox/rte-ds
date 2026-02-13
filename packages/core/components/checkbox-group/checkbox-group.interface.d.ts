@@ -10,4 +10,6 @@ export interface CheckboxGroupProps {
   error?: boolean;
   disabled?: boolean;
   readOnly?: boolean;
+  required?: boolean;
+  showLabelRequirement?: boolean;
 }

@@ -9,12 +9,17 @@
   gap: $positive-spacing_100;
 
   .checkboxGroupHeader {
-    .groupTitle {
-      @include typography-text-m-regular;
-      color: var(--content-secondary);
-      align-self: stretch;
-      margin: $positive-spacing_0;
+    .labelContainer {
+      display: flex;
+      align-items: flex-start;
       padding: $positive-spacing_025 $positive-spacing_100;
+
+      .groupTitle {
+        @include typography-text-m-regular;
+        color: var(--content-secondary);
+        align-self: stretch;
+        margin: $positive-spacing_0;
+      }
     }
 
     .groupHelpText {

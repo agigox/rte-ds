@@ -149,11 +149,16 @@
 
     }
 
-    .switch-label {
-        cursor: pointer;
-        @include typography-text-l;
-        color: var(--content-primary);
-        word-wrap: break-word;
+    .label-container {
+        display: flex;
+        align-items: flex-start;
+
+        .switch-label {
+            cursor: pointer;
+            @include typography-text-l;
+            color: var(--content-primary);
+            word-wrap: break-word;
+        }
     }
 
     &[data-read-only="true"] {
@@ -180,9 +185,13 @@
             border: $width-s solid var(--border-primary);
         }
 
-        .switch-label {
+        .label-container {
             cursor: not-allowed;
-            color: var(--content-tertiary);
+
+            .switch-label {
+                cursor: not-allowed;
+                color: var(--content-tertiary);
+            }
         }
     }
 
@@ -210,9 +219,13 @@
             border: $width-s solid var(--border-disabled);
         }
 
-        .switch-label {
+        .label-container {
             cursor: not-allowed;
-            color: var(--content-disabled);
+
+            .switch-label {
+                cursor: not-allowed;
+                color: var(--content-disabled);
+            }
         }
     }
 }

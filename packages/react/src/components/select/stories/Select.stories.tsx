@@ -321,6 +321,30 @@ export const ControlledFromOutside: Story = {
   },
 };
 
+export const WithDefaultOption: Story = {
+  args: {
+    ...Default.args,
+    defaultOption: "Sélectionner une option",
+    showResetButton: true,
+  },
+  render: (args) => {
+    const [selectedOption, setSelectedOption] = useState<{ label: string; value: string }>();
+
+    const handleOnChange = (value: string) => {
+      setSelectedOption(args.options.find((option) => option.value === value));
+    };
+
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "16px", width: "280px" }}>
+        <Select {...args} onChange={handleOnChange} value={selectedOption?.value} />
+        <span style={{ fontFamily: "Arial", color: "var(--content-primary)" }}>
+          Selected value : {selectedOption?.label || "No value"}
+        </span>
+      </div>
+    );
+  },
+};
+
 export const Multiple: Story = {
   args: {
     id: "select-multiple",

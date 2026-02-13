@@ -23,11 +23,9 @@
 
   .select-label {
     @include typography-text-m;
-    display: flex;
     padding: $positive-spacing_025 $positive-spacing_100;
     color: var(--content-secondary);
     max-width: 300px;
-    justify-content: space-between;
     white-space: normal;
     overflow-wrap: normal;
     word-break: normal;
@@ -172,6 +170,10 @@
           overflow: hidden;
           white-space: nowrap;
         }
+      }
+
+      .select-placeholder {
+        color: var(--content-tertiary);
       }
 
       .select-value-icon {
