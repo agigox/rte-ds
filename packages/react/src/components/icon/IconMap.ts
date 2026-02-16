@@ -4,6 +4,7 @@ import { isValidIconName as isValidIconNameShared } from "@rte-ds/core/component
 
 import {
   Add,
+  AddBox,
   AddCircleFilled,
   AddCircleOutlined,
   AdminPanelSettingsFilled,
@@ -483,6 +484,7 @@ import {
 
 export const RegularIcons = {
   add: Add,
+  "add-box": AddBox,
   "alt-route": AltRoute,
   apps: Apps,
   "arrow-alt-down": ArrowAltDown,
