@@ -151,8 +151,8 @@ const BaseTextInput = forwardRef<HTMLInputElement, BaseTextInputProps>(
 
     const computedInputBarClassName = concatClassNames(
       style.inputBar,
-      leftIcon ? style.withLeftIcon : "",
-      showRightIcon && rightIconAction ? style.withRightIcon : "",
+      computedLeftIcon ? style.withLeftIcon : "",
+      rightIconAction ? style.withRightIcon : "",
     );
 
     const displayCounter = showCounter && typeof maxLength === "number";

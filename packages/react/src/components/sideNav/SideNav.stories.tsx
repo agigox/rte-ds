@@ -4,6 +4,8 @@ import { Meta, StoryObj } from "@storybook/react";
 import { expect, userEvent, within } from "@storybook/test";
 
 import { focusElementBeforeComponent } from "../../../.storybook/testing/testing.utils";
+import Button from "../button/Button";
+import Icon from "../icon/Icon";
 
 import SideNav from "./SideNav";
 import { createActiveItemStateDecorator, createCollapsedStateDecorator } from "./stories/helpers/decorators";
@@ -702,5 +704,64 @@ export const WithProfileAndTeamData: Story = {
       { label: "GMR", value: "lorem" },
       { label: "Equipe", value: "Emasi" },
     ],
+  },
+};
+
+const MobileMiddleItem = (
+  <Button variant="primary" size="s" label="">
+    <Icon name="campaign" size={20} />
+  </Button>
+);
+
+const MobileRightItem = <Icon name="settings" size={24} />;
+
+export const Responsive: Story = {
+  args: {
+    ...Default.args,
+    headerConfig: { ...defaultHeaderConfig, identifier: "CC" },
+    items: navigationItemsWithNested,
+    footerItems: footerItems,
+    collapsible: true,
+    middleItem: MobileMiddleItem,
+    rightItem: MobileRightItem,
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: "mobile1",
+    },
+  },
+};
+
+export const ResponsiveWithDrawerOpen: Story = {
+  args: {
+    ...Responsive.args,
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: "mobile1",
+    },
+  },
+  play: async ({ canvasElement, step }) => {
+    const canvas = within(canvasElement);
+
+    await step("Click hamburger to open drawer", async () => {
+      const hamburger = canvas.getByRole("button", { name: /ouvrir le menu/i });
+      expect(hamburger).not.toBeNull();
+      await userEvent.click(hamburger);
+    });
+
+    await step("Verify drawer is open and nav items are visible", async () => {
+      const navigation = within(document.body).getByRole("navigation", { name: "Navigation" });
+      expect(navigation).not.toBeNull();
+
+      const homeItem = within(navigation).getByText("Home");
+      expect(homeItem).not.toBeNull();
+    });
+
+    await step("Close drawer with close button", async () => {
+      const closeButton = within(document.body).getByRole("button", { name: /fermer le menu/i });
+      expect(closeButton).not.toBeNull();
+      await userEvent.click(closeButton);
+    });
   },
 };

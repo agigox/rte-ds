@@ -31,6 +31,8 @@ import BaseTextInput from "./components/textInput/baseTextuInput/BaseTextInput.t
 import Toast from "./components/toast/Toast.tsx";
 import ToastQueueProvider from "./components/toast/toastQueue/ToastQueueProvider.tsx";
 import Tooltip from "./components/tooltip/Tooltip.tsx";
+import useBreakpoint from "./hooks/useBreakpoint.ts";
+import useIsMobile from "./hooks/useIsMobile.ts";
 
 export {
   Button,
@@ -65,4 +67,8 @@ export {
   Tab,
   Searchbar,
   Select,
+  useBreakpoint,
+  useIsMobile,
 };
+
+export type { Breakpoint, UseBreakpointResult } from "./hooks/useBreakpoint.ts";
