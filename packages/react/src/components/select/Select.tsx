@@ -198,11 +198,18 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
               >
                 <div className={styles["select-content"]}>
                   {shouldDisplayErrorIcon && <Icon name="error" className={styles["error-icon"]} />}
-                  <div className={concatClassNames(styles["select-value"], showDefaultOption ? styles["select-placeholder"] : "")}>
+                  <div
+                    className={concatClassNames(
+                      styles["select-value"],
+                      showDefaultOption ? styles["select-placeholder"] : "",
+                    )}
+                  >
                     {!multiple && currentOptionIcon && (
                       <Icon name={currentOptionIcon} className={styles["select-value-icon"]} />
                     )}
-                    <span>{showDefaultOption ? defaultOption : multiple ? getMultipleDisplayValue() : currentOptionLabel}</span>
+                    <span>
+                      {showDefaultOption ? defaultOption : multiple ? getMultipleDisplayValue() : currentOptionLabel}
+                    </span>
                   </div>
                   <div className={styles["select-right-icons"]}>
                     {shouldDisplayClearButton && (

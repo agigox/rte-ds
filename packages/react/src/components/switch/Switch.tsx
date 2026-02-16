@@ -1,6 +1,6 @@
 import { switchHeight, switchWidth } from "@rte-ds/core/components/switch/switch.constants";
 import { SwitchProps as CoreSwitchProps } from "@rte-ds/core/components/switch/switch.interface";
-import { InputHTMLAttributes, useState } from "react";
+import { InputHTMLAttributes, useState, useEffect } from "react";
 
 import Icon from "../icon/Icon";
 import RequiredIndicator from "../requiredindicator/RequiredIndicator";
@@ -29,6 +29,10 @@ const Switch = ({
   ...props
 }: SwitchProps) => {
   const [isChecked, setIsChecked] = useState(checked);
+
+  useEffect(() => {
+    setIsChecked(checked);
+  }, [checked]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(e.target.checked);
@@ -67,7 +71,7 @@ const Switch = ({
         name={label}
         className={style["switch"]}
         disabled={disabled}
-        defaultChecked={isChecked}
+        checked={isChecked}
         readOnly={readOnly}
         style={{
           minHeight: switchHeight,
