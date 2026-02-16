@@ -5,9 +5,11 @@ import { ENTER_KEY, SPACE_KEY } from "@rte-ds/core/constants/keyboard/keyboard.c
 import { forwardRef, Fragment, ReactNode, useEffect, useState } from "react";
 
 import { useActiveKeyboard } from "../../hooks/useActiveKeyboard";
+import useIsMobile from "../../hooks/useIsMobile";
 import Divider from "../divider/Divider";
 
 import BaseSideNav from "./baseSideNav/BaseSideNav";
+import MobileSideNav from "./mobileSideNav/MobileSideNav";
 import NavItem from "./navItem/NavItem";
 import NavMenu from "./navMenu/NavMenu";
 import style from "./SideNav.module.scss";
@@ -26,6 +28,8 @@ interface SideNavProps extends Partial<CoreSideNavProps>, Omit<React.HTMLAttribu
   onProfileClick?: () => void;
   showTeamData?: boolean;
   teamData?: TeamDataItem[];
+  middleItem?: ReactNode;
+  rightItem?: ReactNode;
 }
 
 const TRANSITION_DURATION = 300;
@@ -49,9 +53,12 @@ const SideNav = forwardRef<HTMLElement | HTMLDivElement, SideNavProps>(
       onProfileClick,
       showTeamData,
       teamData,
+      middleItem,
+      rightItem,
     }: SideNavProps,
     ref,
   ) => {
+    const isMobile = useIsMobile();
     const [isCollapsed, setIsCollapsed] = useState(collapsed ?? defaultCollapsed);
     const [shouldShowTitle, setShouldShowTitle] = useState(true);
 
@@ -188,6 +195,22 @@ const SideNav = forwardRef<HTMLElement | HTMLDivElement, SideNavProps>(
             );
           })}
         </ul>
+      );
+    }
+
+    if (isMobile) {
+      return (
+        <MobileSideNav
+          headerConfig={headerConfig!}
+          items={items || []}
+          footerItems={footerItems}
+          activeItem={activeItem}
+          appearance={appearance}
+          middleItem={middleItem}
+          rightItem={rightItem}
+        >
+          {children}
+        </MobileSideNav>
       );
     }
 

@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 import { NavItemProps } from "./nav-item/nav-item.interface";
 
 export type SideNavSize = "s" | "m" | "l";
@@ -20,6 +22,8 @@ export interface SideNavProps extends BaseSideNavProps {
   footerItems?: NavItemProps[];
   activeItem?: string;
   headerConfig: SideNavHeaderConfig;
+  middleItem?: ReactNode;
+  rightItem?: ReactNode;
 }
 
 export interface BaseSideNavProps {
