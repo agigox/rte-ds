@@ -18,6 +18,8 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
       cardType = "default",
       clickable = false,
       disabled = false,
+      selected = false,
+      pressed = false,
       children,
       onClick,
       style,
@@ -54,6 +56,8 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
         data-card-type={cardType}
         data-clickable={clickable}
         data-disabled={disabled}
+        data-selected={selected}
+        data-pressed={pressed}
         tabIndex={clickable ? 0 : -1}
         onClick={handleOnClick}
         onKeyDown={onKeyDown}

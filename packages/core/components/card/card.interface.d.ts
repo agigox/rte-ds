@@ -7,4 +7,6 @@ export interface CardProps {
   cardType?: CardType;
   clickable?: boolean;
   disabled?: boolean;
+  selected?: boolean;
+  pressed?: boolean;
 }

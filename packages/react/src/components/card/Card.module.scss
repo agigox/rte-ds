@@ -8,17 +8,22 @@
   align-self: stretch;
   border-radius: $radius-s;
   @include elevation-neutral-shadow-1;
-  transition:
-    background-color 300ms,
-    box-shadow 300ms;
 
   &:hover {
-    @include elevation-neutral-shadow-2;
+    /*@include elevation-neutral-shadow-2;*/
+    background-color: var(--background-brand-inverse-hover);
+  }
+
+  &[data-selected="true"] {
+    background: var(--background-brand-unselected-default);
+  }
+  &[data-pressed="true"] {
+    background: var(--chart-vert-foret);
   }
 
   &[data-disabled="true"] {
     background: var(--background-disabled);
-    opacity: $opacity-30;
+    opacity: $opacity-50;
     box-shadow: none;
     pointer-events: none;
 

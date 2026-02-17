@@ -21,6 +21,14 @@ export interface CardStoryArgTypes {
     control: "boolean";
     description: string;
   };
+  selected: {
+    control: "boolean";
+    description: string;
+  };
+  pressed: {
+    control: "boolean";
+    description: string;
+  };
 }
 
 export const cardStoryArgTypes: CardStoryArgTypes = {
@@ -41,6 +49,14 @@ export const cardStoryArgTypes: CardStoryArgTypes = {
   disabled: {
     control: "boolean",
     description: "Whether the card is disabled",
+  },
+  selected: {
+    control: "boolean",
+    description: "Whether the card is in selected state",
+  },
+  pressed: {
+    control: "boolean",
+    description: "Whether the card is in pressed state",
   },
 };
 
@@ -82,6 +98,8 @@ export interface DefaultStoryArgs {
   cardType: CardType;
   clickable: boolean;
   disabled: boolean;
+  selected: boolean;
+  pressed: boolean;
 }
 
 export const defaultStoryArgs: DefaultStoryArgs = {
@@ -89,6 +107,8 @@ export const defaultStoryArgs: DefaultStoryArgs = {
   cardType: "default",
   clickable: false,
   disabled: false,
+  selected: false,
+  pressed: false,
 };
 
 export interface ClickableStoryArgs extends DefaultStoryArgs {

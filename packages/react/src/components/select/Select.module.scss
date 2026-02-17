@@ -32,7 +32,6 @@
   }
 
   .select-wrapper {
-    @include elevation-neutral-inner-shadow;
     display: flex;
     min-width: 112px;
     min-height: 32px;
@@ -116,7 +115,7 @@
 
       .select-content {
         .select-value {
-          color: var(--content-disabled);
+          color: var(--content-disabled-csrd);
         }
       }
     }
@@ -178,7 +177,7 @@
 
       .select-value-icon {
         flex-shrink: 0;
-        color: var(--content-secondary);
+        color: var(--content-disabled-icons-csrd);
       }
 
       .select-right-icons {

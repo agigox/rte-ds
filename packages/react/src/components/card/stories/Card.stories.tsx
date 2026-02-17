@@ -8,6 +8,7 @@ import {
 } from "@rte-ds/core/components/card/card.stories.shared";
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn, userEvent, within, expect } from "@storybook/test";
+import { useState } from "react";
 
 import Button from "../../button/Button";
 import Card from "../Card";
@@ -180,4 +181,135 @@ export const ClickableWithContent: Story = {
       </div>
     </Card>
   ),
+};
+
+export const Selected: Story = {
+  args: {
+    ...defaultStoryArgs,
+    selected: true,
+  },
+  render: (args) => (
+    <Card {...args}>
+      <div style={{ padding: "16px" }}>
+        <h2 style={{ margin: "0 0 12px 0", fontSize: "20px", fontWeight: "600" }}>Selected Card</h2>
+        <p style={{ margin: "0", color: "#666", lineHeight: "1.5" }}>
+          This card is in selected state with a blue background and brand border.
+        </p>
+      </div>
+    </Card>
+  ),
+  play: async ({ canvasElement }) => {
+    const card = canvasElement.querySelector("[data-selected='true']") as HTMLElement;
+    expect(card).toBeInTheDocument();
+    expect(card).toHaveAttribute("data-selected", "true");
+  },
+};
+
+export const States: Story = {
+  args: defaultStoryArgs,
+  render: (args) => (
+    <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+      <Card {...args}>
+        <div style={{ padding: "16px" }}>
+          <h3 style={{ margin: "0 0 8px 0", fontSize: "18px", fontWeight: "600" }}>Default State</h3>
+          <p style={{ margin: "0", color: "#666", lineHeight: "1.5" }}>White background with elevation shadow.</p>
+        </div>
+      </Card>
+      <Card {...args} clickable>
+        <div style={{ padding: "16px" }}>
+          <h3 style={{ margin: "0 0 8px 0", fontSize: "18px", fontWeight: "600" }}>Hover State</h3>
+          <p style={{ margin: "0", color: "#666", lineHeight: "1.5" }}>Hover over this card to see the hover effect.</p>
+        </div>
+      </Card>
+      <Card {...args} selected>
+        <div style={{ padding: "16px" }}>
+          <h3 style={{ margin: "0 0 8px 0", fontSize: "18px", fontWeight: "600" }}>Selected State</h3>
+          <p style={{ margin: "0", color: "#666", lineHeight: "1.5" }}>
+            Blue background with brand border indicating selection.
+          </p>
+        </div>
+      </Card>
+      <Card {...args} pressed>
+        <div style={{ padding: "16px" }}>
+          <h3 style={{ margin: "0 0 8px 0", fontSize: "18px", fontWeight: "600" }}>Pressed State</h3>
+          <p style={{ margin: "0", color: "#666", lineHeight: "1.5" }}>
+            Darker background indicating the card is being pressed.
+          </p>
+        </div>
+      </Card>
+    </div>
+  ),
+};
+
+export const Pressed: Story = {
+  args: {
+    ...defaultStoryArgs,
+    pressed: true,
+  },
+  render: (args) => (
+    <Card {...args}>
+      <div style={{ padding: "16px" }}>
+        <h2 style={{ margin: "0 0 12px 0", fontSize: "20px", fontWeight: "600" }}>Pressed Card</h2>
+        <p style={{ margin: "0", color: "#666", lineHeight: "1.5" }}>
+          This card is in pressed state with a darker background.
+        </p>
+      </div>
+    </Card>
+  ),
+  play: async ({ canvasElement }) => {
+    const card = canvasElement.querySelector("[data-pressed='true']") as HTMLElement;
+    expect(card).toBeInTheDocument();
+    expect(card).toHaveAttribute("data-pressed", "true");
+  },
+};
+
+export const Selectable: Story = {
+  args: {
+    ...clickableStoryArgs,
+  },
+  render: (args) => {
+    const [selectedId, setSelectedId] = useState<string | null>(null);
+
+    const cards = [
+      { id: "card1", title: "E2-4_vol_01", description: "Fuite d'huile dans le transformateur principal" },
+      { id: "card2", title: "E1-3_eau_02", description: "Consommation d'eau excessive sur le site de production" },
+      { id: "card3", title: "E3-1_bio_01", description: "Impact sur la biodiversit\u00e9 locale" },
+    ];
+
+    return (
+      <div style={{ display: "flex", flexDirection: "column", gap: "12px" }} data-testid="selectable-cards">
+        {cards.map((card) => (
+          <Card
+            key={card.id}
+            {...args}
+            selected={selectedId === card.id}
+            onClick={() => setSelectedId(selectedId === card.id ? null : card.id)}
+          >
+            <div style={{ padding: "12px 16px" }}>
+              <p style={{ margin: "0 0 4px 0", fontSize: "14px", color: "#727272" }}>{card.id}</p>
+              <h3 style={{ margin: "0 0 8px 0", fontSize: "20px", fontWeight: "600" }}>{card.title}</h3>
+              <p style={{ margin: "0", fontSize: "14px", lineHeight: "1.5", color: "#11161a" }}>{card.description}</p>
+            </div>
+          </Card>
+        ))}
+      </div>
+    );
+  },
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const container = canvas.getByTestId("selectable-cards");
+    const cards = container.querySelectorAll("[data-clickable='true']");
+
+    expect(cards[0]).toHaveAttribute("data-selected", "false");
+    await userEvent.click(cards[0]);
+    expect(cards[0]).toHaveAttribute("data-selected", "true");
+    expect(cards[1]).toHaveAttribute("data-selected", "false");
+
+    await userEvent.click(cards[1]);
+    expect(cards[0]).toHaveAttribute("data-selected", "false");
+    expect(cards[1]).toHaveAttribute("data-selected", "true");
+
+    await userEvent.click(cards[1]);
+    expect(cards[1]).toHaveAttribute("data-selected", "false");
+  },
 };
