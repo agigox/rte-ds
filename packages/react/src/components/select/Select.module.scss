@@ -21,6 +21,13 @@
     }
   }
 
+  .select-label-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $positive-spacing_100;
+  }
+
   .select-label {
     @include typography-text-m;
     padding: $positive-spacing_025 $positive-spacing_100;
@@ -94,7 +101,7 @@
 
       .select-content {
         .select-value {
-          color: var(--content-secondary);
+          color: var(--content-disabled-csrd);
         }
       }
     }
@@ -131,12 +138,12 @@
       }
 
       .trigger-icon {
-        color: var(--content-tertiary);
+        color: var(--content-readonly-icons-csrd);
       }
 
       .select-content {
         .select-value {
-          color: var(--content-tertiary);
+          color: var(--content-readonly-csrd);
         }
       }
     }

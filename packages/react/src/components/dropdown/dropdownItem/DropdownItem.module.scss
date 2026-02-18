@@ -28,7 +28,7 @@
 
   &[data-disabled="true"] {
     cursor: not-allowed;
-    color: var(--content-disabled);
+    color: var(--content-readonly-csrd);
     background: var(--background-disabled);
   }
 

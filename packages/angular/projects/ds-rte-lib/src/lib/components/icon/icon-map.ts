@@ -59,6 +59,7 @@ export const RegularIcons = {
   "copy-all": "copy_all",
   "crisis-alert": "crisis_alert",
   cut: "cut",
+  detach: "detach",
   download: "download",
   "download-done": "download_done",
   "drag-handle": "drag_handle",

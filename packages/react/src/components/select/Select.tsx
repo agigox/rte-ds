@@ -22,6 +22,7 @@ interface SelectProps extends coreSelectProps {
   labelId?: string;
   tooltipTextLabel?: string;
   styleSelectWrapper?: React.CSSProperties;
+  labelExtra?: React.ReactNode;
 }
 
 const Select = forwardRef<HTMLDivElement, SelectProps>(
@@ -53,6 +54,7 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
       tooltipTextLabel,
       defaultOption = "",
       styleSelectWrapper,
+      labelExtra,
     },
     ref,
   ) => {
@@ -160,17 +162,23 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
     const content = (
       <div className={styles["select-container"]} data-label-position={labelPosition}>
         {showLabel && labelPosition === "side" && (
-          <label htmlFor={id} id={labelId} className={styles["select-label"]}>
-            {label}
-            <RequiredIndicator required={required} showLabelRequirement={showLabelRequirement} />
-          </label>
-        )}
-        <div className={styles["select-header"]}>
-          {showLabel && labelPosition === "top" && (
+          <div className={styles["select-label-row"]}>
             <label htmlFor={id} id={labelId} className={styles["select-label"]}>
               {label}
               <RequiredIndicator required={required} showLabelRequirement={showLabelRequirement} />
             </label>
+            {labelExtra}
+          </div>
+        )}
+        <div className={styles["select-header"]}>
+          {showLabel && labelPosition === "top" && (
+            <div className={styles["select-label-row"]}>
+              <label htmlFor={id} id={labelId} className={styles["select-label"]}>
+                {label}
+                <RequiredIndicator required={required} showLabelRequirement={showLabelRequirement} />
+              </label>
+              {labelExtra}
+            </div>
           )}
           <Dropdown
             style={{ width: selectRef.current?.offsetWidth }}
