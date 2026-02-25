@@ -1,4 +1,5 @@
 type ChipType = "single" | "multi" | "input";
+type ChipSize = "s" | "m";
 
 export interface ChipProps {
   id: string;
@@ -8,5 +9,9 @@ export interface ChipProps {
   onClose?: (event: MouseEvent | KeyboardEvent) => void;
   disabled?: boolean;
   type?: ChipType;
-  compactSpacing?: boolean;
+  size?: ChipSize;
+  clickable?: boolean;
+  icon?: string;
+  textColor?: string;
+  backgroundColor?: string;
 }

@@ -35,6 +35,23 @@
     }
 }
 
+.horizontalWithText {
+    display: flex;
+    align-items: center;
+    gap: $positive-spacing_200;
+    width: 100%;
+
+    .horizontal {
+        flex: 1 0 0;
+    }
+}
+
+.textLabel {
+    @include typography-text-s;
+    color: var(--content-secondary);
+    white-space: nowrap;
+}
+
 .vertical {
     height: 100%;
     background-color: var(--border-divider);

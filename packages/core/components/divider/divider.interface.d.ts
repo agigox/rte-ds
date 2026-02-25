@@ -7,4 +7,5 @@ export interface DividerProps {
   thickness?: DividerThickness;
   appearance?: DividerAppearance;
   endPoint?: DividerEndPoint;
+  text?: string;
 }

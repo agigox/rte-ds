@@ -25,8 +25,13 @@ export const Chip = forwardRef<HTMLSpanElement, ChipProps>(
       disabled = false,
       type = "single",
       className = "",
-      compactSpacing = false,
+      size = "m",
+      clickable = true,
+      icon,
+      textColor,
+      backgroundColor,
       onClose,
+      style,
       ...props
     },
     ref,
@@ -64,15 +69,21 @@ export const Chip = forwardRef<HTMLSpanElement, ChipProps>(
         className={concatClassNames(styles["chip"], className)}
         data-selected={isCheckable && selected}
         data-disabled={disabled}
-        data-compact-spacing={compactSpacing}
+        data-size={size}
+        data-clickable={clickable}
         data-type={type}
-        onClick={onClick}
-        tabIndex={0}
-        onKeyDown={onKeyDown}
-        onKeyUp={onKeyUp}
-        onBlur={onBlur}
+        onClick={clickable ? onClick : undefined}
+        tabIndex={clickable ? 0 : undefined}
+        onKeyDown={clickable ? onKeyDown : undefined}
+        onKeyUp={clickable ? onKeyUp : undefined}
+        onBlur={clickable ? onBlur : undefined}
         aria-checked={isCheckable && selected}
         aria-disabled={disabled}
+        style={{
+          ...style,
+          ...(textColor ? { color: textColor } : {}),
+          ...(backgroundColor ? { background: backgroundColor } : {}),
+        }}
         {...props}
       >
         {type === "multi" && (
@@ -92,6 +103,7 @@ export const Chip = forwardRef<HTMLSpanElement, ChipProps>(
           </span>
         )}
         <span className={styles["chip-label"]} data-type={type}>
+          {icon && <Icon className={styles["chip-leading-icon"]} name={icon} size={16} />}
           {label}
         </span>
         {type === "input" && (

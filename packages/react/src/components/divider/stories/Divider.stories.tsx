@@ -41,6 +41,10 @@ const meta = {
       description: "End point style of the divider",
       defaultValue: "round",
     },
+    text: {
+      control: "text",
+      description: "Optional text label displayed before the divider line",
+    },
   },
 } satisfies Meta<typeof Divider>;
 export default meta;
@@ -108,6 +112,32 @@ export const SquaredEnd: Story = {
       <Divider {...args} thickness="light" />
       <Divider {...args} thickness="medium" />
       <Divider {...args} thickness="bold" />
+    </div>
+  ),
+};
+
+export const WithText: Story = {
+  args: {
+    orientation: "horizontal",
+    thickness: "light",
+    appearance: "default",
+    text: "23/02/2025",
+  },
+};
+
+export const WithTextVariants: Story = {
+  args: {
+    orientation: "horizontal",
+    text: "Section title",
+  },
+  render: (args) => (
+    <div
+      style={{ display: "flex", flexDirection: "column", gap: "20px", justifyContent: "space-between", width: "500px" }}
+    >
+      <Divider {...args} thickness="light" />
+      <Divider {...args} thickness="medium" />
+      <Divider {...args} thickness="bold" />
+      <Divider {...args} appearance="brand" />
     </div>
   ),
 };

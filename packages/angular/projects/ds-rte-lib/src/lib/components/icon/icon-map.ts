@@ -113,6 +113,7 @@ export const RegularIcons = {
   search: "search",
   "side-navigation": "side_navigation",
   sort: "sort",
+  "sticky-note-valide": "sticky_note_valide",
   "support-agent": "support_agent",
   switch: "switch",
   timeline: "timeline",

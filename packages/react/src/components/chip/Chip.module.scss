@@ -1,17 +1,18 @@
-@use '@rte-ds/core/design-tokens/main-internal.scss' as *;
+@use "@rte-ds/core/design-tokens/main-internal.scss" as *;
 
 .chip {
   overflow: hidden;
   color: var(--content-brand-default);
   text-overflow: ellipsis;
   display: inline-flex;
-  padding: $positive-spacing_050 $positive-spacing_150;
   justify-content: center;
   align-items: center;
   gap: $positive-spacing_0;
   border-radius: $radius-pill;
   background: var(--background-brand-unselected-default);
-  transition: background-color 200ms ease-in-out, color 200ms ease-in-out;
+  transition:
+    background-color 200ms ease-in-out,
+    color 200ms ease-in-out;
 
   &:hover {
     cursor: pointer;
@@ -24,7 +25,7 @@
     outline-offset: 4px;
   }
 
-  &[data-disabled='true'] {
+  &[data-disabled="true"] {
     cursor: default;
     color: var(--content-disabled);
     background: var(--background-disabled);
@@ -39,18 +40,37 @@
       background: var(--background-brand-selected-hover);
     }
 
-    &[data-disabled='true'] {
+    &[data-disabled="true"] {
       cursor: default;
       color: var(--content-disabled);
       background: var(--background-disabled);
     }
   }
 
-  &[data-compact-spacing='true'] {
-    padding: $positive-spacing_0 $positive-spacing_150;
+  &[data-size="s"] {
+    border-radius: 4px;
+    line-height: 20px;
   }
 
-  &[data-type='input'] {
+  &[data-clickable="false"] {
+    cursor: default;
+
+    &:hover {
+      cursor: default;
+      color: var(--content-brand-default);
+      background: var(--background-brand-unselected-default);
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    &[data-selected="true"]:hover {
+      background: var(--background-brand-selected-default);
+    }
+  }
+
+  &[data-type="input"] {
     padding: $positive-spacing_0 $positive-spacing_050;
     pointer-events: none;
   }
@@ -58,12 +78,24 @@
 
 .chip-label {
   @include typography-button-m;
+  display: inline-flex;
+  align-items: center;
+  gap: $positive-spacing_050;
   padding: $positive-spacing_0 $positive-spacing_075;
 
-  &[data-type='input'] {
+  &[data-type="input"] {
     @include typography-text-m;
     padding: $positive-spacing_0 $positive-spacing_100;
   }
+}
+
+.chip-leading-icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 .chip-icon-container {
@@ -82,7 +114,9 @@
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: opacity 200ms ease-in-out, transform 200ms ease-in-out;
+  transition:
+    opacity 200ms ease-in-out,
+    transform 200ms ease-in-out;
   pointer-events: none;
 }
 

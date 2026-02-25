@@ -21,9 +21,28 @@ const meta = {
     disabled: {
       control: "boolean",
     },
-    compactSpacing: {
+    size: {
+      control: "select",
+      options: ["s", "m"],
+      description: "Size of the chip",
+      defaultValue: "m",
+    },
+    clickable: {
       control: "boolean",
-      description: "Whether the chip should be compact",
+      description: "Whether the chip is interactive",
+      defaultValue: true,
+    },
+    icon: {
+      control: "text",
+      description: "Optional icon name displayed before the label",
+    },
+    textColor: {
+      control: "color",
+      description: "Custom text and icon color",
+    },
+    backgroundColor: {
+      control: "color",
+      description: "Custom background color",
     },
     type: {
       control: "select",
@@ -44,7 +63,50 @@ export const Default: Story = {
     label: "Label",
     selected: false,
     disabled: false,
-    compactSpacing: false,
+    size: "m",
+    clickable: true,
+  },
+};
+
+export const SmallSize: Story = {
+  args: {
+    id: "chip-small",
+    label: "Label",
+    selected: false,
+    disabled: false,
+    size: "s",
+    clickable: true,
+  },
+};
+
+export const WithIcon: Story = {
+  args: {
+    id: "chip-icon",
+    label: "Label",
+    selected: false,
+    disabled: false,
+    icon: "check",
+  },
+};
+
+export const CustomColors: Story = {
+  args: {
+    id: "chip-custom",
+    label: "Custom",
+    selected: false,
+    disabled: false,
+    textColor: "#ffffff",
+    backgroundColor: "#e74c3c",
+  },
+};
+
+export const NotClickable: Story = {
+  args: {
+    id: "chip-static",
+    label: "Label",
+    selected: false,
+    disabled: false,
+    clickable: false,
   },
 };
 
@@ -81,7 +143,7 @@ export const SingleSelect: Story = {
               selected={selectedChip === id}
               onClick={handleClick}
               type="single"
-              compactSpacing={args.compactSpacing}
+              size={args.size}
               className="chip"
             />
           ))}
@@ -146,7 +208,7 @@ export const MultiSelect: Story = {
               selected={selectedChips.includes(id)}
               onClick={handleClick}
               type="multi"
-              compactSpacing={args.compactSpacing}
+              size={args.size}
             />
           ))}
         </div>
