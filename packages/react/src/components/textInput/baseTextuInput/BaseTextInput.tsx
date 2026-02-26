@@ -147,11 +147,9 @@ const BaseTextInput = forwardRef<HTMLInputElement, BaseTextInputProps>(
       setIsHiddenInput(!isHiddenInput);
     };
 
-    const computedLeftIcon = error ? "error" : leftIcon;
-
     const computedInputBarClassName = concatClassNames(
       style.inputBar,
-      computedLeftIcon ? style.withLeftIcon : "",
+      leftIcon ? style.withLeftIcon : "",
       rightIconAction ? style.withRightIcon : "",
     );
 
@@ -196,13 +194,13 @@ const BaseTextInput = forwardRef<HTMLInputElement, BaseTextInputProps>(
             data-read-only={readOnly}
           >
             <div className={computedInputBarClassName}>
-              {computedLeftIcon && (
+              {leftIcon && (
                 <Icon
-                  name={computedLeftIcon}
+                  name={leftIcon}
                   appearance="outlined"
                   className={style.leftIcon}
                   aria-hidden="true"
-                  data-testid={`left-icon ${computedLeftIcon}`}
+                  data-testid={`left-icon ${leftIcon}`}
                 />
               )}
               <div className={style.inputWrapper} data-has-unit={!!unit}>

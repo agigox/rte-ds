@@ -1,87 +1,82 @@
-@use '@rte-ds/core/design-tokens/main.scss' as *;
+@use "@rte-ds/core/design-tokens/main.scss" as *;
 
 .radioButtonGroupContainer {
+  display: flex;
+  padding: $positive-spacing_0;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: $positive-spacing_100;
+
+  .radioButtonGroupHeader {
+    .labelContainer {
+      display: flex;
+      align-items: flex-start;
+
+      .groupTitle {
+        @include typography-text-m-regular;
+        color: var(--content-secondary);
+        align-self: stretch;
+        margin: $positive-spacing_0;
+      }
+    }
+
+    .groupHelpText {
+      @include typography-text-m;
+      color: var(--content-tertiary);
+      align-self: stretch;
+      margin: $positive-spacing_0;
+    }
+
+    .errorMessage {
+      @include typography-text-m-bold;
+      color: var(--content-danger-default);
+      align-self: stretch;
+      margin: $positive-spacing_0;
+      margin-top: $positive-spacing_050;
+    }
+
+    &[data-read-only="true"] {
+      .groupTitle {
+        color: var(--content-tertiary);
+      }
+
+      &[data-error="true"] {
+        .groupTitle {
+          color: var(--content-danger-default);
+        }
+      }
+    }
+
+    &[data-disabled="true"] {
+      pointer-events: none;
+
+      .groupTitle {
+        color: var(--content-disabled);
+      }
+
+      .groupHelpText {
+        color: var(--content-disabled);
+      }
+    }
+
+    &[data-error="true"] {
+      .groupTitle {
+        color: var(--content-danger-default);
+      }
+    }
+  }
+
+  .radioButtonGroup {
     display: flex;
+    flex-direction: row;
     padding: $positive-spacing_0;
-    flex-direction: column;
-    justify-content: center;
     align-items: flex-start;
-    gap: $positive-spacing_100;
+    gap: $positive-spacing_300;
 
-    .radioButtonGroupHeader {
-
-        .labelContainer {
-            display: flex;
-            align-items: flex-start;
-            padding: $positive-spacing_025 $positive-spacing_100;
-
-            .groupTitle {
-                @include typography-text-m-regular;
-                color: var(--content-secondary);
-                align-self: stretch;
-                margin: $positive-spacing_0;
-            }
-        }
-
-        .groupHelpText {
-            @include typography-text-m;
-            color: var(--content-tertiary);
-            align-self: stretch;
-            margin: $positive-spacing_0;
-        }
-
-        .errorMessage {
-            @include typography-text-m-bold;
-            color: var(--content-danger-default);
-            align-self: stretch;
-            margin: $positive-spacing_0;
-            margin-top: $positive-spacing_050;
-        }
-
-        &[data-read-only='true'] {
-            .groupTitle {
-                color: var(--content-tertiary);
-            }
-
-            &[data-error='true'] {
-                .groupTitle {
-                    color: var(--content-danger-default);
-                }
-            }
-        }
-
-        &[data-disabled='true'] {
-
-            pointer-events: none;
-
-            .groupTitle {
-                color: var(--content-disabled);
-            }
-
-            .groupHelpText {
-                color: var(--content-disabled);
-            }
-        }
-
-        &[data-error='true'] {
-            .groupTitle {
-                color: var(--content-danger-default);
-            }
-        }
-
+    &[data-direction="vertical"] {
+      flex-direction: column;
+      gap: $positive-spacing_100;
     }
-
-
-    .radioButtonGroup {
-        display: flex;
-        flex-direction: row;
-        padding: $positive-spacing_0;
-        align-items: flex-start;
-        gap: $positive-spacing_300;
-
-        &[data-direction='vertical'] {
-            flex-direction: column;
-            gap: $positive-spacing_100;
-        }
-    }
+  }
 }
