@@ -225,6 +225,7 @@ const SideNav = forwardRef<HTMLElement | HTMLDivElement, SideNavProps>(
         onProfileClick={onProfileClick}
         showTeamData={showTeamData}
         teamData={teamData}
+        middleItem={middleItem}
         style={{ height: "100vh" }}
         header={
           <div className={style.sideNavHeaderContainer}>

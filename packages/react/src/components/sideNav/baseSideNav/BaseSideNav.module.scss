@@ -101,6 +101,14 @@
   text-overflow: ellipsis;
 }
 
+.sideNavMiddleItem {
+  display: flex;
+  align-items: center;
+  padding: $positive-spacing-100 $positive-spacing-200;
+  box-sizing: border-box;
+  width: 100%;
+}
+
 .sideNavTeamData {
   display: flex;
   flex-direction: column;

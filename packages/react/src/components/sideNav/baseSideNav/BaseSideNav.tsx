@@ -23,6 +23,7 @@ interface BaseSideNavProps
   onProfileClick?: () => void;
   showTeamData?: boolean;
   teamData?: TeamDataItem[];
+  middleItem?: ReactNode;
 }
 
 const BaseSideNav = forwardRef<HTMLElement | HTMLDivElement, BaseSideNavProps>(
@@ -39,6 +40,7 @@ const BaseSideNav = forwardRef<HTMLElement | HTMLDivElement, BaseSideNavProps>(
       onProfileClick,
       showTeamData = false,
       teamData,
+      middleItem,
       children,
       appearance = "brand",
       collapsed,
@@ -83,6 +85,8 @@ const BaseSideNav = forwardRef<HTMLElement | HTMLDivElement, BaseSideNavProps>(
               {!collapsed && <span className={style.profileName}>{profile}</span>}
             </div>
           )}
+
+          {middleItem && !collapsed && <div className={style.sideNavMiddleItem}>{middleItem}</div>}
 
           {showTeamData && teamData && teamData.length > 0 && !collapsed && (
             <div className={style.sideNavTeamData}>
