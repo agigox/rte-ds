@@ -7,4 +7,5 @@ export interface ModalProps {
   iconAppearance?: "outlined" | "filled";
   description?: string;
   size?: import("./common/common-types").Size;
+  showCloseIcon?: boolean;
 }

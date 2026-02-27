@@ -38,6 +38,7 @@ const Modal = forwardRef<HTMLDialogElement, ModalProps>(
       primaryButton,
       secondaryButton,
       size = "m",
+      showCloseIcon = true,
       closeOnOverlayClick = true,
       onClose,
       className,
@@ -82,15 +83,17 @@ const Modal = forwardRef<HTMLDialogElement, ModalProps>(
                   <h2 id={`${id}-modal-title`} className={styles["modal-title"]}>
                     {title}
                   </h2>
-                  <IconButton
-                    data-testid="modal-close-button"
-                    name="close"
-                    size="l"
-                    className={styles["close-icon"]}
-                    variant="neutral"
-                    onClick={onClose}
-                    aria-label={`Close modal ${id}`}
-                  />
+                  {showCloseIcon && (
+                    <IconButton
+                      data-testid="modal-close-button"
+                      name="close"
+                      size="l"
+                      className={styles["close-icon"]}
+                      variant="neutral"
+                      onClick={onClose}
+                      aria-label={`Close modal ${id}`}
+                    />
+                  )}
                 </div>
                 <Divider />
               </div>

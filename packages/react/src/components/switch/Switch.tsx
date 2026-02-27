@@ -26,6 +26,7 @@ const Switch = ({
   showLabelRequirement = false,
   onChange,
   tooltipTextLabel,
+  labelStyle,
   ...props
 }: SwitchProps) => {
   const [isChecked, setIsChecked] = useState(checked);
@@ -86,7 +87,7 @@ const Switch = ({
       </div>
       {showLabel && label && (
         <div className={style["label-container"]}>
-          <label htmlFor={label} className={concatClassNames(style["switch-label"])}>
+          <label htmlFor={label} className={concatClassNames(style["switch-label"])} style={labelStyle}>
             {label}
           </label>
           <RequiredIndicator required={required} showLabelRequirement={showLabelRequirement} />

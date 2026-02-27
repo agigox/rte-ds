@@ -9,4 +9,5 @@ export interface SwitchProps {
   checked?: boolean;
   required?: boolean;
   showLabelRequirement?: boolean;
+  labelStyle?: import("react").CSSProperties;
 }
