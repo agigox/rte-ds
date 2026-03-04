@@ -36,17 +36,13 @@ const useBreakpoint = (): UseBreakpointResult => {
   });
 
   useEffect(() => {
-    const queries = ORDERED_BREAKPOINTS.map((bp) => {
-      const mql = window.matchMedia(`(min-width: ${BREAKPOINTS[bp]}px)`);
-      const handler = () => setWidth(window.innerWidth);
-      mql.addEventListener("change", handler);
-      return { mql, handler };
-    });
+    const handleResize = () => setWidth(window.innerWidth);
 
+    window.addEventListener("resize", handleResize);
     setWidth(window.innerWidth);
 
     return () => {
-      queries.forEach(({ mql, handler }) => mql.removeEventListener("change", handler));
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 

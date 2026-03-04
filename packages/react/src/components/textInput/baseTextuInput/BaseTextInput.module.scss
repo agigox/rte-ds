@@ -103,6 +103,7 @@
                     position: absolute;
                     left: $positive-spacing-100;
                     color: var(--content-secondary);
+                    z-index: 1;
                 }
 
                 .rightIcon {

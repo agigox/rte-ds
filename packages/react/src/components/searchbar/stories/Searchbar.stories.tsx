@@ -25,6 +25,7 @@ const meta = {
     disabled: { control: "boolean" },
     label: { control: "text", defaultValue: "Rechercher" },
     autoComplete: { control: "text" },
+    fullWidth: { control: "boolean" },
   },
   args: {
     autoComplete: "off",
@@ -33,6 +34,38 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+export const FullWidth: Story = {
+  args: {
+    id: "searchbar-full-width",
+    appearance: "secondary",
+    showResetButton: true,
+    label: "Rechercher",
+    value: "",
+    disabled: false,
+    autoComplete: "off",
+    fullWidth: true,
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ width: "100%" }}>
+        <Story />
+      </div>
+    ),
+  ],
+};
+
+export const Secondary: Story = {
+  args: {
+    id: "searchbar-secondary",
+    appearance: "secondary",
+    showResetButton: true,
+    label: "Rechercher",
+    value: "",
+    disabled: false,
+    autoComplete: "off",
+  },
+};
 
 export const Default: Story = {
   args: {

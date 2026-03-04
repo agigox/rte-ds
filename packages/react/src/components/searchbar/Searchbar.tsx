@@ -75,6 +75,7 @@ const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
       value,
       assistiveText,
       style: customInputStyle,
+      fullWidth,
       ...props
     }: SearchbarProps,
     ref,
@@ -149,6 +150,7 @@ const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
         compactSpacing,
         placeholder,
         leftIcon: appearanceConfig.showLeftIcon ? "search" : undefined,
+        width: fullWidth ? "100%" : undefined,
         ...props,
       }),
       [
@@ -163,6 +165,7 @@ const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
         compactSpacing,
         placeholder,
         appearanceConfig.showLeftIcon,
+        fullWidth,
         props,
       ],
     );
@@ -178,7 +181,7 @@ const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
     const searchButtonStyles = useMemo(() => getSearchButtonStyles(compactSpacing), [compactSpacing]);
 
     return (
-      <div className={styles.searchbarContainer} role="search" data-appearance={appearance}>
+      <div className={styles.searchbarContainer} role="search" data-appearance={appearance} style={fullWidth ? { width: "100%" } : undefined}>
         <div ref={wrapperRef} className={styles.textInputWrapper} data-disabled={disabled}>
           <BaseTextInput
             id={id ?? ""}

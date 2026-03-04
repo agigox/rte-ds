@@ -8,4 +8,5 @@ export interface SearchBarProps {
   showResetButton?: boolean;
   assistiveText?: string;
   value?: string;
+  fullWidth?: boolean;
 }

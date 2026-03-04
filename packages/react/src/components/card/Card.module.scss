@@ -8,6 +8,7 @@
   align-self: stretch;
   border-radius: $radius-s;
   @include elevation-neutral-shadow-1;
+  background-color: var(--card-background);
 
   &:hover {
     /*@include elevation-neutral-shadow-2;*/

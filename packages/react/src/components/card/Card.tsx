@@ -1,7 +1,7 @@
 import { cardSize } from "@rte-ds/core/components/card/card.constats";
 import { CardProps as CardPropsCore } from "@rte-ds/core/components/card/card.interface";
 import { ENTER_KEY, SPACE_KEY } from "@rte-ds/core/constants/keyboard/keyboard.constants";
-import { HTMLAttributes, forwardRef, KeyboardEvent } from "react";
+import React, { HTMLAttributes, forwardRef, KeyboardEvent } from "react";
 
 import { useActiveKeyboard } from "../../hooks/useActiveKeyboard";
 
@@ -48,11 +48,18 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
       },
     );
 
+    const { backgroundColor, background, ...restStyle } = style ?? {};
+    const bgVar = backgroundColor ?? background;
+
     return (
       <div
         ref={ref}
         className={`${styles.card}${className ? ` ${className}` : ""}`}
-        style={{ width: cardSize[size], ...style }}
+        style={{
+          width: cardSize[size],
+          ...(bgVar ? ({ "--card-background": bgVar } as React.CSSProperties) : {}),
+          ...restStyle,
+        }}
         data-card-type={cardType}
         data-clickable={clickable}
         data-disabled={disabled}
