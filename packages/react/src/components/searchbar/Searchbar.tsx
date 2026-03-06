@@ -181,7 +181,12 @@ const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
     const searchButtonStyles = useMemo(() => getSearchButtonStyles(compactSpacing), [compactSpacing]);
 
     return (
-      <div className={styles.searchbarContainer} role="search" data-appearance={appearance} style={fullWidth ? { width: "100%" } : undefined}>
+      <div
+        className={styles.searchbarContainer}
+        role="search"
+        data-appearance={appearance}
+        style={fullWidth ? { width: "100%" } : undefined}
+      >
         <div ref={wrapperRef} className={styles.textInputWrapper} data-disabled={disabled}>
           <BaseTextInput
             id={id ?? ""}

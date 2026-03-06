@@ -205,7 +205,7 @@ const TabItem = forwardRef<HTMLButtonElement, TabItemProps>(
           {...props}
         >
           {icon && <Icon name={icon} appearance={isSelected ? "filled" : "outlined"} />}
-          {label && <span>{label}</span>}
+          {label && <span data-label={label}>{label}</span>}
           {displayBadge && <Badge {...badgeProps} />}
         </button>
         <span

@@ -15,6 +15,22 @@
   flex-shrink: 0;
   height: 100%;
 
+  // Reserve bold text width to prevent layout shift on hover/select
+  span {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+
+    &::after {
+      content: attr(data-label);
+      @include typography-text-m-bold;
+      height: 0;
+      visibility: hidden;
+      overflow: hidden;
+      pointer-events: none;
+    }
+  }
+
   &[data-inverted='true'] {
     color: var(--content-primary-inverse);
   }

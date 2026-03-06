@@ -1,5 +1,4 @@
 import {
-  MIN_SELECT_WIDTH,
   SELECT_DROPDOWN_OFFSET,
   THRESHOLD_BOTTOM_POSITION,
 } from "@rte-ds/core/components/select/select.constants";
@@ -47,7 +46,7 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
       disabled,
       readonly,
       showResetButton,
-      width = MIN_SELECT_WIDTH,
+      width,
       multiple = false,
       multipleValue,
       onMultipleChange,

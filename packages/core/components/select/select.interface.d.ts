@@ -11,7 +11,7 @@ export interface SelectProps extends InputProps {
   onClear?: () => void;
   options: SelectOption[];
   showResetButton?: boolean;
-  width?: number;
+  width?: number | string;
   multiple?: boolean;
   multipleValue?: string[];
   onMultipleChange?: (values: string[]) => void;

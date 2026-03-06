@@ -14,7 +14,7 @@
 .tab {
   position: relative;
   display: flex;
-  gap: $positive-spacing_300;
+  gap: $positive-spacing_0;
   justify-content: flex-start;
   padding-bottom: 2px;
   margin-bottom: -2px;
@@ -75,6 +75,7 @@
   background-color: var(--background-neutral-regular-default);
   position: relative;
   height: 2px;
+  border-radius: 10px;
 
   &[data-compact-spacing='true'] {
     &[data-scrollable='true'] {
