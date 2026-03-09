@@ -1,7 +1,4 @@
-import {
-  SELECT_DROPDOWN_OFFSET,
-  THRESHOLD_BOTTOM_POSITION,
-} from "@rte-ds/core/components/select/select.constants";
+import { SELECT_DROPDOWN_OFFSET, THRESHOLD_BOTTOM_POSITION } from "@rte-ds/core/components/select/select.constants";
 import { SelectProps as coreSelectProps } from "@rte-ds/core/components/select/select.interface";
 import { ENTER_KEY, SPACE_KEY } from "@rte-ds/core/constants/keyboard/keyboard.constants";
 import { forwardRef, useEffect, useRef, useState } from "react";

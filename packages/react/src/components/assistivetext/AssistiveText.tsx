@@ -11,7 +11,11 @@ const AssistiveText = ({ label, appearance, showIcon, href, width }: AssistiveTe
   const icon = getIconNameFromAppearance(appearance);
 
   return (
-    <div className={styles["assistive-text"]} data-appearance={appearance} style={{ width: typeof width === "number" ? `${width}px` : width }}>
+    <div
+      className={styles["assistive-text"]}
+      data-appearance={appearance}
+      style={{ width: typeof width === "number" ? `${width}px` : width }}
+    >
       {showIcon && icon && (
         <Icon
           name={icon}

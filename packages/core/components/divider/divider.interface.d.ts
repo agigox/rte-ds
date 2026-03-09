@@ -8,4 +8,5 @@ export interface DividerProps {
   appearance?: DividerAppearance;
   endPoint?: DividerEndPoint;
   text?: string;
+  borderColor?: string;
 }

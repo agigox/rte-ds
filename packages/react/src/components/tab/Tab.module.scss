@@ -1,11 +1,11 @@
-@use '@rte-ds/core/design-tokens/main-internal.scss' as *;
+@use "@rte-ds/core/design-tokens/main-internal.scss" as *;
 
 .tab-container {
   position: relative;
   display: flex;
   flex-direction: column;
 
-  &[data-direction='vertical'] {
+  &[data-direction="vertical"] {
     flex-direction: row;
     height: 100%;
   }
@@ -26,16 +26,16 @@
   padding-left: 2px;
   padding-right: 2px;
 
-  &[data-direction='horizontal'] {
+  &[data-direction="horizontal"] {
     overflow-x: scroll;
 
-    &[data-overflow-type='dropdown'] {
+    &[data-overflow-type="dropdown"] {
       overflow: hidden;
-      margin-left: 0
+      margin-left: 0;
     }
   }
 
-  &[data-direction='vertical'] {
+  &[data-direction="vertical"] {
     flex-direction: column;
     border-bottom: none;
     gap: $positive-spacing_050;
@@ -47,12 +47,14 @@
 
     .tab-selected-indicator {
       width: 2px;
-      transition: top 0.2s ease, height 0.2s ease;
+      transition:
+        top 0.2s ease,
+        height 0.2s ease;
     }
   }
 
-  &[data-alignment='center'] {
-    justify-content: center
+  &[data-alignment="center"] {
+    justify-content: center;
   }
 
   .tab-selected-indicator {
@@ -60,7 +62,9 @@
     bottom: 0;
     height: 2px;
     background: var(--background-brand-selected-default);
-    transition: left 0.2s ease, width 0.2s ease;
+    transition:
+      left 0.2s ease,
+      width 0.2s ease;
     pointer-events: none;
     z-index: 1;
   }
@@ -77,13 +81,13 @@
   height: 2px;
   border-radius: 10px;
 
-  &[data-compact-spacing='true'] {
-    &[data-scrollable='true'] {
-      bottom: 5px;
+  &[data-compact-spacing="true"] {
+    &[data-scrollable="true"] {
+      bottom: 1px;
     }
   }
 
-  &[data-direction='vertical'] {
+  &[data-direction="vertical"] {
     display: none;
   }
 }
@@ -93,7 +97,7 @@
   position: relative;
   width: 2px;
 
-  &[data-direction='horizontal'] {
+  &[data-direction="horizontal"] {
     display: none;
   }
 }
@@ -117,7 +121,7 @@
     z-index: $level-0 + 1;
   }
 
-  &[data-inverted='true'] {
+  &[data-inverted="true"] {
     color: var(--content-primary-inverse);
   }
 }

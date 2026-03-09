@@ -16,7 +16,8 @@
   }
 
   &[data-selected="true"] {
-    background: var(--background-brand-unselected-default);
+    background: #f3f6fc;
+    border: 1px solid #3d6fa0;
   }
   &[data-pressed="true"] {
     background: var(--chart-vert-foret);
