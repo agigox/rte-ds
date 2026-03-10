@@ -36,6 +36,12 @@ const meta = {
       control: "text",
       description: "Optional icon name displayed before the label",
     },
+    iconPosition: {
+      control: "select",
+      options: ["left", "right"],
+      description: "Position of the icon relative to the label",
+      defaultValue: "left",
+    },
     textColor: {
       control: "color",
       description: "Custom text and icon color",
@@ -86,6 +92,17 @@ export const WithIcon: Story = {
     selected: false,
     disabled: false,
     icon: "check",
+  },
+};
+
+export const WithIconRight: Story = {
+  args: {
+    id: "chip-icon-right",
+    label: "Label",
+    selected: false,
+    disabled: false,
+    icon: "check",
+    iconPosition: "right",
   },
 };
 

@@ -28,6 +28,7 @@ export const Chip = forwardRef<HTMLSpanElement, ChipProps>(
       size = "m",
       clickable = true,
       icon,
+      iconPosition = "left",
       textColor,
       backgroundColor,
       onClose,
@@ -103,8 +104,9 @@ export const Chip = forwardRef<HTMLSpanElement, ChipProps>(
           </span>
         )}
         <span className={styles["chip-label"]} data-type={type}>
-          {icon && <Icon className={styles["chip-leading-icon"]} name={icon} size={16} />}
+          {icon && iconPosition === "left" && <Icon className={styles["chip-leading-icon"]} name={icon} size={16} />}
           {label}
+          {icon && iconPosition === "right" && <Icon className={styles["chip-leading-icon"]} name={icon} size={16} />}
         </span>
         {type === "input" && (
           <button

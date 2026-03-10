@@ -9,4 +9,7 @@ export interface SearchBarProps {
   assistiveText?: string;
   value?: string;
   fullWidth?: boolean;
+  options?: string[];
+  maxDisplayedItems?: number;
+  onOptionSelect?: (option: string) => void;
 }

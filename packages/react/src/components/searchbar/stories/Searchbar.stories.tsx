@@ -2,7 +2,7 @@ import { DROPDOWN_OFFSET } from "@rte-ds/core/components/searchbar/searchbar.con
 import { TESTING_DOWN_KEY, TESTING_ENTER_KEY } from "@rte-ds/core/constants/keyboard/keyboard-test.constants";
 import type { Meta, StoryObj } from "@storybook/react";
 import { expect, userEvent, waitFor, within } from "@storybook/test";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import { Dropdown } from "../../dropdown/Dropdown";
 import { DropdownItem } from "../../dropdown/dropdownItem/DropdownItem";
@@ -77,6 +77,64 @@ export const Default: Story = {
     value: "",
     disabled: false,
     autoComplete: "off",
+  },
+};
+
+export const Autocomplete: Story = {
+  render: (args) => {
+    const allOptions = [
+      "Apple",
+      "Apricot",
+      "Banana",
+      "Blueberry",
+      "Cherry",
+      "Date",
+      "Elderberry",
+      "Fig",
+      "Grape",
+      "Honeydew",
+      "Kiwi",
+      "Lemon",
+    ];
+
+    const [searchValue, setSearchValue] = useState("");
+
+    const filteredOptions = useMemo(() => {
+      if (!searchValue) return allOptions;
+      return allOptions.filter((option) => option.toLowerCase().includes(searchValue.toLowerCase()));
+    }, [searchValue]);
+
+    const handleChange = useCallback((value: string | undefined) => {
+      setSearchValue(value ?? "");
+    }, []);
+
+    const handleOptionSelect = useCallback((option: string) => {
+      console.log("Selected:", option);
+    }, []);
+
+    return (
+      <Searchbar
+        {...args}
+        value={searchValue}
+        onChange={handleChange}
+        options={filteredOptions}
+        maxDisplayedItems={args.maxDisplayedItems}
+        onOptionSelect={handleOptionSelect}
+      />
+    );
+  },
+  args: {
+    id: "searchbar-autocomplete",
+    appearance: "primary",
+    showResetButton: true,
+    label: "Rechercher un fruit",
+    assistiveText: "Tapez pour filtrer les options",
+    disabled: false,
+    autoComplete: "off",
+    maxDisplayedItems: 5,
+  },
+  argTypes: {
+    maxDisplayedItems: { control: "number" },
   },
 };
 

@@ -1,5 +1,6 @@
 import {
   APPEARANCE_CONFIG,
+  DROPDOWN_OFFSET,
   SEARCHBAR_BORDER_RADIUS,
   SEARCHBAR_BUTTON_HEIGHT_COMPACT,
   SEARCHBAR_BUTTON_WIDTH,
@@ -22,6 +23,8 @@ import {
   useState,
 } from "react";
 
+import { Dropdown } from "../dropdown/Dropdown";
+import { DropdownItem } from "../dropdown/dropdownItem/DropdownItem";
 import IconButton from "../iconButton/IconButton";
 import BaseTextInput from "../textInput/baseTextuInput/BaseTextInput";
 
@@ -66,6 +69,7 @@ const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
       onSearch,
       onChange,
       onClear,
+      onOptionSelect,
       id,
       label = "Rechercher",
       disabled = false,
@@ -76,6 +80,8 @@ const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
       assistiveText,
       style: customInputStyle,
       fullWidth,
+      options,
+      maxDisplayedItems,
       ...props
     }: SearchbarProps,
     ref,
@@ -83,7 +89,17 @@ const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
     const appearanceConfig = APPEARANCE_CONFIG[appearance];
 
     const [hasFocusWithin, setHasFocusWithin] = useState(false);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [dropdownWidth, setDropdownWidth] = useState<number | undefined>(undefined);
     const wrapperRef = useRef<HTMLDivElement>(null);
+
+    const hasOptions = options && options.length > 0;
+
+    const displayedOptions = useMemo(() => {
+      if (!options) return [];
+      if (maxDisplayedItems !== undefined) return options.slice(0, maxDisplayedItems);
+      return options;
+    }, [options, maxDisplayedItems]);
 
     useEffect(() => {
       const wrapper = wrapperRef.current;
@@ -91,6 +107,9 @@ const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
 
       const handleFocusIn = () => {
         setHasFocusWithin(true);
+        if (hasOptions) {
+          setIsDropdownOpen(true);
+        }
       };
 
       const handleFocusOut = (event: FocusEvent) => {
@@ -108,13 +127,22 @@ const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
         wrapper.removeEventListener("focusin", handleFocusIn);
         wrapper.removeEventListener("focusout", handleFocusOut);
       };
-    }, []);
+    }, [hasOptions]);
+
+    useEffect(() => {
+      if (wrapperRef.current && hasOptions) {
+        setDropdownWidth(wrapperRef.current.offsetWidth);
+      }
+    }, [hasOptions]);
 
     const handleChange = useCallback(
       (newValue: string) => {
         onChange?.(newValue);
+        if (hasOptions) {
+          setIsDropdownOpen(true);
+        }
       },
-      [onChange],
+      [onChange, hasOptions],
     );
 
     const handleClick = useCallback(() => {
@@ -134,6 +162,19 @@ const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
       onChange?.("");
       onClear?.();
     }, [onChange, onClear]);
+
+    const handleOptionClick = useCallback(
+      (option: string) => {
+        onChange?.(option);
+        onOptionSelect?.(option);
+        setIsDropdownOpen(false);
+      },
+      [onChange, onOptionSelect],
+    );
+
+    const handleDropdownClose = useCallback(() => {
+      setIsDropdownOpen(false);
+    }, []);
 
     const placeholder = useMemo(() => (disabled ? "Recherche indisponible" : label), [disabled, label]);
 
@@ -180,6 +221,34 @@ const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
 
     const searchButtonStyles = useMemo(() => getSearchButtonStyles(compactSpacing), [compactSpacing]);
 
+    const searchbarContent = (
+      <div ref={wrapperRef} className={styles.textInputWrapper} data-disabled={disabled}>
+        <BaseTextInput
+          id={id ?? ""}
+          {...textInputProps}
+          style={textInputStyles}
+          highlighted={hasFocusWithin}
+          ref={ref}
+          rightSlot={
+            appearanceConfig.showSearchButton && (
+              <IconButton
+                name="search"
+                size="m"
+                variant="primary"
+                appearance="filled"
+                onClick={handleClick}
+                disabled={disabled}
+                aria-label={label}
+                className={styles.searchButton}
+                compactSpacing={compactSpacing}
+                style={searchButtonStyles}
+              />
+            )
+          }
+        />
+      </div>
+    );
+
     return (
       <div
         className={styles.searchbarContainer}
@@ -187,31 +256,25 @@ const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
         data-appearance={appearance}
         style={fullWidth ? { width: "100%" } : undefined}
       >
-        <div ref={wrapperRef} className={styles.textInputWrapper} data-disabled={disabled}>
-          <BaseTextInput
-            id={id ?? ""}
-            {...textInputProps}
-            style={textInputStyles}
-            highlighted={hasFocusWithin}
-            ref={ref}
-            rightSlot={
-              appearanceConfig.showSearchButton && (
-                <IconButton
-                  name="search"
-                  size="m"
-                  variant="primary"
-                  appearance="filled"
-                  onClick={handleClick}
-                  disabled={disabled}
-                  aria-label={label}
-                  className={styles.searchButton}
-                  compactSpacing={compactSpacing}
-                  style={searchButtonStyles}
-                />
-              )
-            }
-          />
-        </div>
+        {hasOptions ? (
+          <Dropdown
+            dropdownId={`${id ?? "searchbar"}-autocomplete`}
+            trigger={searchbarContent}
+            isOpen={isDropdownOpen}
+            onClose={handleDropdownClose}
+            position="bottom"
+            alignment="start"
+            offset={DROPDOWN_OFFSET}
+            autofocus={false}
+            style={dropdownWidth ? { width: dropdownWidth } : undefined}
+          >
+            {displayedOptions.map((option) => (
+              <DropdownItem key={option} label={option} onClick={() => handleOptionClick(option)} />
+            ))}
+          </Dropdown>
+        ) : (
+          searchbarContent
+        )}
       </div>
     );
   },

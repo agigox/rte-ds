@@ -12,6 +12,7 @@ export interface ChipProps {
   size?: ChipSize;
   clickable?: boolean;
   icon?: string;
+  iconPosition?: "left" | "right";
   textColor?: string;
   backgroundColor?: string;
 }
