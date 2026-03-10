@@ -250,6 +250,7 @@ const BaseTextInput = forwardRef<HTMLInputElement, BaseTextInputProps>(
                   aria-label={rightIconAriaLabel}
                   onClick={onRightIconClickHandler}
                   data-testid="right-icon"
+                  tabIndex={-1}
                 />
               )}
             </div>

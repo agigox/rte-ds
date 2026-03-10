@@ -92,6 +92,7 @@ const Modal = forwardRef<HTMLDialogElement, ModalProps>(
                       variant="neutral"
                       onClick={onClose}
                       aria-label={`Close modal ${id}`}
+                      tabIndex={-1}
                     />
                   )}
                 </div>
