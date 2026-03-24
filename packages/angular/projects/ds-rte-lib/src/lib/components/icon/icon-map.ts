@@ -75,6 +75,7 @@ export const RegularIcons = {
   "fullscreen-exit": "fullscreen_exit",
   history: "history",
   "hourglass-empty": "hourglass_empty",
+  incomplete: "incomplete",
   "info-i": "info_i",
   language: "language",
   "last-page": "last_page",

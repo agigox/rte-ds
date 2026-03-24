@@ -98,6 +98,10 @@
     width: 100%;
     overflow: auto;
 
+    &.modal-content-scrollable {
+      padding-right: 16px;
+    }
+
     .modal-content-description {
       @include typography-text-m;
       margin: 0;

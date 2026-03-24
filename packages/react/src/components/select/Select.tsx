@@ -148,6 +148,17 @@ const Select = forwardRef<HTMLDivElement, SelectProps>(
     };
 
     useEffect(() => {
+      if (!isActive) return;
+
+      const handleScroll = () => {
+        setIsActive(false);
+      };
+
+      window.addEventListener("scroll", handleScroll, true);
+      return () => window.removeEventListener("scroll", handleScroll, true);
+    }, [isActive]);
+
+    useEffect(() => {
       setInternalValue(value || "");
     }, [value]);
 

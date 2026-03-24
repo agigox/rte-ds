@@ -9,6 +9,7 @@ import styles from "./Card.module.scss";
 
 interface CardProps extends CardPropsCore, Omit<HTMLAttributes<HTMLDivElement>, "onClick"> {
   onClick?: () => void;
+  disableHover?: boolean;
 }
 
 const Card = forwardRef<HTMLDivElement, CardProps>(
@@ -20,6 +21,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
       disabled = false,
       selected = false,
       pressed = false,
+      disableHover = false,
       children,
       onClick,
       style,
@@ -65,6 +67,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
         data-disabled={disabled}
         data-selected={selected}
         data-pressed={pressed}
+        data-disable-hover={disableHover}
         tabIndex={clickable ? 0 : -1}
         onClick={handleOnClick}
         onKeyDown={onKeyDown}

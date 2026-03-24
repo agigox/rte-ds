@@ -1,6 +1,6 @@
 import { IconSize } from "@rte-ds/core/components/icon/icon.constants";
 import type { ModalProps as coreModalProps } from "@rte-ds/core/components/modal/modal.interface";
-import { forwardRef, useCallback, useState } from "react";
+import { forwardRef, useCallback, useEffect, useRef, useState } from "react";
 
 import useAnimatedMount from "../../hooks/useAnimatedMount";
 import { useClickAway } from "../../hooks/useClickAway";
@@ -49,6 +49,24 @@ const Modal = forwardRef<HTMLDialogElement, ModalProps>(
   ) => {
     const { shouldRender, isAnimating } = useAnimatedMount(isOpen, 150);
     const [modalElement, setModalElement] = useState<HTMLDialogElement | null>(null);
+    const contentRef = useRef<HTMLDivElement>(null);
+    const [hasScrollbar, setHasScrollbar] = useState(false);
+
+    useEffect(() => {
+      const el = contentRef.current;
+      if (!el) return;
+
+      const checkScrollbar = () => {
+        setHasScrollbar(el.scrollHeight > el.clientHeight);
+      };
+
+      checkScrollbar();
+
+      const observer = new ResizeObserver(checkScrollbar);
+      observer.observe(el);
+
+      return () => observer.disconnect();
+    }, [shouldRender]);
 
     const modalCallbackRef = useCallback(
       (node: HTMLDialogElement | null) => {
@@ -99,7 +117,13 @@ const Modal = forwardRef<HTMLDialogElement, ModalProps>(
                 <Divider />
               </div>
               {(description || children) && (
-                <div className={styles["modal-content"]}>
+                <div
+                  ref={contentRef}
+                  className={concatClassNames(
+                    styles["modal-content"],
+                    hasScrollbar && styles["modal-content-scrollable"],
+                  )}
+                >
                   {description && (
                     <p className={styles["modal-content-description"]} id={`${id}-modal-desc`}>
                       {description}

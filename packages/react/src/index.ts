@@ -13,6 +13,7 @@ import Icon from "./components/icon/Icon.tsx";
 import IconButton from "./components/iconButton/IconButton.tsx";
 import IconButtonToggle from "./components/iconButtonToggle/IconButtonToggle.tsx";
 import Link from "./components/link/Link.tsx";
+import Loader from "./components/loader/Loader.tsx";
 import Modal from "./components/modal/Modal.tsx";
 import Popover from "./components/popover/Popover.tsx";
 import RadioButton from "./components/radioButton/RadioButton.tsx";
@@ -59,6 +60,7 @@ export {
   Breadcrumbs,
   Banner,
   Popover,
+  Loader,
   Modal,
   SideNav,
   BaseSideNav,

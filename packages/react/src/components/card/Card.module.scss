@@ -10,7 +10,7 @@
   @include elevation-neutral-shadow-1;
   background-color: var(--card-background);
 
-  &:hover {
+  &:not([data-disable-hover="true"]):hover {
     /*@include elevation-neutral-shadow-2;*/
     background-color: var(--background-brand-inverse-hover);
   }

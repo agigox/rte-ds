@@ -5,34 +5,14 @@
   min-width: 168px;
   max-width: 720px;
   height: 48px;
+
   &[data-size="s"] {
     height: 32px;
-  }
-
-  &[data-number-of-segments="3"] {
-    min-width: 256px;
-  }
-}
-
-.segment-selected-indicator {
-  position: absolute;
-  top: 4px;
-  height: 40px;
-  background: var(--background-default);
-  border-radius: $radius-pill;
-  transition:
-    left 0.2s ease-out,
-    width 0.2s ease-out;
-
-  &[data-size="s"] {
-    height: 24px;
   }
 }
 
 .segment-container {
   display: flex;
-  border-top: $width-xs solid var(--border-inverse);
-  border-bottom: $width-xs solid var(--border-inverse);
   background: var(--background-brand-default);
   padding: $positive-spacing_050 $positive-spacing_025;
   align-items: center;
@@ -41,20 +21,24 @@
 
   &[data-position="left"] {
     border-radius: $radius-pill $radius-none $radius-none $radius-pill;
-    border-left: $width-xs solid var(--border-inverse);
-    background: var(--background-brand-default);
     padding-left: $positive-spacing_050;
   }
 
   &[data-position="right"] {
     border-radius: $radius-none $radius-pill $radius-pill $radius-none;
-    border-right: $width-xs solid var(--border-inverse);
-    background: var(--background-brand-default);
     padding-right: $positive-spacing_050;
   }
 
   &[data-size="s"] {
     padding: 0 $positive-spacing_025;
+
+    &[data-position="left"] {
+      padding-left: $positive-spacing_050;
+    }
+
+    &[data-position="right"] {
+      padding-right: $positive-spacing_050;
+    }
   }
 }
 
@@ -62,12 +46,13 @@
   display: flex;
   padding: $positive-spacing_075 $positive-spacing_100;
   align-items: center;
+  justify-content: center;
   border-radius: $radius-pill;
   color: var(--content-primary-inverse);
   flex: 1 1 auto;
   overflow: hidden;
   width: 100%;
-  z-index: 0;
+  cursor: pointer;
 
   &:focus-visible {
     outline: $width-xs solid var(--border-inverse);
@@ -75,8 +60,9 @@
   }
 
   &[data-selected="true"] {
-    transition: color 0.2s ease-out;
+    background: var(--background-brand-inverse-default);
     color: var(--content-brand-default);
+    cursor: default;
 
     &:focus-visible {
       outline: $width-xs solid var(--border-brand-focused);
@@ -86,7 +72,6 @@
   &:hover {
     &:not([data-selected="true"]) {
       background: var(--background-brand-hover);
-      cursor: pointer;
     }
   }
 
@@ -119,9 +104,15 @@
     min-width: 24px;
     min-height: 24px;
   }
+
   &[data-size="s"] {
     .segment-label {
       @include typography-button-s;
+    }
+
+    .selected-icon {
+      min-width: 16px;
+      min-height: 16px;
     }
   }
 }
