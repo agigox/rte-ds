@@ -85,6 +85,18 @@
         text-overflow: ellipsis;
         flex: 1 1 0;
       }
+
+      &[data-has-title-content="true"] .modal-title {
+        flex: 0 1 auto;
+      }
+
+      .modal-title-content {
+        display: flex;
+        align-items: center;
+        gap: $positive-spacing_100;
+        flex: 1 1 0;
+        min-width: 0;
+      }
     }
   }
 

@@ -61,7 +61,7 @@ const BaseSideNav = forwardRef<HTMLElement | HTMLDivElement, BaseSideNavProps>(
           data-collapsed={collapsed}
           data-appearance={appearance}
           style={{
-            minWidth: collapsed ? sideNavCollapsedSize : sideNavPanelSize[size],
+            width: collapsed ? sideNavCollapsedSize : sideNavPanelSize[size],
           }}
         >
           {showHeader && header && <div className={style.sideNavHeader}>{header}</div>}
@@ -93,7 +93,7 @@ const BaseSideNav = forwardRef<HTMLElement | HTMLDivElement, BaseSideNavProps>(
               {teamData.map((item, index) => (
                 <div key={index} className={style.teamDataItem}>
                   <span className={style.teamDataLabel}>{item.label} :</span>
-                  <span className={style.teamDataValue}>{item.value}</span>
+                  <span className={style.teamDataValue} title={item.value}>{item.value}</span>
                 </div>
               ))}
             </div>

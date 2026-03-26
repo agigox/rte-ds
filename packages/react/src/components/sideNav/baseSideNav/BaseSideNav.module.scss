@@ -21,13 +21,14 @@
 
   flex: 0 0 auto;
   align-self: stretch;
+  overflow: hidden;
 
   display: flex;
   flex-direction: column;
   gap: $positive-spacing_0;
   box-sizing: border-box;
   border-radius: 0;
-  transition: min-width 300ms;
+  transition: width 300ms;
   color: var(--content-brand-navigation-default);
 
   max-height: var(--content-height);
@@ -115,10 +116,12 @@
   padding: $positive-spacing-100 $positive-spacing-200;
   box-sizing: border-box;
   width: 100%;
+  overflow: hidden;
 }
 
 .teamDataItem {
   display: flex;
+  min-width: 0;
 }
 
 .teamDataLabel {
@@ -126,9 +129,13 @@
   font-family: $heading-m-semibold-font-family;
   color: #456b95;
   width: 76px;
+  flex-shrink: 0;
 }
 
 .teamDataValue {
   @include typography-text-m-regular;
   font-family: $heading-m-semibold-font-family;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

@@ -8,8 +8,7 @@ import style from "./SegmentedControl.module.scss";
 export type SegmentedControlSize = "s" | "l";
 
 interface SegmentedControlProps
-  extends CoreSegmentedControlProps,
-    Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
+  extends CoreSegmentedControlProps, Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
   onChange: (id: string) => void;
   size?: SegmentedControlSize;
 }

@@ -22,6 +22,7 @@ interface ModalProps extends coreModalProps, Omit<React.HTMLAttributes<HTMLDialo
   closeOnOverlayClick?: boolean;
   isOpen: boolean;
   children?: React.ReactNode | React.ReactNode[];
+  titleContent?: React.ReactNode;
   primaryButton: DSButtonElement;
   secondaryButton?: DSButtonElement;
 }
@@ -32,6 +33,7 @@ const Modal = forwardRef<HTMLDialogElement, ModalProps>(
       id,
       isOpen,
       title,
+      titleContent,
       icon,
       iconAppearance,
       description,
@@ -96,11 +98,12 @@ const Modal = forwardRef<HTMLDialogElement, ModalProps>(
               data-open={isAnimating}
             >
               <div className={styles["modal-header"]}>
-                <div className={styles["modal-header-text"]}>
+                <div className={styles["modal-header-text"]} data-has-title-content={!!titleContent}>
                   {icon && <Icon name={icon} size={IconSize["xl"]} appearance={iconAppearance} />}
                   <h2 id={`${id}-modal-title`} className={styles["modal-title"]}>
                     {title}
                   </h2>
+                  {titleContent && <div className={styles["modal-title-content"]}>{titleContent}</div>}
                   {showCloseIcon && (
                     <IconButton
                       data-testid="modal-close-button"

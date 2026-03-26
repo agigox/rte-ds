@@ -1,6 +1,7 @@
 export interface ModalProps {
   id: string;
   title: string;
+  titleContent?: unknown;
   closeOnOverlayClick?: boolean;
   isOpen: boolean;
   icon?: string;

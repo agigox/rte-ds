@@ -206,6 +206,41 @@ export const WithProfile: Story = {
   ),
 };
 
+export const WithTeamData: Story = {
+  args: {
+    size: "m",
+    showHeader: true,
+    showFooter: false,
+    showProfile: true,
+    profile: "Julien Neuville",
+    showTeamData: true,
+    appearance: "brand",
+    collapsed: false,
+  },
+  render: (args) => (
+    <BaseSideNav
+      size={args.size}
+      showHeader={args.showHeader}
+      showFooter={args.showFooter}
+      showProfile={args.showProfile}
+      profile={args.profile}
+      showTeamData={args.showTeamData}
+      appearance={args.appearance}
+      collapsed={args.collapsed}
+      teamData={[
+        { label: "Direction", value: "Pole Clients Systemes Innovation" },
+        { label: "CM", value: "Direction Clients et Services" },
+        { label: "GMR", value: "Departement accompagnement, pilotage, conception et facturation" },
+        { label: "Equipe", value: "Emasi" },
+      ]}
+      header={<div style={{ fontWeight: "600", fontSize: "0.875rem" }}>CSRD collecte</div>}
+      body={SimpleBody}
+    >
+      {PageContent}
+    </BaseSideNav>
+  ),
+};
+
 export const WithProfileCollapsed: Story = {
   args: {
     size: "m",
