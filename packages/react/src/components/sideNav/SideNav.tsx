@@ -30,6 +30,7 @@ interface SideNavProps extends Partial<CoreSideNavProps>, Omit<React.HTMLAttribu
   teamData?: TeamDataItem[];
   middleItem?: ReactNode;
   rightItem?: ReactNode;
+  infoElement?: ReactNode;
 }
 
 const TRANSITION_DURATION = 300;
@@ -55,6 +56,7 @@ const SideNav = forwardRef<HTMLElement | HTMLDivElement, SideNavProps>(
       teamData,
       middleItem,
       rightItem,
+      infoElement,
     }: SideNavProps,
     ref,
   ) => {
@@ -225,12 +227,15 @@ const SideNav = forwardRef<HTMLElement | HTMLDivElement, SideNavProps>(
         onProfileClick={onProfileClick}
         showTeamData={showTeamData}
         teamData={teamData}
-        middleItem={middleItem}
         style={{ height: "100vh" }}
         header={
           <div className={style.sideNavHeaderContainer}>
             <div className={style.sideNavHeader} data-collapsed={isCollapsed} data-appearance={appearance}>
-              {headerTitle}
+              <div className={style.sideNavHeaderTitleRow}>
+                {headerTitle}
+                {infoElement && !isCollapsed && <div className={style.sideNavInfoIcon}>{infoElement}</div>}
+              </div>
+              {middleItem && !isCollapsed && <div className={style.sideNavMiddleItem}>{middleItem}</div>}
               <div className={style.sideNavHeaderVersion} data-hidden={!shouldShowTitle}>
                 <span>{headerConfig?.version}</span>
               </div>

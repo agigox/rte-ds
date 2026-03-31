@@ -89,6 +89,34 @@
     }
   }
 
+  .sideNavHeaderTitleRow {
+    display: flex;
+    align-items: center;
+    align-self: stretch;
+    gap: $positive-spacing_050;
+    flex: 1 0 0;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  .sideNavInfoIcon {
+    flex-shrink: 0;
+
+    button {
+      color: white;
+
+      &:hover {
+        color: rgba(255, 255, 255, 0.8);
+      }
+    }
+  }
+
+  .sideNavMiddleItem {
+    display: flex;
+    align-items: center;
+    padding: $positive-spacing_050 $positive-spacing_100;
+  }
+
   .sideNavHeaderTitleContainer {
     display: flex;
     padding: $positive-spacing_0 $positive-spacing_100;

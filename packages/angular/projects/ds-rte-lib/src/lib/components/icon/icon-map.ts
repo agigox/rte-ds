@@ -116,6 +116,7 @@ export const RegularIcons = {
   sort: "sort",
   "sticky-note-valide": "sticky_note_valide",
   "support-agent": "support_agent",
+  suspended: "suspended",
   switch: "switch",
   timeline: "timeline",
   "trending-down": "trending_down",

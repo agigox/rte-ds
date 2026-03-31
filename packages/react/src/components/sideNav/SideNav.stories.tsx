@@ -2,10 +2,14 @@ import { NavItemProps } from "@rte-ds/core/components/side-nav/nav-item/nav-item
 import { TESTING_ENTER_KEY, TESTING_SPACE_KEY } from "@rte-ds/core/constants/keyboard/keyboard-test.constants";
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, userEvent, within } from "@storybook/test";
+import { useState } from "react";
 
 import { focusElementBeforeComponent } from "../../../.storybook/testing/testing.utils";
 import Button from "../button/Button";
 import Icon from "../icon/Icon";
+import IconButton from "../iconButton/IconButton";
+import Popover from "../popover/Popover";
+import SelectableChip from "../selectableChip/SelectableChip";
 
 import SideNav from "./SideNav";
 import { createActiveItemStateDecorator, createCollapsedStateDecorator } from "./stories/helpers/decorators";
@@ -764,4 +768,84 @@ export const ResponsiveWithDrawerOpen: Story = {
       await userEvent.click(closeButton);
     });
   },
+};
+
+const roleOptions = [
+  { label: "Utilisateur", value: "user", icon: "user" },
+  { label: "Admin", value: "admin", icon: "admin-panel-settings" },
+];
+
+const RoleSwitcherMiddleItem = () => {
+  const [role, setRole] = useState("admin");
+  const selected = roleOptions.find((o) => o.value === role);
+  return (
+    <SelectableChip
+      id="role-switcher"
+      label={selected?.label ?? ""}
+      icon={selected?.icon}
+      options={roleOptions}
+      value={role}
+      onChange={setRole}
+      backgroundColor="#e6f2a4"
+    />
+  );
+};
+
+export const WithInfoAndRoleSwitcher: Story = {
+  args: {
+    headerConfig: {
+      identifier: "CC",
+      title: "CSRD collecte",
+      version: "V1.1.3",
+    },
+    items: navigationItems,
+    collapsible: true,
+    showProfile: true,
+    profile: "Admin RTE",
+    onProfileClick: () => console.log("Profile clicked"),
+    showTeamData: true,
+    teamData: [
+      { label: "Direction", value: "Pole Clients Systemes Innovation" },
+      { label: "CM", value: "Direction Clients et Services" },
+      { label: "GMR", value: "Departement accompagnement, pilotage, conception et facturation" },
+      { label: "Equipe", value: "Emasi" },
+    ],
+  },
+  render: (args) => (
+    <SideNav
+      size={args.size}
+      collapsible={args.collapsible}
+      headerConfig={args.headerConfig}
+      appearance={args.appearance}
+      items={args.items}
+      collapsed={args.collapsed}
+      activeItem={args.activeItem}
+      showProfile={args.showProfile}
+      profile={args.profile}
+      onProfileClick={args.onProfileClick}
+      infoElement={
+        <Popover
+          position="right"
+          alignment="start"
+          arrow={false}
+          showCloseIcon
+          content={
+            <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+              <p style={{ margin: 0, lineHeight: "32px", fontSize: 14, color: "#3e3e3d" }}>Version : V1.1.3</p>
+              <p style={{ margin: 0, lineHeight: "32px", fontSize: 14, color: "#3e3e3d" }}>Date : 01/03/2026</p>
+              <p style={{ margin: 0, lineHeight: "32px", fontSize: 14, color: "#3e3e3d" }}>Developpe par Datadev</p>
+            </div>
+          }
+          title="CSRD collecte"
+        >
+          <IconButton name="info" size="m" variant="neutral" aria-label="Information" />
+        </Popover>
+      }
+      showTeamData={args.showTeamData}
+      teamData={args.teamData}
+      middleItem={<RoleSwitcherMiddleItem />}
+    >
+      {PageContent}
+    </SideNav>
+  ),
 };

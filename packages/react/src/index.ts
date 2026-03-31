@@ -22,6 +22,7 @@ import Searchbar from "./components/searchbar/Searchbar.tsx";
 import SegmentedControl from "./components/segmentedControl/SegmentedControl.tsx";
 import SegmentedTabs from "./components/segmentedTabs/SegmentedTabs.tsx";
 import Select from "./components/select/Select.tsx";
+import SelectableChip from "./components/selectableChip/SelectableChip.tsx";
 import BaseSideNav from "./components/sideNav/baseSideNav/BaseSideNav.tsx";
 import SideNav from "./components/sideNav/SideNav.tsx";
 import SplitButton from "./components/splitButton/SplitButton.tsx";
@@ -71,6 +72,7 @@ export {
   Tab,
   Searchbar,
   Select,
+  SelectableChip,
   useBreakpoint,
   useIsMobile,
 };

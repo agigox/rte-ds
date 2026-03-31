@@ -92,8 +92,9 @@ const BaseSideNav = forwardRef<HTMLElement | HTMLDivElement, BaseSideNavProps>(
             <div className={style.sideNavTeamData}>
               {teamData.map((item, index) => (
                 <div key={index} className={style.teamDataItem}>
-                  <span className={style.teamDataLabel}>{item.label} :</span>
-                  <span className={style.teamDataValue} title={item.value}>{item.value}</span>
+                  <span className={style.teamDataValue} title={item.value}>
+                    {item.value}
+                  </span>
                 </div>
               ))}
             </div>

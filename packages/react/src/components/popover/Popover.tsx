@@ -10,13 +10,16 @@ import { useFocusTrap } from "../../hooks/useFocusTrap";
 import { useKeydownEscape } from "../../hooks/useKeydownEscape";
 import { useScrollEvent } from "../../hooks/useScrollEvent";
 import Button from "../button/Button";
+import IconButton from "../iconButton/IconButton";
 import { Overlay } from "../overlay/Overlay";
 import { concatClassNames } from "../utils";
 
 import style from "./Popover.module.scss";
 
-interface PopoverProps extends CorePopoverProps, Omit<React.HTMLAttributes<HTMLDivElement>, "children" | "content"> {
-  content: string;
+interface PopoverProps
+  extends CorePopoverProps, Omit<React.HTMLAttributes<HTMLDivElement>, "children" | "content" | "title"> {
+  content: React.ReactNode;
+  title?: React.ReactNode;
   children: React.ReactNode;
   triggerStyles?: React.CSSProperties;
 }
@@ -36,6 +39,7 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(
       triggerStyles,
       closeOnClickOutside = true,
       closeOnEscape = true,
+      showCloseIcon = false,
       onClickPrimaryButton,
       onClickSecondaryButton,
       ...props
@@ -115,17 +119,13 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(
     const handleKeyDown = (e: React.KeyboardEvent) => {
       if (e.key === ENTER_KEY) {
         e.preventDefault();
-        if (!isOpen) {
-          setIsOpen(true);
-        }
+        setIsOpen((prev) => !prev);
       }
     };
 
     const handleOnClick = (e: React.MouseEvent) => {
-      if (!isOpen) {
-        e.preventDefault();
-        setIsOpen(true);
-      }
+      e.preventDefault();
+      setIsOpen((prev) => !prev);
     };
 
     const handleClickSecondaryButton = () => {
@@ -165,27 +165,43 @@ const Popover = forwardRef<HTMLDivElement, PopoverProps>(
               style={{ top: `${coordinates.top}px`, left: `${coordinates.left}px` }}
               {...props}
             >
-              <div className={style.popoverInner}>
+              <div className={style.popoverInner} onClick={(e) => e.stopPropagation()}>
                 <div className={style.popoverContentContainer}>
-                  {title && <div className={style.popoverTitle}>{title}</div>}
+                  {(title || showCloseIcon) && (
+                    <div className={style.popoverHeader}>
+                      {title && <div className={style.popoverTitle}>{title}</div>}
+                      {showCloseIcon && (
+                        <IconButton
+                          name="close"
+                          size="m"
+                          variant="neutral"
+                          onClick={() => setIsOpen(false)}
+                          aria-label="Close"
+                          iconColor="#737272"
+                        />
+                      )}
+                    </div>
+                  )}
                   <div className={style.popoverContent}>{content}</div>
                 </div>
-                <div className={style.popoverButtonContainer}>
-                  {secondaryButtonLabel && (
+                {primaryButtonLabel && (
+                  <div className={style.popoverButtonContainer}>
+                    {secondaryButtonLabel && (
+                      <Button
+                        className="popoverButton"
+                        onClick={handleClickSecondaryButton}
+                        label={secondaryButtonLabel}
+                        variant="secondary"
+                      />
+                    )}
                     <Button
                       className="popoverButton"
-                      onClick={handleClickSecondaryButton}
-                      label={secondaryButtonLabel}
-                      variant="secondary"
+                      onClick={handleClickPrimaryButton}
+                      label={primaryButtonLabel}
+                      variant="primary"
                     />
-                  )}
-                  <Button
-                    className="popoverButton"
-                    onClick={handleClickPrimaryButton}
-                    label={primaryButtonLabel}
-                    variant="primary"
-                  />
-                </div>
+                  </div>
+                )}
               </div>
             </div>
           </Overlay>
