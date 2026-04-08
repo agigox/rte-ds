@@ -11,9 +11,9 @@ const useHandleQueueChanges = (id: string, isOpen: boolean) => {
     setIsInternalOpen(false);
   }, []);
 
-  const showToast = () => {
+  const showToast = useCallback(() => {
     setIsInternalOpen(true);
-  };
+  }, []);
 
   useEffect(() => {
     if (queue.length > 0) {

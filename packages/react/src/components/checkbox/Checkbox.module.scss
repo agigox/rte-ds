@@ -28,6 +28,7 @@
 .container {
   display: flex;
   gap: $positive-spacing-150;
+  position: relative;
 
   .checkbox {
     appearance: none;

@@ -1,7 +1,6 @@
 import { IconSize, IconTypeMap } from "@rte-ds/core/components/icon/icon.constants";
 import { ToastProps as coreToastProps } from "@rte-ds/core/components/toast/toast.interface";
-import { forwardRef, MouseEventHandler, useCallback, useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+import { forwardRef, useCallback, useEffect, useState } from "react";
 
 import useAnimatedMount from "../../hooks/useAnimatedMount";
 import Button from "../button/Button";
@@ -45,7 +44,7 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>(
 
     const isAutoDismiss = autoDismiss && !hasActionButton;
 
-    const [internalId] = useState<string>(id || uuidv4());
+    const [internalId] = useState<string>(() => id || crypto.randomUUID());
 
     const { isInternalOpen, hideToast } = useHandleQueueChanges(internalId, isOpen);
     const { addToQueue, removeFromQueue } = useToastQueueContext();
@@ -74,40 +73,38 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>(
       }
     }, [isOpen, hasActionButton, type, isAutoDismiss, internalId, addToQueue, handleOnClose]);
 
-    const handleOnClickCloseButton = () => {
-      handleOnClose();
-    };
-
-    const handleOnMouseHover: MouseEventHandler<HTMLDivElement> = (e) => {
-      e.stopPropagation();
+    const handleOnMouseEnter = useCallback(() => {
       if (isAutoDismiss && isOpen) {
         removeTimer();
       }
-    };
+    }, [isAutoDismiss, isOpen, removeTimer]);
 
-    const handleOnMouseOut: MouseEventHandler<HTMLDivElement> = (e) => {
-      e.stopPropagation();
+    const handleOnMouseLeave = useCallback(() => {
       if (isAutoDismiss) {
         initializeTimer();
       }
-    };
+    }, [isAutoDismiss, initializeTimer]);
 
     const displayDefaultIcon = showLeftIcon && type !== "neutral";
     const displayCustomIcon = showLeftIcon && iconName && isValidIconName(iconName);
+
+    const toastRole = type === "error" ? "alert" : "status";
+    const ariaLive = type === "error" ? "assertive" : "polite";
 
     return (
       shouldRender && (
         <Overlay>
           <div
-            role="status"
+            role={toastRole}
+            aria-live={ariaLive}
             className={concatClassNames(styles["toast"], props.className)}
             data-type={type}
             data-position={position}
             data-alignment={alignment}
             data-open={isAnimating || undefined}
             ref={ref}
-            onMouseOver={handleOnMouseHover}
-            onMouseOut={handleOnMouseOut}
+            onMouseEnter={handleOnMouseEnter}
+            onMouseLeave={handleOnMouseLeave}
             {...props}
           >
             <div className={styles["toast-content"]}>
@@ -137,7 +134,7 @@ const Toast = forwardRef<HTMLDivElement, ToastProps>(
                 data-testid="toast-close-button"
                 name="close"
                 variant={type === "neutral" ? "reverse" : "neutral"}
-                onClick={handleOnClickCloseButton}
+                onClick={handleOnClose}
               />
             )}
           </div>

@@ -9,12 +9,14 @@ type TimeoutProperties = {
 
 const useHandleTimer = ({ shouldStartTimer, duration }: TimeoutProperties, callback: () => void) => {
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const callbackRef = useRef(callback);
+  callbackRef.current = callback;
 
   const initializeTimer = useCallback(() => {
     timerRef.current = setTimeout(() => {
-      callback();
+      callbackRef.current();
     }, ToastDurationMap[duration]);
-  }, [duration, callback]);
+  }, [duration]);
 
   const removeTimer = useCallback(() => {
     if (timerRef.current) {
