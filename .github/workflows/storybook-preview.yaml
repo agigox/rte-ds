@@ -35,19 +35,16 @@ jobs:
       - name: Generate icons
         run: npm run generate:icons
 
-      - name: Build React Package
-        working-directory: packages/react
-        run: npm run build
-
       - name: Build Core Package
         working-directory: packages/core
         run: npm run build
 
-      - name: Build Design Docs Storybook
-        run: npm run build-design-docs
+      - name: Build React Package
+        working-directory: packages/react
+        run: npm run build
 
       - name: Build Storybook
-        run: npm run build-base-storybook
+        run: npm run build-storybook
 
       - name: Sanitize branch name
         id: vars
@@ -59,12 +56,6 @@ jobs:
           fi
           SLUG=$(echo "${BRANCH_NAME##*/}" | sed 's#/##g')
           echo "slug=$SLUG" >> "$GITHUB_OUTPUT"
-
-      - name: Update refs configuration in built storybook
-        run: |
-          PREVIEW_BASE_URL="https://opensource.rte-france.com/design-system-rte/preview/${{ steps.vars.outputs.slug }}"
-          sed -i "s|https://opensource.rte-france.com/design-system-rte/angular|$PREVIEW_BASE_URL/angular|g" packages/design-docs/storybook-static/index.html
-          sed -i "s|https://opensource.rte-france.com/design-system-rte/react|$PREVIEW_BASE_URL/react|g" packages/design-docs/storybook-static/index.html
 
       - name: Check if PR to main exists
         id: prcheck
@@ -80,6 +71,6 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./packages/design-docs/storybook-static
+          publish_dir: ./packages/react/storybook-static
           destination_dir: preview/${{ steps.vars.outputs.slug }}
           publish_branch: gh-pages

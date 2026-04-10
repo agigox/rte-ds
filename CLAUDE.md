@@ -4,15 +4,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is RTE's Design System - a multi-framework design system supporting React, Angular, and core web components. The project uses an npm workspaces monorepo architecture with design tokens generated from JSON source files.
+This is RTE's Design System — a React component library with a supporting design-token package. The project uses an npm workspaces monorepo architecture with design tokens generated from JSON source files.
 
-**Primary Usage**: This design system is primarily used for **React-based projects**. Angular support exists in the codebase but is not actively used in production applications.
+The repository previously shipped an Angular package and a unified documentation package, both of which were removed in the `chore: remove @rte-ds/angular package` refactor. The `v-last-angular-supported` git tag preserves the last commit with Angular support as a rollback anchor.
 
-## Quick Start (React Development)
+## Quick Start
 
 ```bash
-# Start React Storybook
-cd packages/react && npm run storybook
+# Start the Storybook (primary development environment)
+cd packages/react && npm run storybook  # Port 7008
 
 # Run tests
 cd packages/react && npm test
@@ -34,33 +34,30 @@ npm run generate:icons
 
 ```
 packages/
-├── core/          # Design tokens, SCSS, interfaces, and shared utilities
-├── react/         # React component library
-├── angular/       # Angular component library
-└── design-docs/   # Unified Storybook documentation (aggregates React + Angular)
+├── core/    # Design tokens (JSON → SCSS), CSS themes, SCSS mixins, shared assets
+└── react/   # React component library + Storybook
 ```
 
 **Key architectural concepts:**
-- `core` contains design tokens (auto-generated SCSS from JSON), CSS themes/fonts, component interfaces, and base SCSS
-- React and Angular packages depend on `core` and implement framework-specific components
-- `design-docs` hosts a unified Storybook that references both React (`localhost:7008`) and Angular (`localhost:7007`) Storybooks
-- Design tokens flow: JSON source files → TypeScript generator → SCSS variables → consumed by components
+
+- `@rte-ds/core` is a pure assets package. It contains design tokens (auto-generated SCSS from JSON), CSS theme/font files, the `grid.scss` shared mixin, SVG icons, and component documentation MDX. It exports **no TypeScript**.
+- `@rte-ds/react` is the only code-bearing package. It contains every React component, every component-prop interface, every utility, and the Storybook documentation site. It depends on `@rte-ds/core` for SCSS tokens and the shared icon SVGs.
+- Design tokens flow: JSON source files → TypeScript generator → SCSS variables → consumed by React components.
+- The Storybook lives at `packages/react/.storybook/` and runs on port **7008**. Shared documentation React components (Accordion, Heading, Body, ComponentDocs, etc.) live at `packages/react/storybook-docs/` — a sibling of `.storybook/`, not inside it, because Vite's import-analysis rejects cross-boundary imports into dot-prefixed directories.
 
 ## Common Commands
 
-### Development (React Focus)
+### Development
 
 ```bash
-# Run React Storybook (primary development environment)
-cd packages/react && npm run storybook  # Port 7008
+# Run the Storybook (dev server on port 7008)
+cd packages/react && npm run storybook
+# or from the repo root:
+npm run storybook
 
-# Run unified documentation (includes React + Angular references)
-npm run design-docs  # Port 7006
-
-# Build React package
+# Build the React package (ESM + CJS + types + CSS)
 cd packages/react && npm run build
-
-# Build all packages (includes Angular for completeness)
+# or
 npm run build:all
 ```
 
@@ -68,10 +65,10 @@ npm run build:all
 
 ```bash
 # Generate design tokens from JSON source files
-# Located at: packages/core/scripts/design-tokens/sourceFiles/{primitives.json,tokens.json}
+# Source: packages/core/scripts/design-tokens/sourceFiles/{primitives.json,tokens.json}
 npm run generate:tokens
 
-# This auto-generates SCSS files in:
+# Output:
 # - packages/core/design-tokens/primitives/
 # - packages/core/design-tokens/tokens/public/
 ```
@@ -79,41 +76,34 @@ npm run generate:tokens
 ### Icons
 
 ```bash
-# Generate icon components from SVG files in core/assets/icons
-npm run generate:icons  # Generates for both React and Angular, runs lint:fix after
+# Generate React icon components from SVG files in core/assets/icons
+npm run generate:icons  # Runs @svgr/cli, then npm run lint:fix
 ```
 
-### Testing (React Focus)
+### Testing
 
 ```bash
-# React tests (primary)
-npm run test:react                 # React Storybook interaction tests (requires Storybook running)
-cd packages/react && npm test      # Vitest + Storybook test-runner
-
-# Core package tests
-cd packages/core && npm test       # Vitest
-
-# All packages (includes Angular)
-npm run test:all                   # Test both frameworks
+cd packages/react && npm test      # Storybook interaction tests (requires storybook running)
+cd packages/core && npm test       # Vitest (for design-token generator tests)
+npm run test:all                   # Alias for packages/react test
 ```
 
 ### Linting
 
 ```bash
-npm run lint        # Lint all packages
+npm run lint        # Lint root + packages/react
 npm run lint:fix    # Auto-fix linting issues (runs on pre-commit hook)
 ```
 
-### Test Apps (React Focus)
+### Test Apps
 
-Test apps validate bundled packages work correctly:
+Test apps validate that the bundled React package works in a real consumer:
 
 ```bash
-# React test app (primary)
 npm run prepare-test-app:react    # Bundle + install React test app
 npm run test-bundle:react         # Run React test app (Vite dev server)
 
-# Available test apps: test-apps/react, test-apps/react@19, test-apps/angular
+# Available: test-apps/react (React 18), test-apps/react@19 (React 19)
 ```
 
 ### Publishing & Releases
@@ -134,56 +124,53 @@ Design tokens are the single source of truth for design decisions. They follow a
 1. **Primitives** (`primitives.json`): Base values (colors, font sizes, spacing values)
 2. **Tokens** (`tokens.json`): Semantic tokens that reference primitives (e.g., `button-primary-background`)
 
-Generator scripts (`packages/core/scripts/design-tokens/`) transform these JSON files into SCSS variables that components consume. The tokens support theming and are organized into:
+Generator scripts (`packages/core/scripts/design-tokens/`) transform these JSON files into SCSS variables that components consume. The tokens are organized into:
+
 - **Public tokens**: Exposed for consumption (`_typography.scss`, `_spacing.scss`, `_layout.scss`, etc.)
 - **Private tokens**: Internal use only (`_size.scss`, `_shadows.scss`, etc.)
 
 ### Responsive Design
 
 The grid system uses 6 breakpoints defined in `packages/core/design-tokens/tokens/public/_layout.scss`:
+
 - `xxs`: 320px, `xs`: 480px, `s`: 768px, `m`: 1024px, `l`: 1440px, `xl`: 1768px
 
-Components can use responsive column spans via `Grid.Col` props: `xxs={2} xs={3} s={4} m={6} l={8} xl={12}`
+Components can use responsive column spans via `Grid.Col` props: `xxs={2} xs={3} s={4} m={6} l={8} xl={12}`.
 
 ### Component Architecture
 
 Each component follows this structure:
+
 ```
-component-name/
-├── ComponentName.tsx (React) or component-name.component.ts (Angular)
-├── ComponentName.stories.tsx (Storybook stories + interaction tests)
-├── component-name.scss (styles using core tokens)
-└── component-name.interface.d.ts (TypeScript interfaces in core)
+packages/react/src/components/component-name/
+├── ComponentName.tsx
+├── ComponentName.stories.tsx        # Storybook stories + interaction tests
+├── component-name.module.scss       # Styles using core tokens
+└── (optional) hooks/, utils.ts, etc.
 ```
 
-Interfaces are defined in `@rte-ds/core` and imported by React/Angular implementations for consistency.
+Component-prop interfaces, shared constants, and utility functions live under `packages/react/src/core-types/` using kebab-case folders (e.g. `core-types/button/button.interface.d.ts`, `core-types/tooltip/tooltip.constants.ts`). These were inlined from `@rte-ds/core/components/*` as part of the Angular-removal refactor — they are implementation details of `@rte-ds/react` and are NOT part of the `@rte-ds/core` public surface.
 
 ### Icon System
 
 Icons are SVG files stored in `packages/core/assets/icons/`. Running `npm run generate:icons`:
-1. Uses `@svgr/cli` to convert SVGs to React components
-2. Generates TypeScript icon map files
-3. Copies icons to Angular assets
-4. Runs linting to ensure code quality
+
+1. Uses `@svgr/cli` to convert SVGs to React components under `packages/react/src/components/icon/generated/`
+2. Generates a TypeScript icon map file
+3. Runs `npm run lint:fix` to format the output
 
 ### Storybook Structure
 
-The project uses a three-Storybook architecture:
-- **React Storybook** (port 7008): React component documentation
-- **Angular Storybook** (port 7007): Angular component documentation
-- **Design Docs Storybook** (port 7006): Unified documentation that references the other two via `refs` configuration
+Single Storybook on port **7008**, built from `packages/react/.storybook/`. Story globs:
 
-The design-docs Storybook includes:
-- Foundation documentation (colors, typography, spacing, grids)
-- Getting started guides
-- Framework-specific implementation guides
-- Links to framework-specific component documentation
+- `packages/react/src/**/*.stories.@(ts|tsx)` — component stories + interaction tests
+- `packages/react/src/**/*.mdx` — component documentation MDX
+- `packages/react/stories/**/*.mdx` — foundations, guidelines, getting-started, home
+- `packages/core/components/**/docs/**/*.mdx` — core-hosted component doc pages for components whose long-form documentation still lives under core
 
-### ES Module Compatibility
+Shared React documentation components (Accordion, Body, Heading, Header, ComponentDocs, DocsSection, List, Paragraph, Table, Usage, etc.) live at `packages/react/storybook-docs/` — deliberately outside `.storybook/` because Vite's import-analysis rejects cross-boundary imports into dot-prefixed directories. Every story MDX file in `packages/react/stories/` imports from this location via relative paths.
 
-The Storybook configuration (`packages/design-docs/.storybook/main.ts`) uses ES modules:
-- Uses `import.meta.url` and `fileURLToPath` instead of `__dirname`
-- Uses `import.meta.resolve()` instead of `require.resolve()`
+Storybook uses ES modules: `import.meta.url`, `fileURLToPath`, `import.meta.resolve()`.
 
 ## React-Specific Workflows
 
@@ -191,8 +178,9 @@ The Storybook configuration (`packages/design-docs/.storybook/main.ts`) uses ES 
 
 ```bash
 # React component generator (interactive)
-npm run generate:component  # From root
-cd packages/react && npm run generate:component  # From React package
+npm run generate:component
+# or from the React package
+cd packages/react && npm run generate:component
 ```
 
 This scaffolds a new component with proper structure, types, stories, and styles.
@@ -201,15 +189,15 @@ This scaffolds a new component with proper structure, types, stories, and styles
 
 ```
 packages/react/
+├── .storybook/        # Storybook config (main.ts, preview.tsx, manager.ts, theme, assets)
+├── storybook-docs/    # Shared docs React components consumed by story MDX files
+├── stories/           # Foundations, Guidelines, GetStarted, Home MDX stories
 ├── src/
-│   ├── components/        # React components (import from @rte-ds/react)
-│   │   ├── button/
-│   │   ├── grid/         # Grid.Col API for responsive layouts
-│   │   ├── icon/         # Auto-generated from SVGs
-│   │   └── ...
-│   └── utils/            # Shared utilities (concatClassNames, etc.)
-├── dist/                 # Build output (ESM + types + CSS)
-└── package.json          # Exports: . (components) and ./style.css
+│   ├── components/    # React components (the public API, re-exported from @rte-ds/react)
+│   ├── core-types/    # Component-prop interfaces, constants, utilities (kebab-case folders)
+│   └── utils/         # Cross-component utilities (concatClassNames, etc.)
+├── dist/              # Build output (ESM + CJS + types + CSS)
+└── package.json       # Exports: . (components) and ./style.css
 ```
 
 ### Using the React Package
@@ -240,6 +228,7 @@ cd packages/react
 
 npm run storybook          # Dev server on port 7008
 npm run build              # Build package to dist/
+npm run build-storybook    # Build static Storybook to ./storybook-static
 npm run test               # Run Storybook interaction tests
 npm run test:watch         # Watch mode for tests
 npm run lint               # ESLint
@@ -251,35 +240,35 @@ npm run generate-icons     # Regenerate icon components from SVGs
 
 - Pre-commit hook: Runs `npm run lint:fix` automatically
 - Uses changesets for version management and changelog generation
-- Main branch: `master` (note: not `main` despite changeset config)
+- Main branch: `master` (note: `.changeset/config.json` lists `main` as the baseBranch — a pre-existing mismatch that does not block local development)
 
 ## Build Outputs
 
 - **Core**: Generates CSS theme files and font files in `packages/core/css/`
-- **React**: Builds to `packages/react/dist/` (ESM bundle + types + CSS)
-- **Angular**: Builds to `packages/angular/dist/lib/` (Angular package format)
-- **Storybooks**: Build to static sites in `packages/design-docs/storybook-static/{react,angular}`
+- **React**: Builds to `packages/react/dist/` (ESM + CJS bundles + types + CSS)
+- **Storybook**: Static site at `packages/react/storybook-static/`
 
 ## Important File Locations
 
 - Design token sources: `packages/core/scripts/design-tokens/sourceFiles/`
-- Component interfaces: `packages/core/components/*/` (`.interface.d.ts` files)
+- Component-prop interfaces: `packages/react/src/core-types/*/` (`.interface.d.ts` files)
 - Design token SCSS: `packages/core/design-tokens/`
 - Typography mixins: `packages/core/design-tokens/abstract/mixins/_typography.scss`
-- Grid system: `packages/core/components/grid/grid.scss`
+- Grid system: `packages/core/components/grid/grid.scss` (the one SCSS file React still imports from core's components tree)
 - SVG icons: `packages/core/assets/icons/`
+- Storybook config: `packages/react/.storybook/`
+- Storybook shared docs components: `packages/react/storybook-docs/`
+- Core component documentation MDX: `packages/core/components/*/docs/*.mdx`
 
 ## Package Dependencies
 
 ```
-@rte-ds/core (base package - design tokens, SCSS, interfaces)
+@rte-ds/core (base package — design tokens, SCSS, CSS themes, SVG icons, core docs MDX)
     ↓
-@rte-ds/react → depends on core (PRIMARY PACKAGE FOR PRODUCTION USE)
-@rte-ds/angular → depends on core (available but not actively used)
-    ↓
-@rte-ds/design-docs → references both for documentation
+@rte-ds/react → depends on core
 ```
 
-**For React projects**: Install `@rte-ds/react` which includes `@rte-ds/core` as a dependency.
+**For React projects**: Install `@rte-ds/react`. Core is installed automatically as a dependency.
+
 - Peer dependency: `react >=18.0.0`
-- Includes: All components, TypeScript types, and compiled CSS
+- Includes: All components, TypeScript types (inlined from the former `@rte-ds/core` interfaces), and compiled CSS

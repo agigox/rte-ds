@@ -16,10 +16,8 @@ Generates a consolidated changelog by combining the latest changes from all pack
 The changelog generation process follows these steps:
 
 1. **Package Discovery**: Identifies all packages with changelog files:
-   - Angular (`packages/angular/projects/ds-rte-lib/CHANGELOG.md`)
    - React (`packages/react/CHANGELOG.md`)
    - Core (`packages/core/CHANGELOG.md`)
-   - Design Docs (`packages/design-docs/CHANGELOG.md`)
 
 2. **Document Parsing**: For each package changelog:
    - Extracts version headers (e.g., `## 1.2.3`)
@@ -35,7 +33,7 @@ The changelog generation process follows these steps:
 
 4. **Content Formatting**: 
    - Reconstructs changelog with consistent structure
-   - Maintains context grouping (e.g., `(Angular)`, `(React)`)
+   - Maintains context grouping (e.g., `(React)`)
    - Preserves change type categorization
    - Outputs clean, unified markdown format
 

@@ -11,17 +11,6 @@
   "ignorePaths": [
     "**/node_modules/**"
   ],
-  "major": {
-    "packageRules": [
-      {
-        "enabled": false,
-        "matchPackageNames": [
-          "@angular/{/,}**",
-          "@angular-devkit/{/,}**"
-        ]
-      }
-    ]
-  },
   "packageRules": [
     {
       "digest": {
@@ -29,13 +18,6 @@
       },
       "matchPackageNames": [
         "*"
-      ]
-    },
-    {
-      "groupName": "angular",
-      "matchPackageNames": [
-        "@angular/{/,}**",
-        "@angular-devkit/{/,}**"
       ]
     },
     {

@@ -12,7 +12,7 @@ export default defineConfig(
   eslintPluginPrettierRecommended,
   storybookPlugin.configs["flat/recommended"],
   {
-    ignores: ["**/dist", "**/storybook-static", "./dist", "./test-apps/angular/.angular"],
+    ignores: ["**/dist", "**/storybook-static", "./dist"],
   },
   {
     files: ["**/*.{js,ts,jsx,tsx}"],
