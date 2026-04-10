@@ -7,6 +7,7 @@ import Card from "./components/card/Card.tsx";
 import Checkbox from "./components/checkbox/Checkbox.tsx";
 import CheckboxGroup from "./components/checkboxGroup/CheckboxGroup.tsx";
 import Chip from "./components/chip/Chip.tsx";
+import DateTimePicker from "./components/dateTimePicker/DateTimePicker.tsx";
 import Divider from "./components/divider/Divider.tsx";
 import Grid from "./components/grid/Grid.tsx";
 import Icon from "./components/icon/Icon.tsx";
@@ -52,6 +53,7 @@ export {
   Tooltip,
   BaseTextInput as TextInput,
   Chip,
+  DateTimePicker,
   Badge,
   Textarea,
   Divider,

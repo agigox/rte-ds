@@ -139,10 +139,33 @@
         }
     }
 
+    &[data-variant='danger-secondary'] {
+        background: var(--background-default);
+        border: solid $width-xs var(--border-danger);
+        color: var(--content-danger-default);
+
+        &:hover {
+            background: var(--background-danger-hover-opacity-20);
+        }
+
+        &:active {
+            background: var(--background-danger-hover-opacity-20);
+            border-color: var(--content-danger-hover);
+            color: var(--content-danger-hover);
+        }
+
+        &:disabled {
+            background: var(--background-disabled);
+            border: solid $width-xs var(--border-disabled);
+            color: var(--content-disabled);
+            cursor: default;
+        }
+    }
+
     &[data-variant='neutral'] {
         background: none;
         border: none;
-        color: var(--content-primary);
+        color: var(--content-brand-default);
 
         &:hover {
             color: var(--content-secondary);

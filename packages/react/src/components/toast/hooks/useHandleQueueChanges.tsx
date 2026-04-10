@@ -25,7 +25,7 @@ const useHandleQueueChanges = (id: string, isOpen: boolean) => {
         }
       }
     }
-  }, [queue.length, isFirstInQueue, isInQueue, hideToast, id]);
+  }, [queue.length, isFirstInQueue, isInQueue, hideToast, showToast, id]);
 
   return { isInternalOpen, hideToast, showToast };
 };

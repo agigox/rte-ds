@@ -37,11 +37,7 @@ const ToastQueueProvider = ({ children }: { children: React.ReactNode }) => {
     [addToQueue, removeFromQueue, isFirstInQueue, isInQueue, queue],
   );
 
-  return (
-    <ToastQueueContext.Provider value={contextValue}>
-      {children}
-    </ToastQueueContext.Provider>
-  );
+  return <ToastQueueContext.Provider value={contextValue}>{children}</ToastQueueContext.Provider>;
 };
 
 export default ToastQueueProvider;

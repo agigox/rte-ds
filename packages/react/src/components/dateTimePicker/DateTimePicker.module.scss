@@ -1,0 +1,289 @@
+@use "@rte-ds/core/design-tokens/main-internal.scss" as *;
+
+.dateTimePicker {
+  position: relative;
+  width: 100%;
+}
+
+.label {
+  @include typography-text-m-regular;
+  color: var(--content-secondary);
+  display: flex;
+  align-items: flex-end;
+  padding: $positive-spacing_025 $positive-spacing_100;
+
+  .required {
+    color: var(--content-danger-default);
+    margin-left: $positive-spacing_025;
+  }
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+  border: $width-xs solid var(--border-secondary);
+  border-radius: $radius-s;
+  height: 32px;
+  padding: 0 $positive-spacing_100;
+  background: var(--background-default);
+  cursor: pointer;
+  transition: border-color 200ms;
+  box-sizing: border-box;
+
+  &:hover {
+    border-color: var(--border-primary);
+  }
+
+  &[data-open="true"] {
+    border-color: var(--border-brand-default);
+  }
+
+  &[data-error="true"] {
+    border-color: var(--border-danger);
+  }
+
+  &[data-disabled="true"] {
+    background: var(--background-disabled);
+    border-color: var(--border-disabled);
+    cursor: default;
+    pointer-events: none;
+  }
+}
+
+.inputValue {
+  @include typography-text-m-regular;
+  color: var(--content-primary);
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.inputPlaceholder {
+  @include typography-text-m-regular;
+  color: var(--content-tertiary);
+  flex: 1;
+}
+
+.inputIcons {
+  display: flex;
+  align-items: center;
+  gap: $positive-spacing_050;
+  margin-left: $positive-spacing_050;
+}
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--content-secondary);
+
+  &:hover {
+    color: var(--content-primary);
+  }
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  z-index: 100;
+  background: var(--background-default);
+  border-radius: $radius-m;
+  @include elevation-neutral-shadow-3;
+  display: flex;
+  overflow: hidden;
+  width: max-content;
+}
+
+.calendar {
+  flex: 1;
+  padding: $positive-spacing_200;
+  min-width: 0;
+}
+
+.calendarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $positive-spacing_150;
+}
+
+.calendarTitle {
+  @include typography-text-m-bold;
+  color: var(--content-primary);
+  text-transform: capitalize;
+}
+
+.navButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: $positive-spacing_050;
+  cursor: pointer;
+  color: var(--content-secondary);
+  border-radius: $radius-s;
+
+  &:hover {
+    background: var(--background-neutral-regular-hover);
+  }
+}
+
+.weekDays {
+  display: grid;
+  grid-template-columns: repeat(7, 32px);
+  gap: 2px;
+  margin-bottom: $positive-spacing_050;
+}
+
+.weekDay {
+  @include typography-text-s-bold;
+  color: var(--content-tertiary);
+  text-align: center;
+  padding: $positive-spacing_050 0;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 32px);
+  gap: 2px;
+}
+
+.day {
+  @include typography-text-m-regular;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  width: 32px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: $radius-s;
+  color: var(--content-primary);
+  padding: 0;
+
+  &:hover {
+    background: var(--background-neutral-regular-hover);
+  }
+
+  &[data-outside="true"] {
+    color: var(--content-tertiary);
+  }
+
+  &[data-selected="true"] {
+    background: var(--background-brand-default);
+    color: var(--content-primary-inverse);
+
+    &:hover {
+      background: var(--background-brand-hover);
+    }
+  }
+
+  &[data-today="true"]:not([data-selected="true"]) {
+    font-weight: 700;
+    border: $width-xs solid var(--border-brand-default);
+  }
+}
+
+.timePicker {
+  border-left: $width-xs solid var(--border-secondary);
+  padding: $positive-spacing_200;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 160px;
+}
+
+.timePickerTitle {
+  @include typography-text-m-bold;
+  color: var(--content-primary);
+  margin-bottom: $positive-spacing_150;
+  text-align: center;
+}
+
+.timeColumns {
+  display: flex;
+  align-items: flex-start;
+  gap: $positive-spacing_100;
+}
+
+.timeColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.timeColumnLabel {
+  @include typography-text-s-regular;
+  color: var(--content-tertiary);
+  margin-bottom: $positive-spacing_100;
+}
+
+.timeList {
+  display: flex;
+  flex-direction: column;
+  gap: $positive-spacing_025;
+  overflow-y: auto;
+  max-height: 140px;
+  width: 100%;
+  scrollbar-width: thin;
+}
+
+.timeItem {
+  @include typography-text-m-regular;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  min-height: 24px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: $radius-s;
+  color: var(--content-primary);
+  padding: 0;
+
+  &:hover {
+    background: var(--background-neutral-regular-hover);
+  }
+
+  &[data-selected="true"] {
+    background: var(--background-brand-default);
+    color: var(--content-primary-inverse);
+
+    &:hover {
+      background: var(--background-brand-hover);
+    }
+  }
+}
+
+.timeSeparator {
+  @include typography-text-m-bold;
+  color: var(--content-tertiary);
+  display: flex;
+  align-items: center;
+  padding-top: 24px;
+}
+
+.confirmButton {
+  display: flex;
+  justify-content: center;
+}
+
+.assistiveText {
+  @include typography-text-s-regular;
+  color: var(--content-secondary);
+  padding: $positive-spacing_025 $positive-spacing_100;
+
+  &[data-error="true"] {
+    color: var(--content-danger-default);
+  }
+}

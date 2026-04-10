@@ -16,7 +16,7 @@ const meta = {
   argTypes: {
     variant: {
       control: "select",
-      options: ["primary", "secondary", "text", "transparent", "danger", "neutral", "reverse"],
+      options: ["primary", "secondary", "text", "transparent", "danger", "danger-secondary", "neutral", "reverse"],
     },
     size: {
       control: "select",
@@ -157,8 +157,27 @@ export const IconVariants: Story = {
         <Button {...args} variant="primary" label="Primary" icon="check" />
         <Button {...args} variant="secondary" label="Secondary" icon="settings" />
         <Button {...args} variant="danger" label="Delete" icon="delete" />
+        <Button {...args} variant="danger-secondary" label="Danger Secondary" icon="delete" />
         <Button {...args} variant="text" label="Edit" icon="edit" />
         <Button {...args} variant="transparent" label="Info" icon="info" />
+      </div>
+    );
+  },
+};
+
+export const DangerSecondary: Story = {
+  args: {
+    ...Default.args,
+    variant: "danger-secondary",
+    label: "Supprimer",
+  },
+  render: (args) => {
+    return (
+      <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+        <Button {...args} size="s" label="Small" icon="delete" />
+        <Button {...args} size="m" label="Supprimer" icon="delete" />
+        <Button {...args} size="l" label="Large" icon="delete" />
+        <Button {...args} size="m" label="Disabled" icon="delete" disabled />
       </div>
     );
   },

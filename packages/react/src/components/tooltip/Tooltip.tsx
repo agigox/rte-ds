@@ -69,16 +69,21 @@ const Tooltip = forwardRef<HTMLDivElement, TooltipProps>(
           alignment,
         );
         setAutoPosition(computedPosition);
-        setCoordinates(computedCoordinates);
+        // Convert from document-relative (absolute) to viewport-relative (fixed)
+        setCoordinates({
+          top: computedCoordinates.top - window.scrollY,
+          left: computedCoordinates.left - window.scrollX,
+        });
       }
     }, [isOpen, position, arrow, tooltipElement, gap, alignment]);
 
     useEffect(() => {
       computePosition();
-      window.addEventListener("scroll", computePosition);
+      // Use capture phase to catch scroll events from all ancestor containers
+      window.addEventListener("scroll", computePosition, true);
 
       return () => {
-        window.removeEventListener("scroll", computePosition);
+        window.removeEventListener("scroll", computePosition, true);
       };
     }, [computePosition]);
 
