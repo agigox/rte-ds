@@ -17,7 +17,7 @@ function parsePackagesArg() {
       .map((pkg) => pkg.trim())
       .filter(Boolean);
   }
-  return ["core", "angular", "react"];
+  return ["core", "react"];
 }
 
 const packages = parsePackagesArg();
@@ -70,7 +70,7 @@ function copyCoreToDist() {
 function copyFrameworkToDist(packageName) {
   const packageRoot = path.resolve(__dirname, `../packages/${packageName}`);
   const packageOut = path.join(distDir, packageName);
-  const sourceDir = packageName === "angular" ? path.join(packageRoot, "dist/lib") : path.join(packageRoot, "dist");
+  const sourceDir = path.join(packageRoot, "dist");
 
   if (!fs.existsSync(sourceDir)) {
     console.error(`❌ Build output not found for ${packageName} at ${sourceDir}`);

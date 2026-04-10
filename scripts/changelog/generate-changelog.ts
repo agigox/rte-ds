@@ -13,10 +13,6 @@ const MINOR_VERSIONS_COUNT = 3;
 
 const packages = [
   {
-    name: "Angular",
-    changelogPath: path.resolve(__dirname, "../../packages/angular/projects/ds-rte-lib/CHANGELOG.md"),
-  },
-  {
     name: "React",
     changelogPath: path.resolve(__dirname, "../../packages/react/CHANGELOG.md"),
   },
