@@ -1,10 +1,10 @@
-import { BadgeContent, BadgeSize, BadgeType } from "@rte-ds/core/components/badge/badge.interface";
-import { DropdownProps } from "@rte-ds/core/components/dropdown/dropdown.interface";
 import { TESTING_DOWN_KEY, TESTING_UP_KEY } from "@rte-ds/core/constants/keyboard/keyboard-test.constants";
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, userEvent, waitFor, within } from "@storybook/test";
 import { useState } from "react";
 
+import { BadgeContent, BadgeSize, BadgeType } from "../../../core-types/badge/badge.interface";
+import { DropdownProps } from "../../../core-types/dropdown/dropdown.interface";
 import Button from "../../button/Button";
 import { RegularIcons as RegularIconsList, TogglableIcons as TogglableIconsList } from "../../icon/IconMap";
 import { Dropdown } from "../Dropdown";

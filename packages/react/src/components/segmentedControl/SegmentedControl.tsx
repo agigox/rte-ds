@@ -1,6 +1,7 @@
-import { getSegmentPosition } from "@rte-ds/core/components/segmented-control/segmented-control-utils";
-import { SegmentedControlProps as CoreSegmentedControlProps } from "@rte-ds/core/components/segmented-control/segmented-control.interface";
 import { forwardRef } from "react";
+
+import { getSegmentPosition } from "../../core-types/segmented-control/segmented-control-utils";
+import { SegmentedControlProps as CoreSegmentedControlProps } from "../../core-types/segmented-control/segmented-control.interface";
 
 import Segment from "./Segment";
 import style from "./SegmentedControl.module.scss";

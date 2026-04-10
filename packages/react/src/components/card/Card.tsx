@@ -1,8 +1,8 @@
-import { cardSize } from "@rte-ds/core/components/card/card.constats";
-import { CardProps as CardPropsCore } from "@rte-ds/core/components/card/card.interface";
 import { ENTER_KEY, SPACE_KEY } from "@rte-ds/core/constants/keyboard/keyboard.constants";
 import React, { HTMLAttributes, forwardRef, KeyboardEvent } from "react";
 
+import { cardSize } from "../../core-types/card/card.constats";
+import { CardProps as CardPropsCore } from "../../core-types/card/card.interface";
 import { useActiveKeyboard } from "../../hooks/useActiveKeyboard";
 
 import styles from "./Card.module.scss";

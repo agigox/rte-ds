@@ -1,15 +1,3 @@
-import {
-  APPEARANCE_CONFIG,
-  DROPDOWN_OFFSET,
-  SEARCHBAR_BORDER_RADIUS,
-  SEARCHBAR_BUTTON_HEIGHT_COMPACT,
-  SEARCHBAR_BUTTON_WIDTH,
-  SEARCHBAR_PADDING_LEFT,
-} from "@rte-ds/core/components/searchbar/searchbar.constants";
-import {
-  SearchBarProps as CoreSearchBarProps,
-  SearchBarAppearance,
-} from "@rte-ds/core/components/searchbar/searchbar.interface";
 import { ENTER_KEY } from "@rte-ds/core/constants/keyboard/keyboard.constants";
 import {
   CSSProperties,
@@ -23,6 +11,18 @@ import {
   useState,
 } from "react";
 
+import {
+  APPEARANCE_CONFIG,
+  DROPDOWN_OFFSET,
+  SEARCHBAR_BORDER_RADIUS,
+  SEARCHBAR_BUTTON_HEIGHT_COMPACT,
+  SEARCHBAR_BUTTON_WIDTH,
+  SEARCHBAR_PADDING_LEFT,
+} from "../../core-types/searchbar/searchbar.constants";
+import {
+  SearchBarProps as CoreSearchBarProps,
+  SearchBarAppearance,
+} from "../../core-types/searchbar/searchbar.interface";
 import { Dropdown } from "../dropdown/Dropdown";
 import { DropdownItem } from "../dropdown/dropdownItem/DropdownItem";
 import IconButton from "../iconButton/IconButton";

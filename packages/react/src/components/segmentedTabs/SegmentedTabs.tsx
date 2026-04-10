@@ -1,5 +1,3 @@
-import { shouldDisplayBadge } from "@rte-ds/core/components/badge/badge.utils";
-import { SegmentedTabsProps as CoreSegmentedTabsProps } from "@rte-ds/core/components/segmented-tabs/segmented-tabs.interface";
 import {
   ARROW_LEFT_KEY,
   ARROW_RIGHT_KEY,
@@ -8,6 +6,8 @@ import {
 } from "@rte-ds/core/constants/keyboard/keyboard.constants";
 import { forwardRef, useRef, useState } from "react";
 
+import { shouldDisplayBadge } from "../../core-types/badge/badge.utils";
+import { SegmentedTabsProps as CoreSegmentedTabsProps } from "../../core-types/segmented-tabs/segmented-tabs.interface";
 import Badge from "../badge/Badge";
 import Icon from "../icon/Icon";
 import { concatClassNames } from "../utils";

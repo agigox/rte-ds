@@ -15,7 +15,7 @@
   "keywords": [],
   "author": "",
   "license": "Apache-2.0",
-  "description": "Design Tokens, interfaces and utilities for the Design System RTE",
+  "description": "Design tokens, SCSS mixins, and CSS themes/fonts for the Design System RTE",
   "publishConfig": {
     "access": "public"
   },

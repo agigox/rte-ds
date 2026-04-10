@@ -1,7 +1,7 @@
-import { ButtonProps as CoreButtonProps } from "@rte-ds/core/components/button/button.interface";
-import { ButtonBadgeSizeMapping } from "@rte-ds/core/components/button/common/common-button.constants";
 import { forwardRef } from "react";
 
+import { ButtonProps as CoreButtonProps } from "../../core-types/button/button.interface";
+import { ButtonBadgeSizeMapping } from "../../core-types/button/common/common-button.constants";
 import Badge from "../badge/Badge";
 import Icon from "../icon/Icon";
 import { concatClassNames } from "../utils";

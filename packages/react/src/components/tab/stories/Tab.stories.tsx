@@ -1,4 +1,3 @@
-import { BadgeContent, BadgeType } from "@rte-ds/core/components/badge/badge.interface";
 import {
   TESTING_ARROW_LEFT_KEY,
   TESTING_ARROW_RIGHT_KEY,
@@ -8,6 +7,7 @@ import { within, expect, userEvent } from "@storybook/test";
 import { useState } from "react";
 
 import { focusElementBeforeComponent } from "../../../../.storybook/testing/testing.utils";
+import { BadgeContent, BadgeType } from "../../../core-types/badge/badge.interface";
 import Tab from "../Tab";
 
 const meta = {

@@ -1,7 +1,7 @@
-import { sideNavCollapsedSize, sideNavPanelSize } from "@rte-ds/core/components/side-nav/side-nav.constants";
-import { BaseSideNavProps as CoreSideNavProps } from "@rte-ds/core/components/side-nav/side-nav.interface";
 import { forwardRef, ReactNode, useRef } from "react";
 
+import { sideNavCollapsedSize, sideNavPanelSize } from "../../../core-types/side-nav/side-nav.constants";
+import { BaseSideNavProps as CoreSideNavProps } from "../../../core-types/side-nav/side-nav.interface";
 import Icon from "../../icon/Icon";
 
 import style from "./BaseSideNav.module.scss";

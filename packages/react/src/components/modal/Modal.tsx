@@ -1,7 +1,7 @@
-import { IconSize } from "@rte-ds/core/components/icon/icon.constants";
-import type { ModalProps as coreModalProps } from "@rte-ds/core/components/modal/modal.interface";
 import { forwardRef, useCallback, useEffect, useRef, useState } from "react";
 
+import { IconSize } from "../../core-types/icon/icon.constants";
+import type { ModalProps as coreModalProps } from "../../core-types/modal/modal.interface";
 import useAnimatedMount from "../../hooks/useAnimatedMount";
 import { useClickAway } from "../../hooks/useClickAway";
 import { useFocusTrap } from "../../hooks/useFocusTrap";

@@ -1,6 +1,6 @@
-import { SelectableChipProps as CoreSelectableChipProps } from "@rte-ds/core/components/selectableChip/selectable-chip.interface";
 import { forwardRef, useCallback, useEffect, useRef, useState } from "react";
 
+import { SelectableChipProps as CoreSelectableChipProps } from "../../core-types/selectableChip/selectable-chip.interface";
 import Icon from "../icon/Icon";
 import { concatClassNames } from "../utils";
 

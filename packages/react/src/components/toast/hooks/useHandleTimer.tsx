@@ -1,6 +1,7 @@
-import { ToastDurationMap } from "@rte-ds/core/components/toast/toast.constants";
-import { ToastDuration } from "@rte-ds/core/components/toast/toast.interface";
 import { useCallback, useEffect, useRef } from "react";
+
+import { ToastDurationMap } from "../../../core-types/toast/toast.constants";
+import { ToastDuration } from "../../../core-types/toast/toast.interface";
 
 type TimeoutProperties = {
   shouldStartTimer: boolean;

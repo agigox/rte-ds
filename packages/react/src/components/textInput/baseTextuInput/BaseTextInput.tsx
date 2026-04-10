@@ -1,9 +1,4 @@
 import {
-  BaseTextInputProps as CoreTextInputProps,
-  RightIconAction,
-  RightIconName,
-} from "@rte-ds/core/components/text-input/text-input.interface";
-import {
   ChangeEvent,
   CSSProperties,
   forwardRef,
@@ -14,6 +9,11 @@ import {
   useState,
 } from "react";
 
+import {
+  BaseTextInputProps as CoreTextInputProps,
+  RightIconAction,
+  RightIconName,
+} from "../../../core-types/text-input/text-input.interface";
 import AssistiveText from "../../assistivetext/AssistiveText";
 import Icon from "../../icon/Icon";
 import IconButton from "../../iconButton/IconButton";

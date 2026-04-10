@@ -1,6 +1,6 @@
-import { DateTimePickerProps as CoreDateTimePickerProps } from "@rte-ds/core/components/dateTimePicker/date-time-picker.interface";
 import { forwardRef, useCallback, useEffect, useRef, useState } from "react";
 
+import { DateTimePickerProps as CoreDateTimePickerProps } from "../../core-types/dateTimePicker/date-time-picker.interface";
 import Button from "../button/Button";
 import Icon from "../icon/Icon";
 import { concatClassNames } from "../utils";

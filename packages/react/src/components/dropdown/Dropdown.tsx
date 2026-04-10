@@ -1,12 +1,3 @@
-import { Alignment, Position } from "@rte-ds/core/components/common/common-types";
-import { DROPDOWN_ANIMATION_DURATION } from "@rte-ds/core/components/dropdown/dropdown.constants";
-import { DropdownProps as CoreDropdownProps } from "@rte-ds/core/components/dropdown/dropdown.interface";
-import { DropdownManager } from "@rte-ds/core/components/dropdown/DropdownManager";
-import {
-  getAutoAlignment,
-  getAutoPlacementDropdown,
-  getCoordinates,
-} from "@rte-ds/core/components/utils/auto-placement";
 import {
   ARROW_DOWN_KEY,
   ARROW_UP_KEY,
@@ -16,6 +7,11 @@ import {
 } from "@rte-ds/core/constants/keyboard/keyboard.constants";
 import { useEffect, useState, useRef, useCallback, forwardRef, useContext } from "react";
 
+import { Alignment, Position } from "../../core-types/common/common-types";
+import { DROPDOWN_ANIMATION_DURATION } from "../../core-types/dropdown/dropdown.constants";
+import { DropdownProps as CoreDropdownProps } from "../../core-types/dropdown/dropdown.interface";
+import { DropdownManager } from "../../core-types/dropdown/DropdownManager";
+import { getAutoAlignment, getAutoPlacementDropdown, getCoordinates } from "../../core-types/utils/auto-placement";
 import { useActiveKeyboard } from "../../hooks/useActiveKeyboard";
 import useAnimatedMount from "../../hooks/useAnimatedMount";
 import Divider from "../divider/Divider";

@@ -1,11 +1,3 @@
-import { shouldDisplayBadge } from "@rte-ds/core/components/badge/badge.utils";
-import {
-  focusNextNotSegmentElement,
-  focusNextSegmentElement,
-  focusPreviousNotSegmentElement,
-  focusPreviousSegmentElement,
-} from "@rte-ds/core/components/segmented-control/segmented-control-utils";
-import { SegmentProps as CoreSegmentProps } from "@rte-ds/core/components/segmented-control/segmented-control.interface";
 import {
   ARROW_LEFT_KEY,
   ARROW_RIGHT_KEY,
@@ -15,6 +7,14 @@ import {
 } from "@rte-ds/core/constants/keyboard/keyboard.constants";
 import { useRef } from "react";
 
+import { shouldDisplayBadge } from "../../core-types/badge/badge.utils";
+import {
+  focusNextNotSegmentElement,
+  focusNextSegmentElement,
+  focusPreviousNotSegmentElement,
+  focusPreviousSegmentElement,
+} from "../../core-types/segmented-control/segmented-control-utils";
+import { SegmentProps as CoreSegmentProps } from "../../core-types/segmented-control/segmented-control.interface";
 import { useActiveKeyboard } from "../../hooks/useActiveKeyboard";
 import { useSelectFocusableElements } from "../../hooks/useSelectFocusableElements";
 import Badge from "../badge/Badge";

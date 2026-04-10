@@ -1,6 +1,7 @@
-import { NavItemProps } from "@rte-ds/core/components/side-nav/nav-item/nav-item.interface";
 import { Decorator } from "@storybook/react";
 import { useState } from "react";
+
+import { NavItemProps } from "../../../../core-types/side-nav/nav-item/nav-item.interface";
 
 function createCollapsedStateDecorator(): Decorator {
   return function CollapsedStateDecorator(Story, context) {

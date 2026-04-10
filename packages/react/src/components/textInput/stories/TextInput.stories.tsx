@@ -1,9 +1,9 @@
-import { TextInputProps } from "@rte-ds/core/components/text-input/text-input.interface";
 import { SPACE_KEY } from "@rte-ds/core/constants/keyboard/keyboard.constants";
 import { Meta, StoryObj } from "@storybook/react";
 import { fn, within, userEvent, expect, waitFor } from "@storybook/test";
 
 import { focusElementBeforeComponent } from "../../../../.storybook/testing/testing.utils";
+import { TextInputProps } from "../../../core-types/text-input/text-input.interface";
 import { RegularIcons as RegularIconsList, TogglableIcons as TogglableIconsList } from "../../icon/IconMap";
 import TextInput from "../TextInput";
 

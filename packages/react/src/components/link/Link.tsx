@@ -1,6 +1,6 @@
-import { LinkProps as CoreLinkProps } from "@rte-ds/core/components/link/link.interface";
 import { forwardRef } from "react";
 
+import { LinkProps as CoreLinkProps } from "../../core-types/link/link.interface";
 import Icon from "../icon/Icon";
 import { concatClassNames } from "../utils";
 

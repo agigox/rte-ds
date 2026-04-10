@@ -1,4 +1,4 @@
-import UsageTemplate from "../../../../design-docs/src/components/Usage/Usage";
+import UsageTemplate from "../../../../react/storybook-docs/Usage/Usage";
 
 import doNotSvg from "./assets/doNot.svg";
 

@@ -1,6 +1,6 @@
-import { TagProps as TagPropsCore } from "@rte-ds/core/components/tag/tag.interface";
 import { forwardRef } from "react";
 
+import { TagProps as TagPropsCore } from "../../core-types/tag/tag.interface";
 import Icon, { RegularIconIdKey, TogglableIconIdKey } from "../icon/Icon";
 import { isValidIconName } from "../icon/IconMap";
 

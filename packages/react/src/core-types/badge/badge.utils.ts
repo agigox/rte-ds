@@ -1,4 +1,4 @@
-import { IconSize } from "@rte-ds/core/components/icon/icon.constants";
+import { IconSize } from "../icon/icon.constants";
 
 import { BadgeContent, BadgeSize } from "./badge.interface";
 

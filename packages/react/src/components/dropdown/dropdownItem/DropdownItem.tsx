@@ -1,6 +1,3 @@
-import { shouldDisplayBadge } from "@rte-ds/core/components/badge/badge.utils";
-import { DropdownItemProps as CoreDropdownItemProps } from "@rte-ds/core/components/dropdown/dropdown.interface";
-import { DropdownManager } from "@rte-ds/core/components/dropdown/DropdownManager";
 import {
   ARROW_DOWN_KEY,
   ARROW_UP_KEY,
@@ -11,6 +8,9 @@ import {
 } from "@rte-ds/core/constants/keyboard/keyboard.constants";
 import { useContext } from "react";
 
+import { shouldDisplayBadge } from "../../../core-types/badge/badge.utils";
+import { DropdownItemProps as CoreDropdownItemProps } from "../../../core-types/dropdown/dropdown.interface";
+import { DropdownManager } from "../../../core-types/dropdown/DropdownManager";
 import { useActiveKeyboard } from "../../../hooks/useActiveKeyboard";
 import Badge from "../../badge/Badge";
 import Divider from "../../divider/Divider";

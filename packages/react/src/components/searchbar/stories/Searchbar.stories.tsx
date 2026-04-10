@@ -1,9 +1,9 @@
-import { DROPDOWN_OFFSET } from "@rte-ds/core/components/searchbar/searchbar.constants";
 import { TESTING_DOWN_KEY, TESTING_ENTER_KEY } from "@rte-ds/core/constants/keyboard/keyboard-test.constants";
 import type { Meta, StoryObj } from "@storybook/react";
 import { expect, userEvent, waitFor, within } from "@storybook/test";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
+import { DROPDOWN_OFFSET } from "../../../core-types/searchbar/searchbar.constants";
 import { Dropdown } from "../../dropdown/Dropdown";
 import { DropdownItem } from "../../dropdown/dropdownItem/DropdownItem";
 import Searchbar from "../Searchbar";

@@ -1,8 +1,8 @@
-import { NavItemProps } from "@rte-ds/core/components/side-nav/nav-item/nav-item.interface";
-import { NavMenuProps as CoreNavMenuProps } from "@rte-ds/core/components/side-nav/nav-menu/nav-menu.interface";
-import { dividerAppearanceBySideNavAppearance } from "@rte-ds/core/components/side-nav/side-nav.constants";
 import { forwardRef, Fragment, HTMLAttributes, ReactNode, useState } from "react";
 
+import { NavItemProps } from "../../../core-types/side-nav/nav-item/nav-item.interface";
+import { NavMenuProps as CoreNavMenuProps } from "../../../core-types/side-nav/nav-menu/nav-menu.interface";
+import { dividerAppearanceBySideNavAppearance } from "../../../core-types/side-nav/side-nav.constants";
 import Badge from "../../badge/Badge";
 import Divider from "../../divider/Divider";
 import Icon from "../../icon/Icon";

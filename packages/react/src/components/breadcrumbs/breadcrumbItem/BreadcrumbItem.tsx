@@ -1,7 +1,7 @@
-import { shouldDisplayBadge as coreShouldDisplayBadge } from "@rte-ds/core/components/badge/badge.utils";
-import { BreadcrumbProps } from "@rte-ds/core/components/breadcrumbs/breadcrumbs.interface";
 import { useEffect, useRef, useState } from "react";
 
+import { shouldDisplayBadge as coreShouldDisplayBadge } from "../../../core-types/badge/badge.utils";
+import { BreadcrumbProps } from "../../../core-types/breadcrumbs/breadcrumbs.interface";
 import Badge from "../../badge/Badge";
 import Link from "../../link/Link";
 import Tooltip from "../../tooltip/Tooltip";

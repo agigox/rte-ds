@@ -1,5 +1,4 @@
-import { GridProps as CoreGridProps, ColProps as CoreColProps } from "@rte-ds/core/components/grid/grid.interface";
-
+import { GridProps as CoreGridProps, ColProps as CoreColProps } from "../../core-types/grid/grid.interface";
 import { concatClassNames } from "../utils";
 import "@rte-ds/core/components/grid/grid.scss";
 

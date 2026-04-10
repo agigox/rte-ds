@@ -1,6 +1,6 @@
-import { RadioButtonGroupProps as CoreRadioButtonGroupProps } from "@rte-ds/core/components/radio-button-group/radio-button-group.interface";
 import React, { forwardRef, useState } from "react";
 
+import { RadioButtonGroupProps as CoreRadioButtonGroupProps } from "../../core-types/radio-button-group/radio-button-group.interface";
 import RadioButton from "../radioButton/RadioButton";
 import RequiredIndicator from "../requiredindicator/RequiredIndicator";
 import Tooltip from "../tooltip/Tooltip";

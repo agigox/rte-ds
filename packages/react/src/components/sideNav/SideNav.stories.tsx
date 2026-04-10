@@ -1,10 +1,10 @@
-import { NavItemProps } from "@rte-ds/core/components/side-nav/nav-item/nav-item.interface";
 import { TESTING_ENTER_KEY, TESTING_SPACE_KEY } from "@rte-ds/core/constants/keyboard/keyboard-test.constants";
 import { Meta, StoryObj } from "@storybook/react";
 import { expect, userEvent, within } from "@storybook/test";
 import { useState } from "react";
 
 import { focusElementBeforeComponent } from "../../../.storybook/testing/testing.utils";
+import { NavItemProps } from "../../core-types/side-nav/nav-item/nav-item.interface";
 import Button from "../button/Button";
 import Icon from "../icon/Icon";
 import IconButton from "../iconButton/IconButton";

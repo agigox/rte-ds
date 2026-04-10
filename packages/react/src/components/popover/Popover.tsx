@@ -1,9 +1,9 @@
-import { POPOVER_GAP, POPOVER_GAP_ARROW } from "@rte-ds/core/components/popover/popover.constants";
-import { PopoverProps as CorePopoverProps } from "@rte-ds/core/components/popover/popover.interface";
-import { getAutoAlignment, getAutoPlacement, getCoordinates } from "@rte-ds/core/components/utils/auto-placement";
 import { ENTER_KEY } from "@rte-ds/core/constants/keyboard/keyboard.constants";
 import { forwardRef, useCallback, useEffect, useRef, useState } from "react";
 
+import { POPOVER_GAP, POPOVER_GAP_ARROW } from "../../core-types/popover/popover.constants";
+import { PopoverProps as CorePopoverProps } from "../../core-types/popover/popover.interface";
+import { getAutoAlignment, getAutoPlacement, getCoordinates } from "../../core-types/utils/auto-placement";
 import useAnimatedMount from "../../hooks/useAnimatedMount";
 import { useClickAway } from "../../hooks/useClickAway";
 import { useFocusTrap } from "../../hooks/useFocusTrap";
