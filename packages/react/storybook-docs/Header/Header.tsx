@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
-import figma from "../../img/figma.png";
-import github from "../../img/github.png";
+import figma from "../img/figma.png";
+import github from "../img/github.png";
 
 import "./Header.scss";
 
