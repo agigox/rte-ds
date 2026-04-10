@@ -4,3 +4,4 @@ storybook-static
 .vscode
 .cursorrules
 dist
+.claude/worktrees
