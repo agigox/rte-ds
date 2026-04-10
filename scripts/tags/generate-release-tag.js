@@ -36,12 +36,10 @@ function generateTagMessage(customMessage) {
   try {
     const reactVersion = getPackageVersion("react");
     const coreVersion = getPackageVersion("core");
-    const designDocsVersion = getPackageVersion("design-docs");
 
     const versionsInfo = `Package Versions:
   - React: ${reactVersion}
-  - Core: ${coreVersion}
-  - Design Docs: ${designDocsVersion}`;
+  - Core: ${coreVersion}`;
 
     return customMessage ? `${customMessage}\n\n${versionsInfo}` : `Release\n\n${versionsInfo}`;
   } catch (error) {
