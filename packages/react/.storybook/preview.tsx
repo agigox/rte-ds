@@ -3,7 +3,7 @@ import "@rte-ds/react/style.css";
 import "@rte-ds/core/css/rte-fonts.css";
 
 import "./preview.scss";
-import "./docs-styles/CodeBlocks.css";
+import "../storybook-docs/styles/CodeBlocks.css";
 
 import ThemeSelector from "./template/ThemeSelector/ThemeSelector";
 

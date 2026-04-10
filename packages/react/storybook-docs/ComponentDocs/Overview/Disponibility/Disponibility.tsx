@@ -1,8 +1,8 @@
 import "./Disponibility.scss";
-import Icon from "../../../../../src/components/icon/Icon";
-import figmaLogo from "../../../../asset/img/figma-logo.svg";
-import reactLogo from "../../../../asset/img/react-logo.svg";
-import storybookLogo from "../../../../asset/img/storybook-logo.svg";
+import Icon from "../../../../src/components/icon/Icon";
+import figmaLogo from "../../../img/figma-logo.svg";
+import reactLogo from "../../../img/react-logo.svg";
+import storybookLogo from "../../../img/storybook-logo.svg";
 
 interface DisponibilityProps {
   design?: {
