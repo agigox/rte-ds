@@ -1,5 +1,5 @@
-import Table from "../../../../design-docs/src/components/Table/Table";
-import UsageTemplate from "../../../../design-docs/src/components/Usage/Usage";
+import Table from "../../../../react/storybook-docs/Table/Table";
+import UsageTemplate from "../../../../react/storybook-docs/Usage/Usage";
 
 import doNotSvg from "./assets/doNot.svg";
 

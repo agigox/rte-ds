@@ -1,16 +1,4 @@
-import {
-  APPEARANCE_CONFIG,
-  DROPDOWN_OFFSET,
-  SEARCHBAR_BORDER_RADIUS,
-  SEARCHBAR_BUTTON_HEIGHT_COMPACT,
-  SEARCHBAR_BUTTON_WIDTH,
-  SEARCHBAR_PADDING_LEFT,
-} from "@rte-ds/core/components/searchbar/searchbar.constants";
-import {
-  SearchBarProps as CoreSearchBarProps,
-  SearchBarAppearance,
-} from "@rte-ds/core/components/searchbar/searchbar.interface";
-import { ENTER_KEY } from "@rte-ds/core/constants/keyboard/keyboard.constants";
+import { ARROW_DOWN_KEY, ENTER_KEY, ESCAPE_KEY } from "@rte-ds/core/constants/keyboard/keyboard.constants";
 import {
   CSSProperties,
   InputHTMLAttributes,
@@ -18,13 +6,27 @@ import {
   forwardRef,
   useCallback,
   useEffect,
+  useId,
   useMemo,
   useRef,
   useState,
 } from "react";
 
+import {
+  APPEARANCE_CONFIG,
+  DROPDOWN_OFFSET,
+  SEARCHBAR_BORDER_RADIUS,
+  SEARCHBAR_BUTTON_HEIGHT_COMPACT,
+  SEARCHBAR_BUTTON_WIDTH,
+  SEARCHBAR_PADDING_LEFT,
+} from "../../core-types/searchbar/searchbar.constants";
+import {
+  SearchBarProps as CoreSearchBarProps,
+  SearchBarAppearance,
+} from "../../core-types/searchbar/searchbar.interface";
 import { Dropdown } from "../dropdown/Dropdown";
 import { DropdownItem } from "../dropdown/dropdownItem/DropdownItem";
+import { focusDropdownFirstElement } from "../dropdown/DropdownUtils";
 import IconButton from "../iconButton/IconButton";
 import BaseTextInput from "../textInput/baseTextuInput/BaseTextInput";
 
@@ -39,13 +41,13 @@ interface SearchbarProps
   onClear?: () => void;
 }
 
-function getTextInputStyles(appearance: SearchBarAppearance, hasLeftIcon: boolean): CSSProperties {
+function getTextInputStyles(appearance: SearchBarAppearance): CSSProperties {
   const baseStyles: CSSProperties = {};
 
   if (appearance === "primary") {
     baseStyles.borderRight = "none";
     baseStyles.borderRadius = `${SEARCHBAR_BORDER_RADIUS} 0 0 ${SEARCHBAR_BORDER_RADIUS}`;
-    if (!hasLeftIcon) {
+    if (!APPEARANCE_CONFIG.primary.showLeftIcon) {
       baseStyles.paddingLeft = SEARCHBAR_PADDING_LEFT;
     }
   } else if (appearance === "secondary") {
@@ -93,7 +95,25 @@ const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
     const [dropdownWidth, setDropdownWidth] = useState<number | undefined>(undefined);
     const wrapperRef = useRef<HTMLDivElement>(null);
 
-    const hasOptions = options && options.length > 0;
+    // Fall back to a stable auto-generated id when the consumer doesn't
+    // provide one — BaseTextInput requires a non-empty id, and aria-controls
+    // below needs a real value to point at the listbox (FIX #11).
+    const generatedId = useId();
+    const resolvedId = id ?? generatedId;
+
+    // `isAutocomplete` signals "consumer wants autocomplete" (they passed an
+    // `options` prop, even if currently empty). `hasOptions` signals "the
+    // dropdown has something to show right now". The distinction matters
+    // because we ALWAYS keep the Dropdown mounted in autocomplete mode —
+    // otherwise the JSX structure would flip between bare content and
+    // <Dropdown>{content}</Dropdown> on every transition to/from an empty
+    // options array, remounting the <input> and dropping focus mid-typing.
+    const isAutocomplete = options !== undefined;
+    const hasOptions = isAutocomplete && options.length > 0;
+    // Track hasOptions via a ref so focus listeners can read the latest value
+    // without the effect re-attaching on every toggle (FIX #4).
+    const hasOptionsRef = useRef(hasOptions);
+    hasOptionsRef.current = hasOptions;
 
     const displayedOptions = useMemo(() => {
       if (!options) return [];
@@ -101,23 +121,48 @@ const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
       return options;
     }, [options, maxDisplayedItems]);
 
+    const autocompleteDropdownId = `${resolvedId}-autocomplete`;
+    // Mirror the id into a ref so the mount-only focusout listener can look
+    // up the current dropdown DOM node without re-attaching on every render.
+    const autocompleteDropdownIdRef = useRef(autocompleteDropdownId);
+    autocompleteDropdownIdRef.current = autocompleteDropdownId;
+
+    // Attach focusin/focusout once on mount. The handlers read hasOptions
+    // from a ref so they never go stale (FIX #4).
     useEffect(() => {
       const wrapper = wrapperRef.current;
       if (!wrapper) return;
 
+      // A node counts as "still inside the Searchbar focus group" if it's
+      // in the wrapper OR in the autocomplete dropdown. The Dropdown renders
+      // in a React portal via <Overlay>, so wrapper.contains() alone would
+      // miss DropdownItems and close the dropdown the instant the user
+      // ArrowDown'd into it.
+      const isInFocusGroup = (node: Node | null): boolean => {
+        if (!node) return false;
+        if (wrapper.contains(node)) return true;
+        const id = autocompleteDropdownIdRef.current;
+        const dropdownEl = document.querySelector(`[data-dropdown-id="${CSS.escape(id)}"]`);
+        return !!(dropdownEl && dropdownEl.contains(node));
+      };
+
       const handleFocusIn = () => {
         setHasFocusWithin(true);
-        if (hasOptions) {
+        if (hasOptionsRef.current) {
           setIsDropdownOpen(true);
         }
       };
 
       const handleFocusOut = (event: FocusEvent) => {
         const next = event.relatedTarget as Node | null;
-        if (next && wrapper.contains(next)) {
+        if (isInFocusGroup(next)) {
           return;
         }
         setHasFocusWithin(false);
+        // Close the dropdown when focus leaves the whole Searchbar group
+        // (ARCH #14). The isInFocusGroup check above ensures keyboard nav
+        // INTO the dropdown doesn't trigger this branch.
+        setIsDropdownOpen(false);
       };
 
       wrapper.addEventListener("focusin", handleFocusIn);
@@ -127,12 +172,24 @@ const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
         wrapper.removeEventListener("focusin", handleFocusIn);
         wrapper.removeEventListener("focusout", handleFocusOut);
       };
-    }, [hasOptions]);
+    }, []);
 
+    // Measure the trigger width once when autocomplete activates AND on every
+    // resize so the dropdown always matches (FIX #5).
     useEffect(() => {
-      if (wrapperRef.current && hasOptions) {
-        setDropdownWidth(wrapperRef.current.offsetWidth);
-      }
+      const el = wrapperRef.current;
+      if (!el || !hasOptions) return;
+
+      setDropdownWidth(el.offsetWidth);
+
+      const observer = new ResizeObserver((entries) => {
+        const entry = entries[0];
+        if (entry) {
+          setDropdownWidth(entry.contentRect.width);
+        }
+      });
+      observer.observe(el);
+      return () => observer.disconnect();
     }, [hasOptions]);
 
     const handleChange = useCallback(
@@ -149,13 +206,31 @@ const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
       onSearch?.(value);
     }, [onSearch, value]);
 
-    const handleEnter = useCallback(
+    const handleInputKeyDown = useCallback(
       (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === ENTER_KEY) {
-          onSearch?.(value);
+        // Enter on keydown for responsive submit feel (FIX #6).
+        if (e.key === ENTER_KEY && onSearch) {
+          e.preventDefault();
+          onSearch(value);
+          return;
+        }
+
+        // Combobox-style keyboard nav: move focus into the dropdown (FIX #7).
+        if (hasOptions && isDropdownOpen) {
+          if (e.key === ARROW_DOWN_KEY) {
+            e.preventDefault();
+            focusDropdownFirstElement(autocompleteDropdownId);
+          } else if (e.key === ESCAPE_KEY) {
+            e.preventDefault();
+            setIsDropdownOpen(false);
+          }
+        } else if (hasOptions && e.key === ARROW_DOWN_KEY) {
+          // Dropdown is closed but options exist — open it first.
+          e.preventDefault();
+          setIsDropdownOpen(true);
         }
       },
-      [onSearch, value],
+      [onSearch, value, hasOptions, isDropdownOpen, autocompleteDropdownId],
     );
 
     const handleClear = useCallback(() => {
@@ -163,74 +238,70 @@ const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
       onClear?.();
     }, [onChange, onClear]);
 
-    const handleOptionClick = useCallback(
-      (option: string) => {
-        onChange?.(option);
-        onOptionSelect?.(option);
-        setIsDropdownOpen(false);
-      },
-      [onChange, onOptionSelect],
-    );
+    // Map each option to a stable click handler so we don't allocate a new
+    // closure per option per render (FIX #2). Keyed by `${index}-${option}`
+    // so duplicate strings are safe (FIX #3).
+    const optionHandlers = useMemo(() => {
+      const handlers = new Map<string, () => void>();
+      displayedOptions.forEach((option, index) => {
+        const key = `${index}-${option}`;
+        handlers.set(key, () => {
+          onChange?.(option);
+          onOptionSelect?.(option);
+          setIsDropdownOpen(false);
+        });
+      });
+      return handlers;
+    }, [displayedOptions, onChange, onOptionSelect]);
 
     const handleDropdownClose = useCallback(() => {
       setIsDropdownOpen(false);
     }, []);
 
-    const placeholder = useMemo(() => (disabled ? "Recherche indisponible" : label), [disabled, label]);
+    // Derivations cheap enough not to memo (FIX #8, FIX #9).
+    const placeholder = disabled ? "Recherche indisponible" : label;
+    const searchButtonStyles = getSearchButtonStyles(compactSpacing);
 
-    const textInputProps = useMemo(
-      () => ({
-        disabled,
-        value,
-        onChange: handleChange,
-        onKeyUp: onSearch ? handleEnter : undefined,
-        showRightIcon: showResetButton,
-        rightIconAction: "clean" as const,
-        onRightIconClick: handleClear,
-        assistiveTextLabel: assistiveText,
-        compactSpacing,
-        placeholder,
-        leftIcon: appearanceConfig.showLeftIcon ? "search" : undefined,
-        width: fullWidth ? "100%" : undefined,
-        ...props,
-      }),
-      [
-        disabled,
-        value,
-        handleChange,
-        onSearch,
-        handleEnter,
-        showResetButton,
-        handleClear,
-        assistiveText,
-        compactSpacing,
-        placeholder,
-        appearanceConfig.showLeftIcon,
-        fullWidth,
-        props,
-      ],
-    );
-
+    // Drop `appearanceConfig.showLeftIcon` from deps — it's derived from
+    // `appearance` and was redundant (FIX #10).
     const textInputStyles = useMemo(
       () => ({
-        ...getTextInputStyles(appearance, appearanceConfig.showLeftIcon),
+        ...getTextInputStyles(appearance),
         ...(customInputStyle ?? {}),
       }),
-      [appearance, appearanceConfig.showLeftIcon, customInputStyle],
+      [appearance, customInputStyle],
     );
-
-    const searchButtonStyles = useMemo(() => getSearchButtonStyles(compactSpacing), [compactSpacing]);
 
     const searchbarContent = (
       <div ref={wrapperRef} className={styles.textInputWrapper} data-disabled={disabled}>
         <BaseTextInput
-          id={id ?? ""}
-          {...textInputProps}
+          id={resolvedId}
+          disabled={disabled}
+          value={value}
+          onChange={handleChange}
+          onKeyDown={handleInputKeyDown}
+          showRightIcon={showResetButton}
+          rightIconAction="clean"
+          onRightIconClick={handleClear}
+          assistiveTextLabel={assistiveText}
+          compactSpacing={compactSpacing}
+          placeholder={placeholder}
+          leftIcon={appearanceConfig.showLeftIcon ? "search" : undefined}
+          width={fullWidth ? "100%" : undefined}
           style={textInputStyles}
           highlighted={hasFocusWithin}
           ref={ref}
+          // ARIA combobox attributes for autocomplete mode (FIX #7).
+          {...(hasOptions && {
+            role: "combobox",
+            "aria-autocomplete": "list" as const,
+            "aria-expanded": isDropdownOpen,
+            "aria-controls": autocompleteDropdownId,
+            "aria-haspopup": "menu" as const,
+          })}
+          // `null` instead of `false` for the absent-slot case (FIX #12).
           rightSlot={
-            appearanceConfig.showSearchButton && (
+            appearanceConfig.showSearchButton ? (
               <IconButton
                 name="search"
                 size="m"
@@ -243,8 +314,9 @@ const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
                 compactSpacing={compactSpacing}
                 style={searchButtonStyles}
               />
-            )
+            ) : null
           }
+          {...props}
         />
       </div>
     );
@@ -256,11 +328,16 @@ const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
         data-appearance={appearance}
         style={fullWidth ? { width: "100%" } : undefined}
       >
-        {hasOptions ? (
+        {isAutocomplete ? (
+          // Always render the Dropdown in autocomplete mode to keep the
+          // <input>'s DOM parent stable. Gate actual opening on BOTH
+          // hasOptions (there's something to show) AND isDropdownOpen (user
+          // hasn't dismissed it). Without the always-render, a transition
+          // from options=[] to options=[…] remounts the input and drops focus.
           <Dropdown
-            dropdownId={`${id ?? "searchbar"}-autocomplete`}
+            dropdownId={autocompleteDropdownId}
             trigger={searchbarContent}
-            isOpen={isDropdownOpen}
+            isOpen={hasOptions && isDropdownOpen}
             onClose={handleDropdownClose}
             position="bottom"
             alignment="start"
@@ -268,9 +345,10 @@ const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
             autofocus={false}
             style={dropdownWidth ? { width: dropdownWidth } : undefined}
           >
-            {displayedOptions.map((option) => (
-              <DropdownItem key={option} label={option} onClick={() => handleOptionClick(option)} />
-            ))}
+            {displayedOptions.map((option, index) => {
+              const key = `${index}-${option}`;
+              return <DropdownItem key={key} label={option} onClick={optionHandlers.get(key)} />;
+            })}
           </Dropdown>
         ) : (
           searchbarContent

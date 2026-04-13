@@ -1,6 +1,6 @@
-import type { TextareaProps as CoreTextareaProps } from "@rte-ds/core/components/textarea/textarea.interface";
 import { ChangeEvent, FocusEvent, forwardRef, MutableRefObject, TextareaHTMLAttributes, useRef, useState } from "react";
 
+import type { TextareaProps as CoreTextareaProps } from "../../core-types/textarea/textarea.interface";
 import AssistiveText from "../assistivetext/AssistiveText";
 import RequiredIndicator from "../requiredindicator/RequiredIndicator";
 import Tooltip from "../tooltip/Tooltip";

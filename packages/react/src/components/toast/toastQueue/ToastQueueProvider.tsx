@@ -1,5 +1,6 @@
-import { getToastPriority } from "@rte-ds/core/components/toast/toast.utils";
 import { useCallback, useMemo, useState } from "react";
+
+import { getToastPriority } from "../../../core-types/toast/toast.utils";
 
 import { InputToast, ToastQueueContext, ToastQueueItem } from "./ToastQueueContext";
 

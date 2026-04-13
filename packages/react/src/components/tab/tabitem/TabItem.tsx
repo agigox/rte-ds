@@ -1,4 +1,3 @@
-import { TabItemProps as CoreTabItemProps } from "@rte-ds/core/components/tab/tab.interface";
 import {
   ARROW_DOWN_KEY,
   ARROW_LEFT_KEY,
@@ -7,6 +6,7 @@ import {
 } from "@rte-ds/core/constants/keyboard/keyboard.constants";
 import { HTMLAttributes, useCallback, useEffect, useRef, useState, MouseEvent, KeyboardEvent, forwardRef } from "react";
 
+import { TabItemProps as CoreTabItemProps } from "../../../core-types/tab/tab.interface";
 import Badge from "../../badge/Badge";
 import Icon from "../../icon/Icon";
 

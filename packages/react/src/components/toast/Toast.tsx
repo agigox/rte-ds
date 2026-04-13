@@ -1,7 +1,7 @@
-import { IconSize, IconTypeMap } from "@rte-ds/core/components/icon/icon.constants";
-import { ToastProps as coreToastProps } from "@rte-ds/core/components/toast/toast.interface";
 import { forwardRef, useCallback, useEffect, useState } from "react";
 
+import { IconSize, IconTypeMap } from "../../core-types/icon/icon.constants";
+import { ToastProps as coreToastProps } from "../../core-types/toast/toast.interface";
 import useAnimatedMount from "../../hooks/useAnimatedMount";
 import Button from "../button/Button";
 import Icon from "../icon/Icon";

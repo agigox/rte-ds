@@ -1,5 +1,3 @@
-import { TabProps as CoreTabProps } from "@rte-ds/core/components/tab/tab.interface";
-import { scrollToSelectedTab } from "@rte-ds/core/components/tab/tab.utils";
 import {
   forwardRef,
   HTMLAttributes,
@@ -12,6 +10,8 @@ import {
   useCallback,
 } from "react";
 
+import { TabProps as CoreTabProps } from "../../core-types/tab/tab.interface";
+import { scrollToSelectedTab } from "../../core-types/tab/tab.utils";
 import useSelectedIndicatorPosition from "../../hooks/useSelectedIndicatorPosition";
 import Badge from "../badge/Badge";
 import { Dropdown } from "../dropdown/Dropdown";

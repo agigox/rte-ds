@@ -34,16 +34,12 @@ function generateTagDate() {
 
 function generateTagMessage(customMessage) {
   try {
-    const angularVersion = getPackageVersion("angular");
     const reactVersion = getPackageVersion("react");
     const coreVersion = getPackageVersion("core");
-    const designDocsVersion = getPackageVersion("design-docs");
 
     const versionsInfo = `Package Versions:
-  - Angular: ${angularVersion}
   - React: ${reactVersion}
-  - Core: ${coreVersion}
-  - Design Docs: ${designDocsVersion}`;
+  - Core: ${coreVersion}`;
 
     return customMessage ? `${customMessage}\n\n${versionsInfo}` : `Release\n\n${versionsInfo}`;
   } catch (error) {
@@ -53,13 +49,7 @@ function generateTagMessage(customMessage) {
 }
 
 function getPackageVersion(packageName) {
-  let packageJsonPath;
-
-  if (packageName === "angular") {
-    packageJsonPath = path.join("packages", packageName, "projects", "ds-rte-lib", "package.json");
-  } else {
-    packageJsonPath = path.join("packages", packageName, "package.json");
-  }
+  const packageJsonPath = path.join("packages", packageName, "package.json");
 
   if (!fs.existsSync(packageJsonPath)) {
     throw new Error(`Package ${packageName} not found at ${packageJsonPath}`);

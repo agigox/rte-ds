@@ -1,5 +1,5 @@
-import { REQUIREMENT_INDICATOR_VALUE } from "@rte-ds/core/components/required-indicator/required-indicator.constant";
-import { RequiredIndicatorProps } from "@rte-ds/core/components/required-indicator/required-indicator.interface";
+import { REQUIREMENT_INDICATOR_VALUE } from "../../core-types/required-indicator/required-indicator.constant";
+import { RequiredIndicatorProps } from "../../core-types/required-indicator/required-indicator.interface";
 
 import styles from "./RequiredIndicator.module.scss";
 

@@ -1,10 +1,10 @@
 import { Meta } from "@storybook/blocks";
 
-import ComponentDocs from "../../../../design-docs/src/components/ComponentDocs/ComponentDocs";
-import DocsSection from "../../../../design-docs/src/components/DocsSection/DocsSection";
-import Accordion from "../../../../design-docs/src/components/Accordion/Accordion";
-import Gerkin from "../../../../design-docs/src/components/Guideline/Gerkin/Gerkin";
-import Paragraph from "../../../../design-docs/src/components/Paragraph/Paragraph";
+import ComponentDocs from "../../../../react/storybook-docs/ComponentDocs/ComponentDocs";
+import DocsSection from "../../../../react/storybook-docs/DocsSection/DocsSection";
+import Accordion from "../../../../react/storybook-docs/Accordion/Accordion";
+import Gerkin from "../../../../react/storybook-docs/Guideline/Gerkin/Gerkin";
+import Paragraph from "../../../../react/storybook-docs/Paragraph/Paragraph";
 import Usage from "./Usage";
 import Options from "./Options";
 import Behaviors from "./Behaviors";
@@ -20,19 +20,13 @@ import AccessibilityTable from "./AccessibilityTable";
     </Paragraph>
   }
   linkFigma="https://www.figma.com/design/Oe33roVZDpZNXWlEn25Z7x/02.0-Storybook?node-id=1454-10468&m=dev"
-  linkGithub={{
-    react: "https://github.com/rte-france/design-system-rte/tree/main/packages/react/src/components/searchbar",
-    angular: "https://github.com/rte-france/design-system-rte/tree/main/packages/angular/projects/ds-rte-lib/src/lib/components/searchbar"
-  }}
+  linkGithub="https://github.com/rte-france/design-system-rte/tree/main/packages/react/src/components/searchbar"
   disponibility={{
     design: {
       figma: true,
       guidelines: true,
     },
-    code: {
-      react: true,
-      angular: true,
-    },
+    code: { react: true },
   }}
   changelog={[
     {

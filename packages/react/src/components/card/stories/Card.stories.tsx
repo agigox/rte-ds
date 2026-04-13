@@ -1,3 +1,7 @@
+import type { Meta, StoryObj } from "@storybook/react";
+import { fn, userEvent, within, expect } from "@storybook/test";
+import { useState } from "react";
+
 import {
   cardStoryArgTypes,
   sizeExamples,
@@ -5,11 +9,7 @@ import {
   defaultStoryArgs,
   clickableStoryArgs,
   disabledStoryArgs,
-} from "@rte-ds/core/components/card/card.stories.shared";
-import type { Meta, StoryObj } from "@storybook/react";
-import { fn, userEvent, within, expect } from "@storybook/test";
-import { useState } from "react";
-
+} from "../../../core-types/card/card.stories.shared";
 import Button from "../../button/Button";
 import Card from "../Card";
 

@@ -1,16 +1,16 @@
-import { shouldDisplayBadge } from "@rte-ds/core/components/badge/badge.utils";
-import { DropdownProps } from "@rte-ds/core/components/dropdown/dropdown.interface";
-import {
-  splitButtonLeftIconSize,
-  splitButtonRightIconSize,
-} from "@rte-ds/core/components/split-button/split-button.constants";
-import {
-  SplitButtonProps as CoreSplitButtonProps,
-  SplitButtonItemProps as CoreSplitButtonOptionProps,
-} from "@rte-ds/core/components/split-button/split-button.interface";
 import { ARROW_DOWN_KEY, ENTER_KEY } from "@rte-ds/core/constants/keyboard/keyboard.constants";
 import { ButtonHTMLAttributes, ForwardedRef, forwardRef, KeyboardEvent, MouseEvent, useRef, useState } from "react";
 
+import { shouldDisplayBadge } from "../../core-types/badge/badge.utils";
+import { DropdownProps } from "../../core-types/dropdown/dropdown.interface";
+import {
+  splitButtonLeftIconSize,
+  splitButtonRightIconSize,
+} from "../../core-types/split-button/split-button.constants";
+import {
+  SplitButtonProps as CoreSplitButtonProps,
+  SplitButtonItemProps as CoreSplitButtonOptionProps,
+} from "../../core-types/split-button/split-button.interface";
 import Badge from "../badge/Badge";
 import { Dropdown } from "../dropdown/Dropdown";
 import { DropdownItem } from "../dropdown/dropdownItem/DropdownItem";

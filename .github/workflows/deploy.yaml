@@ -38,24 +38,21 @@ jobs:
       - name: Generate icons
         run: npm run generate:icons
 
-      - name: Build React Package
-        working-directory: packages/react
-        run: npm run build
-
       - name: Build Core Package
         working-directory: packages/core
         run: npm run build
 
-      - name: Build Design Docs Storybook
-        run: npm run build-design-docs
+      - name: Build React Package
+        working-directory: packages/react
+        run: npm run build
 
-      - name: Build Base Storybook
-        run: npm run build-base-storybook
+      - name: Build Storybook
+        run: npm run build-storybook
 
       - name: Deploy to GitHub Pages (root)
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./packages/design-docs/storybook-static
+          publish_dir: ./packages/react/storybook-static
           publish_branch: gh-pages
           keep_files: true

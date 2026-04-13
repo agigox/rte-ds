@@ -1,8 +1,8 @@
-import { CHIP_TYPE_TO_ARIA_ROLE_MAP } from "@rte-ds/core/components/chip/chip.constants";
-import { ChipProps as CoreChipProps } from "@rte-ds/core/components/chip/chip.interface";
 import { BACKSPACE_KEY, DELETE_KEY, ENTER_KEY, SPACE_KEY } from "@rte-ds/core/constants/keyboard/keyboard.constants";
 import React, { forwardRef } from "react";
 
+import { CHIP_TYPE_TO_ARIA_ROLE_MAP } from "../../core-types/chip/chip.constants";
+import { ChipProps as CoreChipProps } from "../../core-types/chip/chip.interface";
 import { useActiveKeyboard } from "../../hooks/useActiveKeyboard";
 import Icon from "../icon/Icon";
 import { concatClassNames } from "../utils";

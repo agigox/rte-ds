@@ -1,6 +1,6 @@
-import { getNavItemLabelIconSize } from "@rte-ds/core/components/side-nav/nav-item/nav-item.utils";
 import { ReactNode } from "react";
 
+import { getNavItemLabelIconSize } from "../../../core-types/side-nav/nav-item/nav-item.utils";
 import Icon from "../../icon/Icon";
 import navItemStyle from "../navItem/NavItem.module.scss";
 import navMenuStyle from "../navMenu/NavMenu.module.scss";

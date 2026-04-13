@@ -1,13 +1,13 @@
-import { BadgeProps as BadgePropsCore } from "@rte-ds/core/components/badge/badge.interface";
+import { forwardRef } from "react";
+
+import { BadgeProps as BadgePropsCore } from "../../core-types/badge/badge.interface";
 import {
   getBadgeIconSize,
   getDisplayCount,
   getShowBadge,
   getShowIcon,
   getShowText,
-} from "@rte-ds/core/components/badge/badge.utils";
-import { forwardRef } from "react";
-
+} from "../../core-types/badge/badge.utils";
 import Icon from "../icon/Icon";
 import { isValidIconName } from "../icon/IconMap";
 import { concatClassNames } from "../utils";

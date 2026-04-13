@@ -1,5 +1,6 @@
-import { GridProps } from "@rte-ds/core/components/grid/grid.interface";
 import { Meta, StoryObj } from "@storybook/react";
+
+import { GridProps } from "../../core-types/grid/grid.interface";
 
 import Grid from "./Grid";
 

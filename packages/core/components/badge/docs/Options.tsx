@@ -1,6 +1,6 @@
-import Accordion from "../../../../design-docs/src/components/Accordion/Accordion";
-import Heading from "../../../../design-docs/src/components/Heading/Heading";
-import Table from "../../../../design-docs/src/components/Table/Table";
+import Accordion from "../../../../react/storybook-docs/Accordion/Accordion";
+import Heading from "../../../../react/storybook-docs/Heading/Heading";
+import Table from "../../../../react/storybook-docs/Table/Table";
 
 const Options = () => {
   return (

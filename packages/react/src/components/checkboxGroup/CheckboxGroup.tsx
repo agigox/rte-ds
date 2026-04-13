@@ -1,6 +1,6 @@
-import { CheckboxGroupProps as CoreCheckboxGroupProps } from "@rte-ds/core/components/checkbox-group/checkbox-group.interface";
 import React, { forwardRef } from "react";
 
+import { CheckboxGroupProps as CoreCheckboxGroupProps } from "../../core-types/checkbox-group/checkbox-group.interface";
 import Checkbox from "../checkbox/Checkbox";
 import RequiredIndicator from "../requiredindicator/RequiredIndicator";
 import Tooltip from "../tooltip/Tooltip";

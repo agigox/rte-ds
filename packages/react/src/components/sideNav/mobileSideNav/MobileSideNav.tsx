@@ -1,8 +1,8 @@
-import { NavItemProps } from "@rte-ds/core/components/side-nav/nav-item/nav-item.interface";
-import { dividerAppearanceBySideNavAppearance } from "@rte-ds/core/components/side-nav/side-nav.constants";
-import { SideNavAppearance, SideNavHeaderConfig } from "@rte-ds/core/components/side-nav/side-nav.interface";
 import { Fragment, ReactNode, useCallback, useRef, useState } from "react";
 
+import { NavItemProps } from "../../../core-types/side-nav/nav-item/nav-item.interface";
+import { dividerAppearanceBySideNavAppearance } from "../../../core-types/side-nav/side-nav.constants";
+import { SideNavAppearance, SideNavHeaderConfig } from "../../../core-types/side-nav/side-nav.interface";
 import useAnimatedMount from "../../../hooks/useAnimatedMount";
 import { useFocusTrap } from "../../../hooks/useFocusTrap";
 import { useKeydownEscape } from "../../../hooks/useKeydownEscape";

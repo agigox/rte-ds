@@ -1,12 +1,12 @@
-import { shouldDisplayBadge } from "@rte-ds/core/components/badge/badge.utils.ts";
-import { BREADCRUMBS_DEFAULT_ARIA_LABEL } from "@rte-ds/core/components/breadcrumbs/breadcrumbs.constants";
-import { BreadcrumbsProps as BreadcrumbsPropsCore } from "@rte-ds/core/components/breadcrumbs/breadcrumbs.interface";
+import { forwardRef, useState, Fragment } from "react";
+
+import { shouldDisplayBadge } from "../../core-types/badge/badge.utils";
+import { BREADCRUMBS_DEFAULT_ARIA_LABEL } from "../../core-types/breadcrumbs/breadcrumbs.constants";
+import { BreadcrumbsProps as BreadcrumbsPropsCore } from "../../core-types/breadcrumbs/breadcrumbs.interface";
 import {
   getBreadcrumbsTruncatedItems,
   shouldTruncateBreadcrumbs,
-} from "@rte-ds/core/components/breadcrumbs/breadcrumbs.utils";
-import { forwardRef, useState, Fragment } from "react";
-
+} from "../../core-types/breadcrumbs/breadcrumbs.utils";
 import Badge from "../badge/Badge.tsx";
 import { Dropdown } from "../dropdown/Dropdown";
 import { DropdownItem } from "../dropdown/dropdownItem/DropdownItem";

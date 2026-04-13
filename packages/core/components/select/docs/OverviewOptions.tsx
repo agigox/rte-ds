@@ -1,5 +1,5 @@
-import Heading from "../../../../design-docs/src/components/Heading/Heading";
-import Table from "../../../../design-docs/src/components/Table/Table";
+import Heading from "../../../../react/storybook-docs/Heading/Heading";
+import Table from "../../../../react/storybook-docs/Table/Table";
 
 import "./OverviewOptions.scss";
 

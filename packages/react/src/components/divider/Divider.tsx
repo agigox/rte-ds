@@ -1,5 +1,6 @@
-import { DividerProps } from "@rte-ds/core/components/divider/divider.interface";
 import { forwardRef } from "react";
+
+import { DividerProps } from "../../core-types/divider/divider.interface";
 
 import style from "./Divider.module.scss";
 

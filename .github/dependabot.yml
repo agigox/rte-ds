@@ -7,9 +7,5 @@ version: 2
 updates:
   - package-ecosystem: "npm"
     directory: "/"
-    groups:
-      angular:
-        patterns:
-          - "@angular*"
     schedule:
       interval: "daily"

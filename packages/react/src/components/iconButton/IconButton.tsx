@@ -1,7 +1,7 @@
-import { ButtonIconSize } from "@rte-ds/core/components/button/common/common-button.constants";
-import { IconButtonProps as CoreIconButtonProps } from "@rte-ds/core/components/button/icon-button/icon-button.interface";
 import { forwardRef } from "react";
 
+import { ButtonIconSize } from "../../core-types/button/common/common-button.constants";
+import { IconButtonProps as CoreIconButtonProps } from "../../core-types/button/icon-button/icon-button.interface";
 import Badge from "../badge/Badge";
 import Icon, { RegularIconIdKey, TogglableIconIdKey } from "../icon/Icon";
 import { isValidIconName } from "../icon/IconMap";
