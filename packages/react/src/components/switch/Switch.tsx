@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, useState, useEffect } from "react";
+import { InputHTMLAttributes, useId } from "react";
 
 import { switchHeight, switchWidth } from "../../core-types/switch/switch.constants";
 import { SwitchProps as CoreSwitchProps } from "../../core-types/switch/switch.interface";
@@ -27,52 +27,35 @@ const Switch = ({
   onChange,
   tooltipTextLabel,
   labelStyle,
+  id,
   ...props
 }: SwitchProps) => {
-  const [isChecked, setIsChecked] = useState(checked);
-
-  useEffect(() => {
-    setIsChecked(checked);
-  }, [checked]);
+  const generatedId = useId();
+  const inputId = id || generatedId;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsChecked(e.target.checked);
+    if (readOnly) return;
     onChange?.(e);
   };
 
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (readOnly || disabled) {
-      e.stopPropagation();
-    } else {
-      const inputElement = e.currentTarget.querySelector('input[type="checkbox"]') as HTMLInputElement;
-      if (inputElement) {
-        inputElement.checked = !isChecked;
-        const syntheticEvent = {
-          target: inputElement,
-          currentTarget: inputElement,
-        } as React.ChangeEvent<HTMLInputElement>;
-        handleChange(syntheticEvent);
-      }
-    }
-  };
-
   const content = (
-    <div
+    <label
       className={style["switch-container"]}
       data-appearance={appearance}
       data-disabled={disabled}
       data-read-only={readOnly}
-      data-checked={isChecked}
-      onClick={handleClick}
+      data-checked={checked}
+      htmlFor={inputId}
     >
       <input
+        id={inputId}
         aria-label={label}
         type="checkbox"
         role="switch"
         name={label}
         className={style["switch"]}
         disabled={disabled}
-        checked={isChecked}
+        checked={checked}
         onChange={handleChange}
         readOnly={readOnly}
         style={{
@@ -81,19 +64,19 @@ const Switch = ({
         }}
         {...props}
       />
-      <div className={style["switch-icon-check"]} data-checked={isChecked}>
-        {showIcon && isChecked && <Icon name="check" size={16} />}
-        {showIcon && !isChecked && <Icon name="close" size={16} />}
+      <div className={style["switch-icon-check"]} data-checked={checked}>
+        {showIcon && checked && <Icon name="check" size={16} />}
+        {showIcon && !checked && <Icon name="close" size={16} />}
       </div>
       {showLabel && label && (
         <div className={style["label-container"]}>
-          <label htmlFor={label} className={concatClassNames(style["switch-label"])} style={labelStyle}>
+          <span className={concatClassNames(style["switch-label"])} style={labelStyle}>
             {label}
-          </label>
+          </span>
           <RequiredIndicator required={required} showLabelRequirement={showLabelRequirement} />
         </div>
       )}
-    </div>
+    </label>
   );
 
   return (
