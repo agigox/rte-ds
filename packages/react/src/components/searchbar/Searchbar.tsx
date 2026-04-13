@@ -101,7 +101,15 @@ const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
     const generatedId = useId();
     const resolvedId = id ?? generatedId;
 
-    const hasOptions = !!options && options.length > 0;
+    // `isAutocomplete` signals "consumer wants autocomplete" (they passed an
+    // `options` prop, even if currently empty). `hasOptions` signals "the
+    // dropdown has something to show right now". The distinction matters
+    // because we ALWAYS keep the Dropdown mounted in autocomplete mode —
+    // otherwise the JSX structure would flip between bare content and
+    // <Dropdown>{content}</Dropdown> on every transition to/from an empty
+    // options array, remounting the <input> and dropping focus mid-typing.
+    const isAutocomplete = options !== undefined;
+    const hasOptions = isAutocomplete && options.length > 0;
     // Track hasOptions via a ref so focus listeners can read the latest value
     // without the effect re-attaching on every toggle (FIX #4).
     const hasOptionsRef = useRef(hasOptions);
@@ -114,12 +122,29 @@ const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
     }, [options, maxDisplayedItems]);
 
     const autocompleteDropdownId = `${resolvedId}-autocomplete`;
+    // Mirror the id into a ref so the mount-only focusout listener can look
+    // up the current dropdown DOM node without re-attaching on every render.
+    const autocompleteDropdownIdRef = useRef(autocompleteDropdownId);
+    autocompleteDropdownIdRef.current = autocompleteDropdownId;
 
     // Attach focusin/focusout once on mount. The handlers read hasOptions
     // from a ref so they never go stale (FIX #4).
     useEffect(() => {
       const wrapper = wrapperRef.current;
       if (!wrapper) return;
+
+      // A node counts as "still inside the Searchbar focus group" if it's
+      // in the wrapper OR in the autocomplete dropdown. The Dropdown renders
+      // in a React portal via <Overlay>, so wrapper.contains() alone would
+      // miss DropdownItems and close the dropdown the instant the user
+      // ArrowDown'd into it.
+      const isInFocusGroup = (node: Node | null): boolean => {
+        if (!node) return false;
+        if (wrapper.contains(node)) return true;
+        const id = autocompleteDropdownIdRef.current;
+        const dropdownEl = document.querySelector(`[data-dropdown-id="${CSS.escape(id)}"]`);
+        return !!(dropdownEl && dropdownEl.contains(node));
+      };
 
       const handleFocusIn = () => {
         setHasFocusWithin(true);
@@ -130,12 +155,13 @@ const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
 
       const handleFocusOut = (event: FocusEvent) => {
         const next = event.relatedTarget as Node | null;
-        if (next && wrapper.contains(next)) {
+        if (isInFocusGroup(next)) {
           return;
         }
         setHasFocusWithin(false);
-        // Also close the dropdown when focus leaves the whole Searchbar —
-        // the prior behavior left it visually open until an outside click (ARCH #14).
+        // Close the dropdown when focus leaves the whole Searchbar group
+        // (ARCH #14). The isInFocusGroup check above ensures keyboard nav
+        // INTO the dropdown doesn't trigger this branch.
         setIsDropdownOpen(false);
       };
 
@@ -302,11 +328,16 @@ const Searchbar = forwardRef<HTMLInputElement, SearchbarProps>(
         data-appearance={appearance}
         style={fullWidth ? { width: "100%" } : undefined}
       >
-        {hasOptions ? (
+        {isAutocomplete ? (
+          // Always render the Dropdown in autocomplete mode to keep the
+          // <input>'s DOM parent stable. Gate actual opening on BOTH
+          // hasOptions (there's something to show) AND isDropdownOpen (user
+          // hasn't dismissed it). Without the always-render, a transition
+          // from options=[] to options=[…] remounts the input and drops focus.
           <Dropdown
             dropdownId={autocompleteDropdownId}
             trigger={searchbarContent}
-            isOpen={isDropdownOpen}
+            isOpen={hasOptions && isDropdownOpen}
             onClose={handleDropdownClose}
             position="bottom"
             alignment="start"
